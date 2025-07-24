@@ -162,15 +162,15 @@ export default function TalentTestRegisterPage() {
 							id="studentName"
 							value={formData.studentName}
 							onChange={handleChange}
-							placeholder="Enter student's full name"
-							className="w-full px-4 py-2 rounded border border-neutral-300 bg-neutral-50 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+							placeholder="Enter student&apos;s full name"
+							className="w-full px-4 py-2 rounded border border-neutral-300 bg-neutral-50 text-black placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-green-400"
 							required
 						/>
 					</div>
 					{/* Guardian Name */}
 					<div>
 						<label className="block mb-1 font-medium text-neutral-700" htmlFor="guardianName">
-							Guardian's Name
+							Guardian&apos;s Name
 						</label>
 						<input
 							type="text"
@@ -178,8 +178,8 @@ export default function TalentTestRegisterPage() {
 							id="guardianName"
 							value={formData.guardianName}
 							onChange={handleChange}
-							placeholder="Enter guardian's full name"
-							className="w-full px-4 py-2 rounded border border-neutral-300 bg-neutral-50 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+							placeholder="Enter guardian&apos;s full name"
+							className="w-full px-4 py-2 rounded border border-neutral-300 bg-neutral-50 text-black placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-green-400"
 							required
 						/>
 					</div>
