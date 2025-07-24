@@ -1,4 +1,4 @@
 declare module '@cashfreepayments/cashfree-js' {
-  export const Cashfree: any;
-  export function load(options: { mode: string }): Promise<any>;
+  export const Cashfree: unknown;
+  export function load(options: { mode: string }): Promise<unknown>;
 }

@@ -1,11 +1,9 @@
 // lib/db.ts
 import mongoose from 'mongoose';
 
-// Import all your models here to register them with Mongoose
 import './../models/Subject';
 import './../models/Tag';
 import './../models/TagType';
-// Assuming you have this model as well
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
@@ -18,12 +16,24 @@ if (!MONGODB_URI) {
  * in development. This prevents connections from growing exponentially
  * during API Route usage.
  */
-let cached = (global as any).mongoose;
+type MongooseCache = {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+};
+
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: MongooseCache | undefined;
+}
+
+let cached: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null } =
+  (global as any).mongoose;
 
 if (!cached) {
   cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
+// Now cached is always defined
 export async function connectDB() {
   if (cached.conn) {
     return cached.conn;
@@ -38,7 +48,7 @@ export async function connectDB() {
       return mongoose;
     });
   }
-  
+
   try {
     cached.conn = await cached.promise;
   } catch (e) {

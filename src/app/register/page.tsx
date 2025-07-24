@@ -134,12 +134,14 @@ export default function TalentTestRegisterPage() {
 				description: 'Registration successful! Proceeding to payment.',
 				variant: 'default',
 			});
-		} catch (err: any) {
-			toast({
-				title: 'Error',
-				description: err.message || 'Something went wrong.',
-				variant: 'destructive',
-			});
+		} catch (err: unknown) {
+			if (err instanceof Error) {
+				toast({
+					title: 'Error',
+					description: err.message || 'Something went wrong.',
+					variant: 'destructive',
+				});
+			}
 			setIsError(true);
 		} finally {
 			setLoading(false);

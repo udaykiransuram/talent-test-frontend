@@ -123,8 +123,13 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ payment_session_id: data.payment_session_id, orderId });
-  } catch (err: any) {
-    console.error('API Error:', err);
-    return NextResponse.json({ error: err.message || 'Internal Server Error' }, { status: 500 });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error('API Error:', err.message);
+      return NextResponse.json({ error: err.message }, { status: 500 });
+    } else {
+      console.error('API Error:', err);
+      return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
   }
 }
