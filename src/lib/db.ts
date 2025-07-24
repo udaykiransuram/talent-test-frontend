@@ -1,10 +1,6 @@
 // lib/db.ts
 import mongoose from 'mongoose';
 
-import './../models/Subject';
-import './../models/Tag';
-import './../models/TagType';
-
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {

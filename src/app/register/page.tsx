@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Cashfree } from '@cashfreepayments/cashfree-js';
-import { useToast } from '@/components/ui/use-toast'; // <-- Use your custom toast
+import { load, CashfreeSDK } from '@cashfreepayments/cashfree-js';
+import { useToast } from '@/components/ui/use-toast';
 
 const classLevels = [
 	{ value: '', label: 'Select Class' },
@@ -17,13 +17,11 @@ const classLevels = [
 	{ value: '9', label: 'Class 9' },
 	{ value: '10', label: 'Class 10' },
     { value: '11', label: 'Class 11' },
-    { value: '12', label: 'Class 12' },
+    { value: '12', label: 'Class 1' },
 ];
 
-const amount = 500; // Change this value to update the registration fee
-
 export default function TalentTestRegisterPage() {
-	const [cashfreeSDK, setCashfreeSDK] = useState<InstanceType<typeof Cashfree> | null>(null);
+	const [cashfreeSDK, setCashfreeSDK] = useState<CashfreeSDK | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		studentName: '',
@@ -31,26 +29,24 @@ export default function TalentTestRegisterPage() {
 		phone: '',
 		classLevel: '',
 		aadhar: '',
-		amount: String(amount),
+		amount: '100',
 		careerAspiration: '',
 	});
 	const [acceptedTerms, setAcceptedTerms] = useState(false);
 	const [isError, setIsError] = useState(false);
-	const { toast } = useToast(); // <-- Use your custom toast
+	const { toast } = useToast();
 
 	useEffect(() => {
-		import('@cashfreepayments/cashfree-js').then(({ load }) => {
-			load({ mode: process.env.NEXT_PUBLIC_CASHFREE_ENV || 'sandbox' })
-				.then(setCashfreeSDK)
-				.catch(() => {
-					toast({
-						title: 'Error',
-						description: 'Failed to load payment module. Please refresh.',
-						variant: 'destructive',
-					});
-					setIsError(true);
+		load({ mode: process.env.NEXT_PUBLIC_CASHFREE_ENV || 'sandbox' })
+			.then(setCashfreeSDK)
+			.catch(() => {
+				toast({
+					title: 'Error',
+					description: 'Failed to load payment module. Please refresh.',
+					variant: 'destructive',
 				});
-		});
+				setIsError(true);
+			});
 	}, [toast]);
 
 	const formatAadhar = (value: string) =>
@@ -134,14 +130,12 @@ export default function TalentTestRegisterPage() {
 				description: 'Registration successful! Proceeding to payment.',
 				variant: 'default',
 			});
-		} catch (err: unknown) {
-			if (err instanceof Error) {
-				toast({
-					title: 'Error',
-					description: err.message || 'Something went wrong.',
-					variant: 'destructive',
-				});
-			}
+		} catch (err: any) {
+			toast({
+				title: 'Error',
+				description: err.message || 'Something went wrong.',
+				variant: 'destructive',
+			});
 			setIsError(true);
 		} finally {
 			setLoading(false);
@@ -155,7 +149,7 @@ export default function TalentTestRegisterPage() {
 				<p className="text-center text-neutral-500 mb-8">
 					Fill in the details below to register.
 					<br />
-					<span className="font-semibold text-green-600">Registration fee: ₹{amount}</span>
+					<span className="font-semibold text-green-600">Registration fee: ₹100</span>
 				</p>
 
 				<form onSubmit={handleSubmit} className="space-y-6">
@@ -296,7 +290,7 @@ export default function TalentTestRegisterPage() {
 						{loading
 							? 'Processing...'
 							: cashfreeSDK
-							? `Pay ₹${amount} & Register`
+							? 'Pay ₹100 & Register'
 							: 'Loading Payment...'}
 					</button>
 				</form>

@@ -1,4 +1,7 @@
 declare module '@cashfreepayments/cashfree-js' {
-  export const Cashfree: unknown;
-  export function load(options: { mode: string }): Promise<unknown>;
+  export interface CashfreeSDK {
+    checkout(options: { paymentSessionId: string }): Promise<void>;
+    // Add other methods if needed
+  }
+  export function load(options: { mode: string }): Promise<CashfreeSDK>;
 }
