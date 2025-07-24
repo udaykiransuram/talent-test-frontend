@@ -22,15 +22,14 @@ declare global {
   var mongoose: MongooseCache | undefined;
 }
 
-let cached: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null } =
-  (global as any).mongoose;
+let cached = global.mongoose;
 
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
-// Now cached is always defined
 export async function connectDB() {
+  cached = cached ?? { conn: null, promise: null }; // Ensure cached is defined
   if (cached.conn) {
     return cached.conn;
   }
