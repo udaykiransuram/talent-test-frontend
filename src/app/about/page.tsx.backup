@@ -1,0 +1,50 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { Reveal, Stagger } from '@/components/Reveal';
+
+export const metadata: Metadata = {
+  title: 'About — Our Credibility',
+  description: 'Built by IITians & NITians. Pioneering breakthroughs in education with rigorous research and proven classroom impact.',
+};
+
+export default function AboutPage() {
+  return (
+    <div className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
+      <section className="border-b border-neutral-200/60 px-4 py-16 dark:border-neutral-800">
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <h1 className="text-4xl font-extrabold tracking-tight">Our Credibility</h1>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-3 max-w-3xl text-neutral-700 dark:text-neutral-300">
+              We are a dedicated group of IITians & NITians, united by a singular mission: to revolutionize education by making understanding visible.
+            </p>
+          </Reveal>
+          <Reveal>
+            <div className="relative mt-8 aspect-[16/9] w-full">
+              <Image src="/images/team-meeting.jpg" alt="Team collaborating on research and product" fill className="mask-blob ken-burns rounded-xl object-cover shadow-xl shadow-emerald-900/10" sizes="(max-width:768px) 100vw, 1000px" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <Stagger className="grid gap-6 md:grid-cols-3">
+          {[
+            { title: 'Pioneering Educational Breakthroughs', desc: 'Committed to advancing the science of learning and assessment.' },
+            { title: 'Grounded in Rigorous Research', desc: 'Our approach is built on extensive study and data‑driven insights.' },
+            { title: 'Proven Effective in Classrooms', desc: 'Validated in diverse environments with real‑world results.' },
+          ].map((i) => (
+            <div key={i.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+              <h3 className="text-base font-semibold">{i.title}</h3>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{i.desc}</p>
+            </div>
+          ))}
+        </Stagger>
+        <blockquote className="mt-10 rounded-xl border border-neutral-200 bg-neutral-50 p-6 italic text-neutral-700 ring-1 ring-emerald-500/10 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+          “Strive not to be a success, but rather to be of value.” — Albert Einstein
+        </blockquote>
+      </section>
+    </div>
+  );
+}

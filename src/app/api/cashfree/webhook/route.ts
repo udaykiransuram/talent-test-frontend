@@ -70,16 +70,20 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      // Send WhatsApp message via Cloud API
+      // Send WhatsApp message via Cloud API (only if env vars are configured)
       let hallTicketWhatsappSent = false;
-      try {
-        await sendWhatsAppCloudAPI(
-          updated.phone,
-          `🎉 Registration successful!\nYour Hall Ticket: ${hallTicket}\nThank you for registering for the Talent Test.`
-        );
-        hallTicketWhatsappSent = true;
-      } catch (waErr) {
-        console.error('WhatsApp send error:', waErr);
+      if (process.env.WHATSAPP_PHONE_NUMBER_ID && process.env.WHATSAPP_TOKEN) {
+        try {
+          await sendWhatsAppCloudAPI(
+            updated.phone,
+            `🎉 Registration successful!\nYour Hall Ticket: ${hallTicket}\nThank you for registering for the Talent Test.`
+          );
+          hallTicketWhatsappSent = true;
+        } catch (waErr) {
+          console.error('WhatsApp send error:', waErr);
+        }
+      } else {
+        console.warn('WhatsApp env not configured; skipping WhatsApp notification');
       }
 
       await Registration.updateOne(

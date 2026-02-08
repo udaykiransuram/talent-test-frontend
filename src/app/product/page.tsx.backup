@@ -1,0 +1,155 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { Reveal, Stagger } from '@/components/Reveal';
+
+export const metadata: Metadata = {
+  title: 'Product — Precision Diagnostic Platform',
+  description: 'Deconstruct understanding into Topic → Skill → Subskill. Classify errors. Track progress. Turn data into targeted action.',
+};
+
+export default function ProductPage() {
+  return (
+    <div className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
+      {/* Intro */}
+      <section className="border-b border-neutral-200/60 py-16 dark:border-neutral-800">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2">
+          <div>
+            <Reveal>
+              <h1 className="text-4xl font-extrabold tracking-tight">Precision Diagnostic Framework</h1>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-4 text-neutral-700 dark:text-neutral-300">
+                We move beyond scores to reveal the “why” behind performance. Our framework maps learning from topic → skill → subskill and pinpoints the root reason for errors.
+              </p>
+            </Reveal>
+            <Stagger className="mt-6 flex gap-3">
+              <Link href="/contact" className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 px-5 py-3 text-white shadow hover:opacity-95">Request a demo</Link>
+              <Link href="/case-study" className="rounded-full border border-neutral-300 px-5 py-3 dark:border-neutral-700">See outcomes</Link>
+            </Stagger>
+          </div>
+          <div className="relative aspect-[4/3] w-full">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-600/10" />
+            <Reveal>
+              <Image src="/images/analytics-dashboard.jpg" alt="Diagnostic framework insights" fill className="mask-blob ken-burns rounded-2xl object-cover shadow-xl shadow-emerald-900/15" sizes="(max-width: 768px) 100vw, 50vw" priority />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Hierarchy */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <h2 className="text-3xl font-bold">Deconstructing Understanding</h2>
+        <Stagger className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            { title: 'Topic', desc: 'Broad subject area (e.g., Fractions)' },
+            { title: 'Skill', desc: 'Specific ability within a topic (e.g., Comparing)' },
+            { title: 'Subskill', desc: 'Granular component (e.g., Different Denominators)' },
+          ].map((i) => (
+            <div key={i.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+              <h3 className="text-lg font-semibold">{i.title}</h3>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{i.desc}</p>
+            </div>
+          ))}
+        </Stagger>
+      </section>
+
+      {/* Reason Types */}
+      <section className="bg-neutral-50 py-16 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-4">
+          <h2 className="text-3xl font-bold">Identify Root Causes</h2>
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-4">
+            {[
+              { title: 'Conceptual Gap', desc: 'Misunderstanding of fundamental ideas.' },
+              { title: 'Procedural Error', desc: 'Mistakes in applying steps or algorithms.' },
+              { title: 'Memory / Prerequisite', desc: 'Missing prior knowledge or recall.' },
+              { title: 'Attitude / Focus', desc: 'Engagement or concentration issues.' },
+            ].map((r) => (
+              <div key={r.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+                <h3 className="text-base font-semibold">{r.title}</h3>
+                <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{r.desc}</p>
+              </div>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Fractions Example */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-bold">Fractions: Comparing Different Denominators</h2>
+            <p className="mt-3 text-neutral-700 dark:text-neutral-300">We assess building blocks to truly diagnose understanding:</p>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-700 dark:text-neutral-300">
+              <li>Equal Parts Concept</li>
+              <li>Numerator vs. Denominator Meaning</li>
+              <li>LCM / Multiples Sense</li>
+              <li>Equivalent Fractions Concept</li>
+              <li>Number Line Placement</li>
+              <li>Cross-Multiplication Logic</li>
+            </ul>
+          </div>
+          <div className="relative aspect-video w-full">
+            <Reveal>
+              <Image src="/images/math-chalkboard.jpg" alt="Fractions & foundational math" fill className="rounded-xl object-cover shadow-xl shadow-emerald-900/10" sizes="(max-width: 768px) 100vw, 50vw" />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* MCQs Power */}
+      <section className="bg-neutral-50 py-16 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-4">
+          <h2 className="text-3xl font-bold">The Power of MCQs in Diagnostics</h2>
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-3">
+            {[
+              { title: 'Each option reveals', desc: 'Distractors expose specific misconceptions.' },
+              { title: 'Comprehensive tracking', desc: 'Reasoning, misconceptions, speed, and focus.' },
+              { title: 'Hidden insights', desc: 'Look beyond right/wrong to cognition.' },
+            ].map((i) => (
+              <div key={i.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+                <h3 className="text-base font-semibold">{i.title}</h3>
+                <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{i.desc}</p>
+              </div>
+            ))}
+          </Stagger>
+          <div className="relative mt-8 aspect-[16/9] w-full">
+            <Reveal>
+              <Image src="/images/mcq-exam.jpg" alt="MCQ assessment environment" fill className="rounded-xl object-cover shadow-xl shadow-emerald-900/10" sizes="(max-width:768px) 100vw, 1000px" />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Outcomes for Institutions */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <h2 className="text-3xl font-bold">From Data to Action</h2>
+        <Stagger className="mt-8 grid gap-6 md:grid-cols-4">
+          {[
+            { title: 'Identify Weak Concepts Class‑Wide', desc: 'Pinpoint common difficulties to plan group instruction.' },
+            { title: 'Reteach Based on Evidence', desc: 'Shift to precise, time‑saving interventions.' },
+            { title: 'Measure Teacher Effectiveness', desc: 'Track how instruction translates to understanding.' },
+            { title: 'Showcase Outcomes to Parents', desc: 'Present objective progress and growth.' },
+          ].map((o) => (
+            <div key={o.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+              <h3 className="text-base font-semibold">{o.title}</h3>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{o.desc}</p>
+            </div>
+          ))}
+        </Stagger>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-4 pb-24">
+        <div className="rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 p-10 text-white">
+          <h3 className="text-2xl font-bold">Diagnosis isn’t feedback. It’s leverage.</h3>
+          <p className="mt-2 opacity-90">Turn hidden gaps into visible growth across your classrooms.</p>
+          <div className="mt-6 flex gap-3">
+            <Link href="/contact" className="rounded-full bg-white px-5 py-3 text-emerald-700 shadow hover:opacity-95">Get in touch</Link>
+            <Link href="/case-study" className="rounded-full border border-white/70 px-5 py-3 text-white hover:bg-white/10">See case study</Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

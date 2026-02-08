@@ -3,7 +3,15 @@ import Registration from '@/models/Registration';
 import { connectDB } from '@/lib/db';
 import { Redis } from '@upstash/redis';
 
-const redis = Redis.fromEnv();
+let redis: Redis | null = null;
+try {
+  // Create client from env if configured; remain null otherwise
+  // This prevents crashes during build/runtime if Upstash vars are missing
+  // and we simply skip rate limiting (fail-open).
+  redis = (Redis as unknown as { fromEnv?: () => Redis }).fromEnv ? (Redis as unknown as { fromEnv: () => Redis }).fromEnv() : null;
+} catch {
+  console.warn('Upstash Redis not configured; rate limiting disabled.');
+}
 
 const RATE_LIMIT = 10; // max requests per 10 minutes per IP
 const WINDOW = 10 * 60; // 10 minutes in seconds
@@ -17,13 +25,15 @@ export async function POST(req: NextRequest) {
     // Distributed rate limiting with fail-open for resilience
     let count = 0;
     try {
-      count = await redis.incr(key);
-      if (count === 1) await redis.expire(key, WINDOW);
-      if (count > RATE_LIMIT) {
-        return NextResponse.json(
-          { error: 'Too many requests. Please try again later.' },
-          { status: 429 }
-        );
+      if (redis) {
+        count = await redis.incr(key);
+        if (count === 1) await redis.expire(key, WINDOW);
+        if (count > RATE_LIMIT) {
+          return NextResponse.json(
+            { error: 'Too many requests. Please try again later.' },
+            { status: 429 }
+          );
+        }
       }
     } catch (err) {
       // Log the error, but allow registration to proceed (fail open)
@@ -42,7 +52,8 @@ export async function POST(req: NextRequest) {
       'phone',
       'classLevel',
       'aadhar',
-      'careerAspiration'
+      'careerAspiration',
+      'rollNumber', // <-- add this
     ];
     for (const field of requiredFields) {
       if (!body[field]) {
@@ -78,12 +89,17 @@ export async function POST(req: NextRequest) {
       classLevel: body.classLevel,
       aadhar: body.aadhar,
       careerAspiration: body.careerAspiration,
+      rollNumber: body.rollNumber, // <-- add this
       orderId,
       status: 'pending',
     });
 
+    // Determine Cashfree environment/base URL
+    const cashfreeEnv = (process.env.CASHFREE_ENV || process.env.NEXT_PUBLIC_CASHFREE_ENV || 'sandbox').toLowerCase();
+    const CASHFREE_BASE_URL = process.env.CASHFREE_BASE_URL || (cashfreeEnv === 'production' ? 'https://api.cashfree.com' : 'https://sandbox.cashfree.com');
+
     // Call Cashfree API
-    const res = await fetch('https://sandbox.cashfree.com/pg/orders', {
+    const res = await fetch(`${CASHFREE_BASE_URL}/pg/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

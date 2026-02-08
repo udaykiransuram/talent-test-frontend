@@ -27,7 +27,7 @@ export default function AboutTermsPage() {
           <section>
             <h2 className="font-semibold text-emerald-800 mb-2">Code of Conduct</h2>
             <p>
-              All students must attempt the test honestly. Any form of cheating or misuse of the platform will result in disqualification.
+              All students must attempt the test honestly. Any form of cheating or misuse of the test will result in disqualification.
             </p>
           </section>
           <section>

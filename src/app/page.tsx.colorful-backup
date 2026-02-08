@@ -1,0 +1,609 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { Reveal, Stagger } from '@/components/Reveal';
+
+export const metadata = {
+  title: 'Beyond Marks — Transform Education with Data-Driven Insights',
+  description: 'Complete EdTech solutions for K-12 schools: Precision Diagnostics, ERP, Alumni Management & OMR Scanning. Built by IITians & NITians.',
+};
+
+export default function HomePage() {
+  return (
+    <div className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-neutral-200/60 dark:border-neutral-800">
+        {/* Background gradients */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-teal-500/5 blur-3xl" />
+        </div>
+        
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 md:grid-cols-2 lg:py-32">
+          <div>
+            <Reveal>
+              <div className="mb-4 inline-block rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+                Built by IITians & NITians
+              </div>
+            </Reveal>
+            <Reveal>
+              <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+                Beyond Marks:<br />
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  Build Understanding
+                </span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-6 text-xl leading-relaxed text-neutral-600 dark:text-neutral-300">
+                Complete EdTech solutions for K-12 schools. From precision diagnostics that reveal learning gaps to powerful ERP systems — we help schools move from averages to achievers.
+              </p>
+            </Reveal>
+            <Stagger className="mt-10 flex flex-wrap gap-4">
+              <Link href="/talent-test" className="group rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 px-7 py-4 text-lg font-semibold text-white shadow-lg shadow-emerald-900/20 transition hover:shadow-xl hover:shadow-emerald-900/30">
+                Try Free Talent Test
+                <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+              <Link href="/contact" className="rounded-full border-2 border-neutral-300 px-7 py-4 text-lg font-semibold text-neutral-900 transition hover:border-emerald-500 hover:bg-emerald-50 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-900">
+                Schedule Demo
+              </Link>
+            </Stagger>
+            <Reveal delay={0.15}>
+              <div className="mt-8 flex items-center gap-8 text-sm text-neutral-500 dark:text-neutral-400">
+                <div>
+                  <div className="text-2xl font-bold text-neutral-900 dark:text-white">500+</div>
+                  <div>Schools Trust Us</div>
+                </div>
+                <div className="h-12 w-px bg-neutral-200 dark:bg-neutral-800" />
+                <div>
+                  <div className="text-2xl font-bold text-neutral-900 dark:text-white">50K+</div>
+                  <div>Students Assessed</div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-500/10 to-teal-600/10" />
+            <Reveal>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl shadow-emerald-900/20">
+                <Image 
+                  src="/images/hero-classroom.jpg" 
+                  alt="Modern classroom with students using technology" 
+                  fill 
+                  className="object-cover" 
+                  priority 
+                  sizes="(max-width:768px) 100vw, 50vw" 
+                />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Solutions */}
+      <section className="mx-auto max-w-7xl px-4 py-20">
+        <div className="text-center">
+          <Reveal>
+            <h2 className="text-4xl font-extrabold sm:text-5xl">
+              Complete EdTech Solutions
+            </h2>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
+              Everything your school needs to deliver world-class education — from diagnostics to management
+            </p>
+          </Reveal>
+        </div>
+
+        <Stagger className="mt-16 grid gap-8 md:grid-cols-2 lg:gap-12">
+          {/* Quality Management - Hero Product */}
+          <div className="group relative overflow-hidden rounded-2xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 p-8 shadow-lg transition hover:shadow-2xl hover:shadow-emerald-900/10 dark:border-emerald-900 dark:from-emerald-950/30 dark:to-teal-950/30 md:col-span-2">
+            <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-emerald-500/10 blur-3xl" />
+            <div className="relative">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-600 px-3 py-1 text-xs font-semibold text-white">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white"></span>
+                </span>
+                FLAGSHIP PRODUCT
+              </div>
+              <div className="grid gap-8 md:grid-cols-2">
+                <div>
+                  <h3 className="text-3xl font-bold text-emerald-900 dark:text-emerald-100">
+                    🎯 Precision Diagnostic Testing
+                  </h3>
+                  <p className="mt-4 text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
+                    Our core offering. Transform teaching with deep diagnostic insights that go <strong>beyond marks</strong> to reveal true understanding.
+                  </p>
+                  <ul className="mt-6 space-y-3">
+                    {[
+                      'Topic → Skill → Subskill breakdown',
+                      'Identify conceptual, procedural & prerequisite gaps',
+                      'Baseline testing in Math, Science & more',
+                      'AI-powered personalized learning paths',
+                      'Track growth, not just grades',
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <svg className="mt-1 h-5 w-5 flex-shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-neutral-700 dark:text-neutral-300">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Link href="/product" className="rounded-lg bg-emerald-600 px-5 py-3 font-semibold text-white shadow-lg transition hover:bg-emerald-700">
+                      Learn More
+                    </Link>
+                    <Link href="/talent-test" className="rounded-lg border-2 border-emerald-600 px-5 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-50 dark:text-emerald-300 dark:hover:bg-emerald-950">
+                      Try Free Demo Test
+                    </Link>
+                  </div>
+                </div>
+                <div className="relative hidden md:block">
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-400/20 to-teal-400/20" />
+                  <Image 
+                    src="/images/analytics-dashboard.jpg" 
+                    alt="Diagnostic analytics dashboard" 
+                    fill 
+                    className="rounded-xl object-cover opacity-90 shadow-xl" 
+                    sizes="(max-width:768px) 100vw, 400px" 
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* School ERP */}
+          <div className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg transition hover:border-blue-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="text-5xl">🏫</div>
+            <h3 className="mt-4 text-2xl font-bold text-neutral-900 dark:text-white">
+              School ERP System
+            </h3>
+            <p className="mt-3 leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Comprehensive management system to run your school efficiently — from admissions to alumni.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+              <li className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span> Student & Staff Management
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span> Attendance & Timetable
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span> Fee Management & Accounting
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span> Parent Communication Portal
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span> Library & Inventory Management
+              </li>
+            </ul>
+            <Link href="/product#erp" className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-600 transition hover:gap-3 dark:text-blue-400">
+              Explore ERP <span>→</span>
+            </Link>
+          </div>
+
+          {/* Alumni Management */}
+          <div className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg transition hover:border-purple-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="text-5xl">🎓</div>
+            <h3 className="mt-4 text-2xl font-bold text-neutral-900 dark:text-white">
+              Alumni Management
+            </h3>
+            <p className="mt-3 leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Build lasting relationships with your alumni network. Engage, fundraise, and showcase success stories.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+              <li className="flex items-center gap-2">
+                <span className="text-purple-500">✓</span> Alumni Database & Profiles
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-purple-500">✓</span> Events & Reunions Management
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-purple-500">✓</span> Fundraising & Donations
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-purple-500">✓</span> Job Portal & Networking
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-purple-500">✓</span> Success Stories Showcase
+              </li>
+            </ul>
+            <Link href="/product#alumni" className="mt-6 inline-flex items-center gap-2 font-semibold text-purple-600 transition hover:gap-3 dark:text-purple-400">
+              Explore Alumni <span>→</span>
+            </Link>
+          </div>
+
+          {/* OMR Scanning */}
+          <div className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg transition hover:border-orange-300 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900 md:col-span-2 lg:col-span-1">
+            <div className="text-5xl">📄</div>
+            <h3 className="mt-4 text-2xl font-bold text-neutral-900 dark:text-white">
+              OMR Scanning & Analysis
+            </h3>
+            <p className="mt-3 leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Fast, accurate answer sheet scanning with instant analytics. No expensive hardware needed.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">✓</span> Mobile & Scanner Compatible
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">✓</span> Instant Result Processing
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">✓</span> Detailed Analytics Dashboard
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">✓</span> Custom Sheet Design
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-orange-500">✓</span> Cloud-Based & Secure
+              </li>
+            </ul>
+            <Link href="/product#omr" className="mt-6 inline-flex items-center gap-2 font-semibold text-orange-600 transition hover:gap-3 dark:text-orange-400">
+              Explore OMR <span>→</span>
+            </Link>
+          </div>
+        </Stagger>
+      </section>
+
+      {/* The Root Problem */}
+      <section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-4">
+          <Reveal>
+            <h2 className="text-center text-4xl font-bold">The Problem with Traditional Education</h2>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-neutral-700 dark:text-neutral-300">
+              Traditional systems reward scores, not understanding. This creates fundamental issues:
+            </p>
+          </Reveal>
+          <Stagger className="mt-12 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: '🧱',
+                title: 'Weak Foundations',
+                desc: 'Students memorize for tests without building deep conceptual understanding, leading to weak fundamentals.',
+                color: 'from-red-500 to-orange-500',
+              },
+              {
+                icon: '📉',
+                title: 'Fragile Knowledge',
+                desc: 'Surface-level learning fades quickly. Concepts aren\'t retained because they were never truly understood.',
+                color: 'from-amber-500 to-yellow-500',
+              },
+              {
+                icon: '🎯',
+                title: 'Employability Gap',
+                desc: 'Graduates lack critical thinking and problem-solving skills needed for real-world success.',
+                color: 'from-blue-500 to-cyan-500',
+              },
+            ].map((item) => (
+              <div key={item.title} className="group relative overflow-hidden rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
+                <div className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${item.color}`} />
+                <div className="text-4xl">{item.icon}</div>
+                <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+                <p className="mt-3 text-neutral-600 dark:text-neutral-400">{item.desc}</p>
+              </div>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* How We're Different */}
+      <section className="mx-auto max-w-7xl px-4 py-20">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <Reveal>
+              <h2 className="text-4xl font-bold">
+                We Look Beyond the Score
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="mt-4 text-lg text-neutral-700 dark:text-neutral-300">
+                A mark is just a number. True education means understanding <strong>why</strong> students struggle and <strong>how</strong> to help them grow.
+              </p>
+            </Reveal>
+            <div className="mt-8 space-y-6">
+              <Reveal delay={0.08}>
+                <div className="rounded-xl border-l-4 border-red-500 bg-red-50 p-6 dark:bg-red-950/20">
+                  <h3 className="font-semibold text-red-900 dark:text-red-100">❌ Traditional Marks Show</h3>
+                  <p className="mt-2 text-sm text-red-800 dark:text-red-200">
+                    Just the score. A single data point with zero actionable insights.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.12}>
+                <div className="rounded-xl border-l-4 border-emerald-500 bg-emerald-50 p-6 dark:bg-emerald-950/20">
+                  <h3 className="font-semibold text-emerald-900 dark:text-emerald-100">✓ Our Diagnostics Reveal</h3>
+                  <ul className="mt-3 space-y-2 text-sm text-emerald-800 dark:text-emerald-200">
+                    <li className="flex items-start gap-2">
+                      <span className="mt-0.5 text-emerald-600">•</span>
+                      <span><strong>Where</strong> the student struggles (exact topics & skills)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-0.5 text-emerald-600">•</span>
+                      <span><strong>Why</strong> they got it wrong (conceptual, procedural, or prerequisite gap)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="mt-0.5 text-emerald-600">•</span>
+                      <span><strong>How</strong> to fix it (personalized learning recommendations)</span>
+                    </li>
+                  </ul>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+          <div className="relative">
+            <Reveal>
+              <div className="relative aspect-square overflow-hidden rounded-2xl shadow-2xl">
+                <Image 
+                  src="/images/analytics-dashboard.jpg" 
+                  alt="Diagnostic analytics comparing traditional vs modern approach" 
+                  fill 
+                  className="object-cover" 
+                  sizes="(max-width:768px) 100vw, 50vw" 
+                />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Diagnostic Framework */}
+      <section className="bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 dark:from-emerald-950/30 dark:via-teal-950/30 dark:to-cyan-950/30">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="text-center">
+            <Reveal>
+              <h2 className="text-4xl font-bold">Our Precision Diagnostic Framework</h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="mx-auto mt-4 max-w-3xl text-lg text-neutral-700 dark:text-neutral-300">
+                We deconstruct learning into <strong>Topic → Skill → Subskill</strong> and classify every error by root cause
+              </p>
+            </Reveal>
+          </div>
+
+          <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: '🧠',
+                title: 'Conceptual Gap',
+                desc: 'Student doesn\'t understand the core concept',
+                color: 'bg-blue-500',
+              },
+              {
+                icon: '⚙️',
+                title: 'Procedural Error',
+                desc: 'Knows the concept but makes mistakes in execution',
+                color: 'bg-purple-500',
+              },
+              {
+                icon: '📚',
+                title: 'Prerequisite Gap',
+                desc: 'Missing foundational knowledge from earlier grades',
+                color: 'bg-orange-500',
+              },
+              {
+                icon: '🎯',
+                title: 'Attention/Attitude',
+                desc: 'Knows how but lacks focus or makes careless errors',
+                color: 'bg-pink-500',
+              },
+            ].map((item) => (
+              <div key={item.title} className="group relative overflow-hidden rounded-xl border border-neutral-200 bg-white p-6 shadow-lg transition hover:scale-105 hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+                <div className={`${item.color} absolute right-0 top-0 h-24 w-24 rounded-full opacity-10 blur-2xl transition group-hover:opacity-20`} />
+                <div className="relative">
+                  <div className="text-4xl">{item.icon}</div>
+                  <h3 className="mt-4 font-bold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </Stagger>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 text-center">
+              <Link href="/product" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-8 py-4 font-semibold text-white shadow-lg transition hover:bg-emerald-700">
+                Explore the Framework
+                <span>→</span>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Talent Test CTA */}
+      <section className="mx-auto max-w-7xl px-4 py-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 p-12 shadow-2xl lg:p-16">
+          <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="relative text-center text-white">
+            <Reveal>
+              <div className="mb-4 inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur-sm">
+                ✨ Try Before You Buy
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="text-4xl font-extrabold sm:text-5xl">
+                Experience Our Diagnostics with<br />the Free Talent Test
+              </h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mx-auto mt-6 max-w-2xl text-xl opacity-95">
+                Let your students experience our precision diagnostic approach with a national-level STEM assessment. Just ₹100 to see how we identify gaps and drive growth.
+              </p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <Link href="/talent-test" className="group rounded-full bg-white px-8 py-4 text-lg font-bold text-emerald-600 shadow-lg transition hover:bg-neutral-50">
+                  Register for Talent Test
+                  <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+                <Link href="/benefits" className="rounded-full border-2 border-white/70 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition hover:bg-white/10">
+                  See Benefits
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="mt-8 flex items-center justify-center gap-8 text-sm opacity-90">
+                <div className="flex items-center gap-2">
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Classes 1-10</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Math, Physics, Chemistry</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Detailed Reports</span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Schools Choose Us */}
+      <section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="text-center">
+            <Reveal>
+              <h2 className="text-4xl font-bold">Why Schools Choose Us</h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
+                Trusted by leading schools across the country
+              </p>
+            </Reveal>
+          </div>
+
+          <Stagger className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: 'Affordable & Scalable',
+                desc: 'World-class diagnostics at a fraction of traditional costs. Start small, scale as you grow.',
+                icon: '💰',
+              },
+              {
+                title: 'Teacher-Friendly',
+                desc: 'Intuitive dashboards that teachers actually use. No complex training required.',
+                icon: '👩‍🏫',
+              },
+              {
+                title: 'Parent Transparency',
+                desc: 'Detailed reports parents can understand, building trust and engagement.',
+                icon: '👨‍👩‍👧',
+              },
+              {
+                title: 'Data-Driven Decisions',
+                desc: 'Make informed choices about curriculum, teaching methods, and resource allocation.',
+                icon: '📊',
+              },
+              {
+                title: 'NEP 2020 Aligned',
+                desc: 'Built for competency-based education and holistic development.',
+                icon: '📜',
+              },
+              {
+                title: 'Ongoing Support',
+                desc: '24/7 technical support and regular training sessions for your staff.',
+                icon: '🤝',
+              },
+            ].map((item) => (
+              <div key={item.title} className="group overflow-hidden rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-950">
+                <div className="text-4xl">{item.icon}</div>
+                <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
+                <p className="mt-3 text-neutral-600 dark:text-neutral-400">{item.desc}</p>
+              </div>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="mx-auto max-w-7xl px-4 py-20">
+        <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="grid lg:grid-cols-2">
+            <div className="p-12 lg:p-16">
+              <Reveal>
+                <h2 className="text-4xl font-extrabold">
+                  Ready to Transform Your School?
+                </h2>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+                  Join 500+ schools using our solutions to drive measurable learning outcomes.
+                </p>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900">
+                      <svg className="h-5 w-5 text-emerald-600 dark:text-emerald-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold">Free Demo</div>
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">See our solutions in action</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900">
+                      <svg className="h-5 w-5 text-emerald-600 dark:text-emerald-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold">Flexible Pricing</div>
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">Plans for schools of all sizes</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900">
+                      <svg className="h-5 w-5 text-emerald-600 dark:text-emerald-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold">Quick Setup</div>
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">Go live in days, not months</div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal delay={0.12}>
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <Link href="/contact" className="rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg transition hover:shadow-xl">
+                    Schedule a Demo
+                  </Link>
+                  <Link href="/about" className="rounded-full border-2 border-neutral-300 px-8 py-4 font-semibold transition hover:border-emerald-500 hover:bg-emerald-50 dark:border-neutral-700 dark:hover:bg-neutral-800">
+                    Learn About Us
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+            <div className="relative hidden bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950 dark:to-teal-950 lg:block">
+              <Image 
+                src="/images/students-laptop.jpg" 
+                alt="Students using educational technology" 
+                fill 
+                className="object-cover" 
+                sizes="50vw" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -1,0 +1,144 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { Reveal, Stagger } from '@/components/Reveal';
+
+export const metadata = {
+  title: 'Beyond Marks — Precision Diagnostics for Education',
+  description: 'Marks show scores. We show understanding. Diagnose concept, procedure, and prerequisite gaps to drive visible growth.',
+};
+
+export default function HomePage() {
+  return (
+    <div className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-neutral-200/60 dark:border-neutral-800">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-20 md:grid-cols-2">
+          <div>
+            <Reveal>
+              <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">
+                Beyond Marks: Nurturing Growth and Understanding
+              </h1>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-5 text-lg text-neutral-700 dark:text-neutral-300">
+                Built by IITians & NITians. We diagnose learning at the root — from topic → skill → subskill — so schools can move from averages to achievers.
+              </p>
+            </Reveal>
+            <Stagger className="mt-8 flex flex-wrap gap-3">
+              <Link href="/product" className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 px-5 py-3 text-white shadow hover:opacity-95">See Product</Link>
+              <Link href="/contact" className="rounded-full border border-neutral-300 px-5 py-3 text-neutral-900 hover:bg-neutral-50 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-900">Get a Demo</Link>
+            </Stagger>
+            <Reveal delay={0.15}>
+              <p className="mt-4 text-sm text-neutral-500">Marks don’t build futures. Diagnosis does.</p>
+            </Reveal>
+          </div>
+          <div className="relative aspect-[4/3] w-full">
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/10 to-teal-600/10" />
+            <Reveal>
+              <Image src="/images/hero-classroom.jpg" alt="Students in classroom" fill className="mask-blob ken-burns rounded-2xl object-cover shadow-xl shadow-emerald-900/20" priority sizes="(max-width:768px) 100vw, 50vw" />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* The Root Problem */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <h2 className="text-3xl font-bold">The Root Problem: Why Our Current System Falls Short</h2>
+        <p className="mt-3 text-neutral-700 dark:text-neutral-300">Traditional systems reward scores, not understanding. That creates:</p>
+        <Stagger className="mt-8 grid gap-6 md:grid-cols-3">
+          {[{
+            title: 'Weak Foundations',
+            desc: 'Early superficial learning forms weak core knowledge.'
+          },{
+            title: 'Fragile Grasp',
+            desc: 'Concepts get memorized for tests and quickly fade.'
+          },{
+            title: 'Employability Gap',
+            desc: 'Graduates miss critical thinking and problem-solving.'
+          }].map((c) => (
+            <div key={c.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+              <h3 className="text-lg font-semibold">{c.title}</h3>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{c.desc}</p>
+            </div>
+          ))}
+        </Stagger>
+      </section>
+
+      {/* Missing Link */}
+      <section className="bg-neutral-50 py-16 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-4">
+          <h2 className="text-3xl font-bold">The Missing Link: Beyond the Score</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
+              <h3 className="font-semibold">Marks show: score only</h3>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">A single data point with missing insights.</p>
+            </div>
+            <div className="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
+              <h3 className="font-semibold">True diagnosis reveals</h3>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-neutral-600 dark:text-neutral-400">
+                <li>Where the student struggles</li>
+                <li>Why they got it wrong</li>
+                <li>What needs to be fixed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Precision Diagnostic Framework */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="grid items-start gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-bold">Our Precision Diagnostic Framework</h2>
+            <p className="mt-3 text-neutral-700 dark:text-neutral-300">We deconstruct understanding into Topic → Skill → Subskill, and classify error reasons.</p>
+            <ul className="mt-4 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+              <li>Conceptual Gap</li>
+              <li>Procedural Error</li>
+              <li>Memory / Prerequisite Gap</li>
+              <li>Attitude / Focus</li>
+            </ul>
+            <div className="mt-6">
+              <Link href="/product" className="text-blue-600 hover:underline">Explore the framework →</Link>
+            </div>
+          </div>
+          <div className="relative aspect-video w-full">
+            <Reveal>
+              <Image src="/images/analytics-dashboard.jpg" alt="Analytics dashboard" fill className="rounded-xl object-cover shadow-xl shadow-emerald-900/10" sizes="(max-width:768px) 100vw, 50vw" />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* MCQs Power */}
+      <section className="bg-neutral-50 py-16 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-4">
+          <h2 className="text-3xl font-bold">The Power of MCQs in Diagnostics</h2>
+          <Stagger className="mt-6 grid gap-6 md:grid-cols-3">
+            {[
+              {title: 'Each option reveals', desc: 'Wrong choices map to specific misconceptions.'},
+              {title: 'Comprehensive tracking', desc: 'Reasoning patterns, misconceptions, speed, focus.'},
+              {title: 'Hidden insights', desc: 'Go beyond right/wrong to understand cognition.'},
+            ].map((b) => (
+              <div key={b.title} className="rounded-xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+                <h3 className="font-semibold">{b.title}</h3>
+                <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{b.desc}</p>
+              </div>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 p-10 text-white">
+          <h3 className="text-2xl font-bold">Ready to transform your classrooms with precision diagnostics?</h3>
+          <p className="mt-2 opacity-90">Shift from hidden gaps to visible growth. Measure teaching effectiveness and showcase outcomes to parents.</p>
+          <div className="mt-6 flex gap-3">
+            <Link href="/contact" className="rounded-full bg-white px-5 py-3 text-emerald-700 shadow hover:opacity-95">Talk to us</Link>
+            <Link href="/benefits" className="rounded-full border border-white/70 px-5 py-3 text-white hover:bg-white/10">See benefits</Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

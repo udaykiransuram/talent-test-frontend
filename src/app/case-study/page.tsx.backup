@@ -1,0 +1,76 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Reveal, Stagger } from '@/components/Reveal';
+
+export const metadata: Metadata = {
+  title: 'Case Study — From Averages to Achievers',
+  description: 'How precision diagnostics turned two “average” students into confident achievers with targeted improvement paths.',
+};
+
+export default function CaseStudyPage() {
+  return (
+    <div className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
+      <section className="border-b border-neutral-200/60 px-4 py-16 dark:border-neutral-800">
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <h1 className="text-4xl font-extrabold tracking-tight">From Averages to Achievers</h1>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-3 max-w-3xl text-neutral-700 dark:text-neutral-300">
+              Without deep diagnosis, Arya and Aakash would both be labelled "average" and given generic help. Our framework isolated their distinct challenges and created personalized improvement plans.
+            </p>
+          </Reveal>
+          <Reveal>
+            <div className="relative mt-8 aspect-[16/9] w-full">
+              <Image src="/images/students-laptop.jpg" alt="Students improving with personalized plans" fill className="mask-blob ken-burns rounded-xl object-cover shadow-xl shadow-emerald-900/10" sizes="(max-width:768px) 100vw, 1000px" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <Stagger className="grid gap-8 md:grid-cols-2">
+          {/* Arya */}
+          <div className="rounded-2xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+            <h2 className="text-2xl font-bold">Arya</h2>
+            <p className="mt-1 text-sm text-neutral-500">Weak in Simplification — Baseline 5/10</p>
+            <div className="mt-4 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+              <p><span className="font-semibold">Diagnosis:</span> Errors isolated to procedural steps.</p>
+              <p><span className="font-semibold">Plan:</span> Step-by-step remediation, worked examples, and deliberate practice.</p>
+              <p><span className="font-semibold">Outcome:</span> Fewer careless mistakes, improved accuracy and speed.</p>
+            </div>
+          </div>
+
+          {/* Aakash */}
+          <div className="rounded-2xl border border-neutral-200 p-6 shadow-sm ring-1 ring-transparent transition hover:shadow-lg hover:ring-emerald-500/20 dark:border-neutral-800">
+            <h2 className="text-2xl font-bold">Aakash</h2>
+            <p className="mt-1 text-sm text-neutral-500">Weak in Fractions — Baseline 5/10</p>
+            <div className="mt-4 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+              <p><span className="font-semibold">Diagnosis:</span> Conceptual gap around equivalent fractions and denominators.</p>
+              <p><span className="font-semibold">Plan:</span> Concept building using visuals, number lines, and targeted LCM practice.</p>
+              <p><span className="font-semibold">Outcome:</span> Durable understanding and better transfer to new problems.</p>
+            </div>
+          </div>
+        </Stagger>
+
+        <Reveal>
+          <div className="mt-12 rounded-xl bg-neutral-50 p-6 text-sm text-neutral-700 ring-1 ring-emerald-500/10 dark:bg-neutral-900 dark:text-neutral-300">
+            That’s how averages become achievers — through clarity, not guesswork.
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-24">
+        <div className="rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 p-10 text-white shadow-xl shadow-emerald-900/10">
+          <h3 className="text-2xl font-bold">Ready to see similar outcomes?</h3>
+          <p className="mt-2 opacity-90">Use diagnostics as leverage to drive visible growth.</p>
+          <div className="mt-6 flex gap-3">
+            <Link href="/contact" className="rounded-full bg-white px-5 py-3 text-emerald-700 shadow hover:opacity-95">Book a demo</Link>
+            <Link href="/product" className="rounded-full border border-white/70 px-5 py-3 text-white hover:bg-white/10">Explore product</Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
