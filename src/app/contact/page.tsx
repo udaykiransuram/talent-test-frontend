@@ -181,8 +181,8 @@ export default async function ContactPage() {
                         <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                       </div>
                       <div className="text-xs opacity-80">Typical reply within {info.responseTime}</div>
-                      {/* Prefilled message preview */}
-                      <div className="mt-2 rounded-xl bg-white/80 border border-green-200 px-3 py-2 text-xs text-green-800 overflow-hidden text-ellipsis whitespace-nowrap">
+                      {/* Prefilled message preview (wrap safely on small screens) */}
+                      <div className="mt-2 w-full max-w-full rounded-xl bg-white/80 border border-green-200 px-3 py-2 text-xs text-green-800 overflow-hidden break-words whitespace-normal">
                         “{waText}”
                       </div>
                     </div>

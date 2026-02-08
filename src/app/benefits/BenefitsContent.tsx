@@ -231,10 +231,19 @@ export default function BenefitsContent({ roiStats, testimonials }: BenefitsCont
             </Reveal>
             <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {roiStats.map((stat, i) => (
-                <div key={i} className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm text-center group hover:-translate-y-1 transition-transform duration-300">
-                  <div className="text-2xl mb-2">{stat.icon}</div>
-                  <div className="text-3xl md:text-4xl font-black text-slate-900 group-hover:text-emerald-600 transition-colors">{stat.value}</div>
-                  <div className="text-sm font-medium text-slate-500 mt-1">{stat.label}</div>
+                <div
+                  key={i}
+                  className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] text-center transition-colors duration-300 hover:shadow-md"
+                >
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 ring-1 ring-emerald-100 text-emerald-700 text-lg">
+                    {stat.icon}
+                  </div>
+                  <div className="tabular-nums text-4xl md:text-5xl font-semibold tracking-tight text-slate-900">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-medium uppercase tracking-wider text-slate-500/80 mt-2">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </Stagger>
@@ -255,14 +264,16 @@ export default function BenefitsContent({ roiStats, testimonials }: BenefitsCont
 
         <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((p, i) => (
-            <div key={p.title} className="group relative flex flex-col items-start bg-white p-7 rounded-2xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/5 hover:-translate-y-1 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute top-5 right-5 text-[4.5rem] font-black text-slate-100/60 leading-none select-none pointer-events-none group-hover:text-emerald-100/60 transition-colors duration-300">0{i + 1}</div>
-              <div className="relative z-10 mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100/80 transition-all duration-300 group-hover:bg-emerald-600 group-hover:ring-emerald-600 group-hover:text-white group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-emerald-500/20">
+            <div
+              key={p.title}
+              className="relative flex flex-col items-start bg-white p-7 rounded-2xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-md overflow-hidden"
+            >
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-200 to-teal-200" />
+              <div className="relative z-10 mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
                 <p.icon className="h-6 w-6" aria-hidden="true" />
               </div>
-              <h3 className="relative z-10 text-base font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">{p.title}</h3>
-              <p className="relative z-10 mt-2 text-sm leading-relaxed text-slate-500">{p.desc}</p>
+              <h3 className="relative z-10 text-base font-semibold text-slate-900 tracking-tight">{p.title}</h3>
+              <p className="relative z-10 mt-2 text-sm leading-relaxed text-slate-600">{p.desc}</p>
             </div>
           ))}
         </Stagger>
