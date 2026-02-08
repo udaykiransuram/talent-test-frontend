@@ -21,7 +21,7 @@ export const InnerHero = ({ title, subtitle, pillText, children, lottieRight, lo
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
   return (
-    <div className="relative w-full bg-gradient-to-b from-teal-300 via-teal-250 to-teal-200 pt-24 pb-32 sm:pt-32 sm:pb-40 overflow-x-clip">
+    <div className="relative w-full bg-gradient-to-b from-teal-300 via-teal-250 to-teal-200 pt-16 pb-20 sm:pt-20 sm:pb-28 overflow-x-clip">
       {/* Abstract Shapes Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 

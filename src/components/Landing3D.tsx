@@ -30,7 +30,7 @@ export const Hero3D = () => {
   return (
     <div 
       ref={ref} 
-      className="relative h-[70vh] sm:h-[85vh] md:h-[100vh] w-full overflow-hidden bg-[#050505] flex flex-col items-center justify-center md:-mt-20"
+      className="relative h-[56vh] sm:h-[68vh] md:h-[78vh] w-full overflow-hidden bg-[#050505] flex flex-col items-center justify-center"
     >
       <div className="absolute inset-0 z-0">
         <video
@@ -59,7 +59,7 @@ export const Hero3D = () => {
 
       <motion.div 
         style={{ y: textY, opacity }}
-        className="relative z-10 flex flex-col items-start px-5 sm:px-8 md:px-16 text-left max-w-7xl mx-auto mt-20 w-full"
+        className="relative z-10 flex flex-col items-start px-5 sm:px-8 md:px-16 text-left max-w-7xl mx-auto mt-4 sm:mt-8 w-full"
       >
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
