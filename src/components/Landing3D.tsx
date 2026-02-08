@@ -31,7 +31,7 @@ export const Hero3D = () => {
   return (
     <div 
       ref={ref} 
-      className="relative h-[85vh] md:h-[110vh] w-full overflow-hidden bg-[#050505] flex flex-col items-center justify-center -mt-20"
+      className="relative h-[70vh] sm:h-[85vh] md:h-[100vh] w-full overflow-hidden bg-[#050505] flex flex-col items-center justify-center md:-mt-20"
     >
       <div className="absolute inset-0 z-0">
         <video
@@ -40,7 +40,8 @@ export const Hero3D = () => {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
+          poster="/images/hero-classroom.jpg"
           className="h-full w-full object-cover scale-105"
           style={{ filter: "brightness(0.9)", objectFit: "cover", objectPosition: "center 20%" }}
           onError={(e) => console.error("Video load error:", e)}
@@ -157,17 +158,28 @@ export const FeatureCard3D = ({
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const [isCoarse, setIsCoarse] = useState(false);
 
   const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
   const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
 
+  useEffect(() => {
+    const mq = window.matchMedia('(pointer: coarse)');
+    const apply = () => setIsCoarse(mq.matches);
+    apply();
+    mq.addEventListener?.('change', apply);
+    return () => mq.removeEventListener?.('change', apply);
+  }, []);
+
   function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    if (isCoarse) return; // disable tilt on touch devices
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     x.set(clientX - left - width / 2);
     y.set(clientY - top - height / 2);
   }
 
   function onMouseLeave() {
+    if (isCoarse) return;
     x.set(0);
     y.set(0);
   }
@@ -177,7 +189,7 @@ export const FeatureCard3D = ({
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      style={{
+      style={isCoarse ? undefined : {
         rotateY: useTransform(mouseX, [-200, 200], [-10, 10]),
         rotateX: useTransform(mouseY, [-200, 200], [10, -10]),
         transformStyle: "preserve-3d",
@@ -203,7 +215,10 @@ export const FeatureCard3D = ({
             transparent 80%
           )`,
         }}
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover:opacity-100"
+        className={cn(
+          "pointer-events-none absolute -inset-px rounded-2xl transition duration-300",
+          isCoarse ? "opacity-0" : "opacity-0 group-hover:opacity-100"
+        )}
       />
     </motion.div>
   );

@@ -193,7 +193,7 @@ export default async function ContactPage() {
 
             <Reveal>
               <div className="h-full rounded-2xl bg-slate-900 text-white p-5 md:p-6 flex items-center gap-4">
-                <div className="text-3xl md:text-4xl font-black text-emerald-400 whitespace-nowrap">{info.responseTime}</div>
+                <div className="text-3xl md:text-4xl font-black text-emerald-400">{info.responseTime}</div>
                 <div>
                   <div className="text-sm font-semibold">Response Time</div>
                   <div className="text-slate-300 text-sm leading-relaxed">{info.responseDescription}</div>

@@ -101,7 +101,7 @@ export default function AdminMessagesPage() {
                   </td>
                   <td className="px-4 py-3 align-top text-sm text-teal-800 dark:text-teal-200">{msg.institution || '—'}</td>
                   <td className="px-4 py-3 align-top text-sm text-teal-800 dark:text-teal-200 max-w-md">{msg.message}</td>
-                  <td className="px-4 py-3 align-top text-xs text-teal-700 dark:text-teal-300 whitespace-nowrap">{new Date(msg.createdAt).toLocaleString()}</td>
+                  <td className="px-4 py-3 align-top text-xs text-teal-700 dark:text-teal-300 whitespace-normal break-words">{new Date(msg.createdAt).toLocaleString()}</td>
                   <td className="px-4 py-3 align-top text-right">
                     <div className="flex justify-end gap-2">
                       <button onClick={() => toggleRead(msg._id, !msg.read)} className={`rounded px-3 py-1 text-xs font-semibold ${msg.read ? 'bg-teal-100 text-teal-800 dark:bg-teal-800 dark:text-teal-100' : 'bg-emerald-600 text-white'}`}>{msg.read ? 'Mark Unread' : 'Mark Read'}</button>
