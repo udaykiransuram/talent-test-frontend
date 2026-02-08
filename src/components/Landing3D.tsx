@@ -15,7 +15,6 @@ export const Hero3D = () => {
     offset: ["start start", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
@@ -147,13 +146,11 @@ const ButtonShiny = ({ text, href, primary = false }: { text: string; href: stri
 export const FeatureCard3D = ({ 
   title, 
   description, 
-  icon, 
-  color = "emerald" 
+  icon 
 }: { 
   title: string; 
   description: string; 
   icon: string;
-  color?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
@@ -162,6 +159,9 @@ export const FeatureCard3D = ({
 
   const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
   const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
+  // Always create transforms (avoid conditional hook usage)
+  const rotateYMV = useTransform(mouseX, [-200, 200], [-10, 10]);
+  const rotateXMV = useTransform(mouseY, [-200, 200], [10, -10]);
 
   useEffect(() => {
     const mq = window.matchMedia('(pointer: coarse)');
@@ -189,9 +189,9 @@ export const FeatureCard3D = ({
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      style={isCoarse ? undefined : {
-        rotateY: useTransform(mouseX, [-200, 200], [-10, 10]),
-        rotateX: useTransform(mouseY, [-200, 200], [10, -10]),
+      style={{
+        rotateY: isCoarse ? 0 : rotateYMV,
+        rotateX: isCoarse ? 0 : rotateXMV,
         transformStyle: "preserve-3d",
       }}
       className="group relative h-full w-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50"
