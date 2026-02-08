@@ -69,14 +69,57 @@ export default async function HomePage() {
       {/* 3D Hero Section */}
       <Hero3D />
       
-      {/* Forward-looking statement (replaces logos strip) */}
-      <div className="border-b border-slate-200 bg-slate-50 py-10 dark:border-white/5 dark:bg-slate-950">
-        <div className="container mx-auto px-4 text-center">
-          <p className="mx-auto max-w-3xl text-base md:text-lg text-slate-700 dark:text-slate-300">
-            We’re an open, forward‑looking company partnering with forward‑thinking institutions to help every learner thrive.
-          </p>
+      {/* Premium Value Section (immediately after video) */}
+      <section className="relative border-t border-slate-200 bg-white/90 backdrop-blur-sm dark:border-white/5 dark:bg-slate-950">
+        <div className="container mx-auto max-w-7xl px-4 py-14 sm:py-16 md:py-20">
+          <Reveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                See what’s working. See what’s missing.
+              </h2>
+              <p className="mt-4 text-lg md:text-xl text-slate-600 dark:text-slate-400">
+                One diagnostic turns performance into clear decisions — from school rollups to individual misconceptions.
+              </p>
+            </div>
+          </Reveal>
+
+          <Stagger className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-7">
+            {[ 
+              { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
+              { icon: '🧭', title: 'Strengths & Risks', desc: 'Surface top strengths and emerging risks before they compound.' },
+              { icon: '🧩', title: 'Misconceptions Map', desc: 'Separate conceptual vs procedural errors at the sub‑skill level.' },
+              { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves, targeted to the gap.' },
+            ].map((c, i) => (
+              <div key={c.title} className="group relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 dark:border-slate-800 dark:bg-slate-900/60">
+                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-200/0 via-teal-200/0 to-cyan-200/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-emerald-400/5 dark:via-teal-400/5 dark:to-cyan-400/5" />
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-slate-50 text-2xl shadow-sm ring-1 ring-slate-100 dark:bg-white/5 dark:ring-white/10">
+                    {c.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-lg md:text-xl font-semibold tracking-tight text-slate-900 dark:text-white">{c.title}</h3>
+                    <p className="mt-1.5 text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                      {c.desc}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-white/10" />
+                <div className="mt-3 text-xs uppercase tracking-wider text-slate-500/80 dark:text-slate-400/80">
+                  Insight {String(i + 1).padStart(2, '0')}
+                </div>
+              </div>
+            ))}
+          </Stagger>
+
+          <Reveal>
+            <div className="mt-10 text-center">
+              <p className="mx-auto max-w-2xl text-sm md:text-base text-slate-500 dark:text-slate-400">
+                The outcome: management sees reality in one view — strengths to scale, gaps to close, and the next step for every classroom.
+              </p>
+            </div>
+          </Reveal>
         </div>
-      </div>
+      </section>
 
       {/* Main Feature Grid (Bento Style) */}
       <section className="relative z-10 py-16 md:py-32 bg-white dark:bg-slate-950">
