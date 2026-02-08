@@ -55,7 +55,7 @@ async function getProductPageData() {
             description: p.description, features: p.features ?? [], mostPopular: !!p.isPopular,
             studentLimit: p.studentLimit || 0,
           }))
-        : DEFAULT_TIERS;
+        : [];
       const trustStats: { key: string; label: string; value: string; icon?: string }[] =
         (statsDoc?.stats ?? []).length
           ? (statsDoc.stats as any[]).map((s: any) => ({ key: s.key, label: s.label, value: String(s.value), icon: s.icon }))
@@ -78,11 +78,11 @@ async function getProductPageData() {
       };
     })();
     const timeout = new Promise<{ tiers: typeof DEFAULT_TIERS; trustStats: typeof DEFAULT_TRUST; testimonials: ProductTestimonial[]; faqs: FAQItem[] }>((r) =>
-      setTimeout(() => r({ tiers: DEFAULT_TIERS, trustStats: DEFAULT_TRUST, testimonials: DEFAULT_PRODUCT_TESTIMONIALS, faqs: [] }), 3000),
+      setTimeout(() => r({ tiers: [], trustStats: DEFAULT_TRUST, testimonials: DEFAULT_PRODUCT_TESTIMONIALS, faqs: [] }), 3000),
     );
     return await Promise.race([work, timeout]);
   } catch {
-    return { tiers: DEFAULT_TIERS, trustStats: DEFAULT_TRUST, testimonials: DEFAULT_PRODUCT_TESTIMONIALS, faqs: [] };
+    return { tiers: [], trustStats: DEFAULT_TRUST, testimonials: DEFAULT_PRODUCT_TESTIMONIALS, faqs: [] };
   }
 }
 
@@ -102,7 +102,8 @@ export default async function ProductPage() {
       {/* Solutions - Dynamic Animated Cards */}
       <ProductSolutions />
 
-      {/* Pricing Section */}
+      {/* Pricing Section (render only when backend has active plans) */}
+      {tiers.length > 0 && (
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 relative border-t border-slate-200/60 mt-20">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-r from-indigo-100/20 to-emerald-100/20 rounded-full blur-[100px] pointer-events-none" />
         
@@ -171,6 +172,7 @@ export default async function ProductPage() {
           ))}
         </Stagger>
       </section>
+      )}
 
       {/* Trust Band */}
       <section className="bg-slate-900 py-20 text-white">

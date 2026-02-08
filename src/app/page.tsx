@@ -69,18 +69,12 @@ export default async function HomePage() {
       {/* 3D Hero Section */}
       <Hero3D />
       
-      {/* Logos Strip */}
+      {/* Forward-looking statement (replaces logos strip) */}
       <div className="border-b border-slate-200 bg-slate-50 py-10 dark:border-white/5 dark:bg-slate-950">
         <div className="container mx-auto px-4 text-center">
-          <p className="mb-6 text-sm font-medium text-slate-500 uppercase tracking-widest">
-            Trusted by forward-thinking institutions
+          <p className="mx-auto max-w-3xl text-base md:text-lg text-slate-700 dark:text-slate-300">
+            We’re an open, forward‑looking company partnering with forward‑thinking institutions to help every learner thrive.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12 opacity-50 grayscale transition-all hover:grayscale-0 hover:opacity-100">
-             {/* Simple Logo Boxes for "Professional" look */}
-             {['Cambridge', 'Delhi Public School', 'Ryan International', 'VIBGYOR', 'Kendriya Vidyalaya'].map((name) => (
-                <span key={name} className="text-base md:text-xl font-bold text-slate-400 dark:text-slate-300 transition-colors">{name}</span>
-             ))}
-          </div>
         </div>
       </div>
 
