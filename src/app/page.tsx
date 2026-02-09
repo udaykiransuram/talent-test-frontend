@@ -94,10 +94,10 @@ export default async function HomePage() {
                 key={c.title}
                 className="group relative h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <div className="h-1 bg-gradient-to-r from-primary to-primary-dark"></div>
+                <div className="h-1 bg-teal-500"></div>
                 <div className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-teal-500/10 text-2xl text-teal-500">
                       {c.icon}
                     </div>
                     <div className="min-w-0 flex-1">
