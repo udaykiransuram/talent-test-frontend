@@ -30,7 +30,7 @@ export const Hero3D = () => {
   return (
     <div 
       ref={ref} 
-      className="relative h-[56vh] sm:h-[68vh] md:h-[78vh] w-full overflow-hidden bg-[#050505] flex flex-col items-center justify-center"
+      className="relative h-[80vh] sm:h-[90vh] md:h-screen w-full overflow-hidden bg-[#050505] flex flex-col items-center justify-center"
     >
       <div className="absolute inset-0 z-0">
         <video
@@ -196,7 +196,7 @@ export const FeatureCard3D = ({
       }}
       className="group relative h-full w-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 overflow-hidden"
     >
-      <div className="h-1 bg-gradient-to-r from-primary to-primary-dark"></div>
+      <div className="h-1 bg-teal-500"></div>
       <div style={{ transform: "translateZ(50px)" }} className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-slate-50 text-3xl shadow-sm ring-1 ring-slate-100 dark:bg-white/5 dark:ring-white/10">
         {icon}
       </div>
