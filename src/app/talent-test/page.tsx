@@ -42,8 +42,8 @@ const uniqueFeatures = [
   },
   {
     icon: '📚',
-    title: 'Free Learning Resources',
-    description: 'All registered students receive complimentary access to study materials, previous year papers, curated practice sets, and topic-wise revision guides.',
+    title: 'Learning Resources Included',
+    description: 'All registered students receive access to study materials, previous year papers, curated practice sets, and topic-wise revision guides.',
     border: 'border-teal-500'
   },
   {
@@ -60,12 +60,27 @@ const uniqueFeatures = [
   },
 ];
 
-const importantDates = [
-  { label: 'Registrations Open', date: 'Jul 10', year: '2025', color: 'border-teal-500', bgColor: 'bg-teal-50 dark:bg-teal-900/20', textColor: 'text-teal-700 dark:text-teal-300' },
-  { label: 'Last Day to Register', date: 'Aug 15', year: '2025', color: 'border-teal-500', bgColor: 'bg-teal-50 dark:bg-teal-900/20', textColor: 'text-teal-700 dark:text-teal-300' },
-  { label: 'Test Week', date: 'Sept 1-7', year: '2025', color: 'border-teal-500', bgColor: 'bg-teal-50 dark:bg-teal-900/20', textColor: 'text-teal-700 dark:text-teal-300' },
-  { label: 'Results Declaration', date: 'Sept 20', year: '2025', color: 'border-teal-500', bgColor: 'bg-teal-50 dark:bg-teal-900/20', textColor: 'text-teal-700 dark:text-teal-300' },
-];
+// Helper date formatting for dynamic schedule
+function fmtMonthDay(d?: string | Date) {
+  if (!d) return '';
+  const dt = new Date(d);
+  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+function yearOf(d?: string | Date) {
+  if (!d) return '';
+  return String(new Date(d).getFullYear());
+}
+function fmtWindow(start?: string | Date, end?: string | Date) {
+  if (!start || !end) return '';
+  const s = new Date(start);
+  const e = new Date(end);
+  const sameMonth = s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
+  const sPart = s.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const ePart = sameMonth
+    ? String(e.getDate())
+    : e.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return `${sPart}–${ePart}`;
+}
 
 const DEFAULT_TESTIMONIALS = [
   {
@@ -124,6 +139,11 @@ async function getTalentTestData() {
         subjects: config?.subjects ?? ['Mathematics', 'Science', 'English'],
         features: config?.features ?? ['Detailed diagnostic report', 'Personalized learning recommendations', 'Subject-wise performance analysis', 'Instant results delivery via email'],
         isActive: config?.isActive ?? true,
+        registrationsOpen: config?.registrationsOpen ?? undefined,
+        registrationDeadline: config?.registrationDeadline ?? undefined,
+        testWindowStart: config?.testWindowStart ?? undefined,
+        testWindowEnd: config?.testWindowEnd ?? undefined,
+        resultsDate: config?.resultsDate ?? undefined,
         heroStats,
         testimonials: testimonials.length
           ? testimonials.map((t: any) => ({  // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -157,6 +177,11 @@ function getDefaults() {
     subjects: ['Mathematics', 'Science', 'English'],
     features: ['Detailed diagnostic report', 'Personalized learning recommendations', 'Subject-wise performance analysis', 'Instant results delivery via email'],
     isActive: true,
+    registrationsOpen: undefined,
+    registrationDeadline: undefined,
+    testWindowStart: undefined,
+    testWindowEnd: undefined,
+    resultsDate: undefined,
     heroStats: DEFAULT_HERO_STATS,
     testimonials: DEFAULT_TESTIMONIALS,
     faqs: DEFAULT_FAQS,
@@ -191,8 +216,14 @@ const DEFAULT_FAQS = [
 ];
 
 export default async function TalentTestLandingPage() {
-  const { price, currency, testimonials, name, description, duration, subjects, features, isActive, heroStats, faqs } = await getTalentTestData();
+  const { price, currency, testimonials, name, description, duration, subjects, features, isActive, heroStats, faqs, registrationsOpen, registrationDeadline, testWindowStart, testWindowEnd, resultsDate } = await getTalentTestData();
   const priceLabel = currency === 'INR' ? `\u20b9${price}` : `${currency} ${price}`;
+  const keyDates = [
+    registrationsOpen && { label: 'Registrations Open', date: fmtMonthDay(registrationsOpen), year: yearOf(registrationsOpen) },
+    registrationDeadline && { label: 'Last Day to Register', date: fmtMonthDay(registrationDeadline), year: yearOf(registrationDeadline) },
+    testWindowStart && testWindowEnd && { label: 'Test Window', date: fmtWindow(testWindowStart, testWindowEnd), year: yearOf(testWindowStart) },
+    resultsDate && { label: 'Results Declaration', date: fmtMonthDay(resultsDate), year: yearOf(resultsDate) },
+  ].filter(Boolean) as { label: string; date: string; year: string }[];
   return (
     <div className="bg-white text-teal-950 dark:bg-teal-950 dark:text-white">
       {/* Hero Section */}
@@ -202,11 +233,7 @@ export default async function TalentTestLandingPage() {
         
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center">
-            <Reveal>
-              <div className="mb-6 inline-block rounded-full bg-teal-600 px-6 py-2 text-sm font-bold text-white shadow-lg">
-                🎯 Try Before You Buy — Free Trial of Our Diagnostic System
-              </div>
-            </Reveal>
+            {/* Removed free trial badge as per requirement */}
             <Reveal delay={0.06}>
               <h1 className="text-5xl font-extrabold tracking-tight md:text-7xl">
                 <span className="bg-teal-600 bg-clip-text text-transparent">Ignite Brilliance.</span>
@@ -445,35 +472,35 @@ export default async function TalentTestLandingPage() {
 
             <Reveal delay={0.14}>
               <div className="rounded-xl bg-teal-50 p-6 text-center dark:bg-teal-900/20">
-                <p className="font-semibold text-teal-950 dark:text-teal-50">
-                  This level of detail is what sets Alyra Tech apart from generic assessments.
-                </p>
+                <p className="font-semibold text-teal-950 dark:text-teal-50">This level of detail is what sets Alyra Tech apart from generic assessments.</p>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Important Dates */}
-      <section className="border-y border-neutral-200 bg-neutral-50 px-4 py-20 dark:border-neutral-800 dark:bg-neutral-900/50">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <h2 className="text-center text-3xl md:text-4xl font-extrabold">Key Dates — Don&apos;t Miss Out!</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-center text-lg text-teal-800 dark:text-teal-200">
-              Mark your calendar and ensure your child doesn&apos;t miss this opportunity.
-            </p>
-          </Reveal>
-          <Stagger className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {importantDates.map((item, index) => (
-              <div key={index} className={`rounded-2xl ${item.bgColor} border-t-4 p-8 shadow-lg ${item.color}`}>
-                <p className={`text-sm font-bold uppercase tracking-wide ${item.textColor}`}>{item.label}</p>
-                <p className={`mt-3 text-3xl md:text-5xl font-extrabold ${item.textColor}`}>{item.date}</p>
-                <p className={`mt-2 text-lg font-medium ${item.textColor}`}>{item.year}</p>
-              </div>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      {/* Important Dates (dynamic from admin) */}
+      {keyDates.length > 0 && (
+        <section className="border-y border-neutral-200 bg-neutral-50 px-4 py-20 dark:border-neutral-800 dark:bg-neutral-900/50">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <h2 className="text-center text-3xl md:text-4xl font-extrabold">Key Dates</h2>
+              <p className="mx-auto mt-4 max-w-3xl text-center text-lg text-teal-800 dark:text-teal-200">
+                Stay updated with the schedule configured by the organizer.
+              </p>
+            </Reveal>
+            <Stagger className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {keyDates.map((item, index) => (
+                <div key={index} className={`rounded-2xl bg-teal-50 dark:bg-teal-900/20 border-t-4 p-8 shadow-lg border-teal-500`}>
+                  <p className={`text-sm font-bold uppercase tracking-wide text-teal-700 dark:text-teal-300`}>{item.label}</p>
+                  <p className={`mt-3 text-3xl md:text-5xl font-extrabold text-teal-700 dark:text-teal-300`}>{item.date}</p>
+                  <p className={`mt-2 text-lg font-medium text-teal-700 dark:text-teal-300`}>{item.year}</p>
+                </div>
+              ))}
+            </Stagger>
+          </div>
+        </section>
+      )}
 
       {/* Testimonials */}
       <section className="mx-auto max-w-7xl px-4 py-20">
@@ -523,10 +550,9 @@ export default async function TalentTestLandingPage() {
         <div className="rounded-3xl bg-gradient-to-br from-blue-50 to-indigo-50 p-6 md:p-12 dark:from-blue-900/20 dark:to-indigo-900/20">
           <div className="text-center">
             <Reveal>
-              <h2 className="text-3xl md:text-4xl font-extrabold">Free Sample Papers & Study Materials</h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold">Sample Papers & Study Materials</h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-700 dark:text-neutral-300">
-                Download previous year question papers and prepare with confidence. 
-                More resources unlock after registration!
+                Download previous year question papers and prepare with confidence.
               </p>
             </Reveal>
           </div>
@@ -534,9 +560,9 @@ export default async function TalentTestLandingPage() {
           <Reveal delay={0.08}>
             <div className="mx-auto mt-10 max-w-2xl space-y-4">
               {[
-                { title: 'Grade 5 — Sample Paper (Math + Science)', href: '/papers/sample-grade-5.pdf', badge: 'Free' },
-                { title: 'Grade 8 — Science + Mathematics', href: '/papers/sample-grade-8.pdf', badge: 'Free' },
-                { title: 'Grade 10 — Talent Assessment Paper', href: '/papers/sample-grade-10.pdf', badge: 'Free' },
+                { title: 'Grade 5 — Sample Paper (Math + Science)', href: '/papers/sample-grade-5.pdf', badge: 'Sample' },
+                { title: 'Grade 8 — Science + Mathematics', href: '/papers/sample-grade-8.pdf', badge: 'Sample' },
+                { title: 'Grade 10 — Talent Assessment Paper', href: '/papers/sample-grade-10.pdf', badge: 'Sample' },
               ].map((paper, idx) => (
                 <a
                   key={idx}
@@ -586,10 +612,11 @@ export default async function TalentTestLandingPage() {
             <Reveal delay={0.16}>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link 
-                  href="/register" 
-                  className="rounded-full bg-white px-10 py-4 text-xl font-semibold text-teal-700 shadow-xl transition hover:shadow-2xl hover:opacity-95"
+                  href={isActive ? '/register' : '#'}
+                  className={`rounded-full px-10 py-4 text-xl font-semibold shadow-xl transition ${isActive ? 'bg-white text-teal-700 hover:shadow-2xl hover:opacity-95' : 'bg-white/60 text-teal-700/50 cursor-not-allowed'}`}
+                  aria-disabled={!isActive}
                 >
-                  Enroll Now — {priceLabel} Only
+                  {isActive ? `Enroll Now — ${priceLabel} Only` : 'Registrations Closed'}
                 </Link>
                 <Link 
                   href="/product" 

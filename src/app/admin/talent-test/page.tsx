@@ -13,6 +13,11 @@ interface TalentTestConfig {
   subjects: string[];
   features: string[];
   isActive: boolean;
+  registrationsOpen?: string;
+  registrationDeadline?: string;
+  testWindowStart?: string;
+  testWindowEnd?: string;
+  resultsDate?: string;
 }
 
 export default function TalentTestAdmin() {
@@ -34,6 +39,11 @@ export default function TalentTestAdmin() {
       'Instant results delivery via email',
     ],
     isActive: true,
+    registrationsOpen: '',
+    registrationDeadline: '',
+    testWindowStart: '',
+    testWindowEnd: '',
+    resultsDate: '',
   });
 
   useEffect(() => {
@@ -46,6 +56,8 @@ export default function TalentTestAdmin() {
       const data = await res.json();
       if (data.success && data.data) {
         const config = data.data;
+        // normalize dates -> yyyy-mm-dd for <input type="date">
+        const toDateInput = (d?: string | Date) => (d ? new Date(d).toISOString().slice(0, 10) : '');
         setFormData({
           name: config.name,
           description: config.description,
@@ -55,6 +67,11 @@ export default function TalentTestAdmin() {
           subjects: config.subjects,
           features: config.features,
           isActive: config.isActive,
+          registrationsOpen: toDateInput(config.registrationsOpen),
+          registrationDeadline: toDateInput(config.registrationDeadline),
+          testWindowStart: toDateInput(config.testWindowStart),
+          testWindowEnd: toDateInput(config.testWindowEnd),
+          resultsDate: toDateInput(config.resultsDate),
         });
       }
     } catch (error) {
@@ -76,7 +93,15 @@ export default function TalentTestAdmin() {
       const res = await fetch('/api/admin/talent-test', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          // empty strings -> undefined to avoid overwriting with invalid dates
+          registrationsOpen: formData.registrationsOpen || undefined,
+          registrationDeadline: formData.registrationDeadline || undefined,
+          testWindowStart: formData.testWindowStart || undefined,
+          testWindowEnd: formData.testWindowEnd || undefined,
+          resultsDate: formData.resultsDate || undefined,
+        }),
       });
 
       if (res.ok) {
@@ -234,6 +259,61 @@ export default function TalentTestAdmin() {
               />
               <span className="text-sm text-teal-900">Active (Available for Registration)</span>
             </label>
+            <p className="text-xs text-teal-600 mt-1">
+              Tip: Uncheck to close registrations site-wide instantly.
+            </p>
+          </div>
+        </div>
+
+        {/* Scheduling */}
+        <div className="rounded-lg border border-teal-200 p-4 dark:border-teal-800">
+          <h3 className="text-md font-semibold text-teal-900 mb-3">Scheduling (Dates)</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-teal-900 mb-1">Registrations Open</label>
+              <input
+                type="date"
+                value={formData.registrationsOpen}
+                onChange={(e) => setFormData({ ...formData, registrationsOpen: e.target.value })}
+                className="w-full px-3 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-teal-900 mb-1">Registration Deadline</label>
+              <input
+                type="date"
+                value={formData.registrationDeadline}
+                onChange={(e) => setFormData({ ...formData, registrationDeadline: e.target.value })}
+                className="w-full px-3 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-teal-900 mb-1">Test Window Start</label>
+              <input
+                type="date"
+                value={formData.testWindowStart}
+                onChange={(e) => setFormData({ ...formData, testWindowStart: e.target.value })}
+                className="w-full px-3 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-teal-900 mb-1">Test Window End</label>
+              <input
+                type="date"
+                value={formData.testWindowEnd}
+                onChange={(e) => setFormData({ ...formData, testWindowEnd: e.target.value })}
+                className="w-full px-3 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-teal-900 mb-1">Results Date</label>
+              <input
+                type="date"
+                value={formData.resultsDate}
+                onChange={(e) => setFormData({ ...formData, resultsDate: e.target.value })}
+                className="w-full px-3 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
+            </div>
           </div>
         </div>
 
@@ -332,6 +412,20 @@ export default function TalentTestAdmin() {
                   {formData.price}
                 </p>
                 <p className="text-xs text-teal-600">{formData.duration}</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs text-teal-800">
+              <div>
+                <span className="font-medium">Open:</span> {formData.registrationsOpen || '—'}
+              </div>
+              <div>
+                <span className="font-medium">Deadline:</span> {formData.registrationDeadline || '—'}
+              </div>
+              <div>
+                <span className="font-medium">Test Window:</span> {(formData.testWindowStart && formData.testWindowEnd) ? `${formData.testWindowStart} → ${formData.testWindowEnd}` : '—'}
+              </div>
+              <div className="md:col-span-3">
+                <span className="font-medium">Results:</span> {formData.resultsDate || '—'}
               </div>
             </div>
             <div className="mt-3">

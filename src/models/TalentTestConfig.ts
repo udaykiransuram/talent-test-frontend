@@ -41,6 +41,27 @@ const TalentTestConfigSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  // Scheduling (all optional; used to render dynamic dates on /talent-test)
+  registrationsOpen: {
+    type: Date,
+    required: false,
+  },
+  registrationDeadline: {
+    type: Date,
+    required: false,
+  },
+  testWindowStart: {
+    type: Date,
+    required: false,
+  },
+  testWindowEnd: {
+    type: Date,
+    required: false,
+  },
+  resultsDate: {
+    type: Date,
+    required: false,
+  },
 }, {
   timestamps: true,
 });
