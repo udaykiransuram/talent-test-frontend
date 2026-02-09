@@ -25,23 +25,6 @@ interface CSData {
 interface HeaderStat { value: string; label: string; icon: string }
 interface TestimonialData { quote: string; author: string; role: string; school: string; rating: number }
 
-const DEFAULT_CS: CSData = {
-  schoolName: "St. Xavier's High School",
-  location: "Mumbai, Maharashtra",
-  studentCount: 2500,
-  challenge: "St. Xavier's, a prestigious institution, noticed a worrying trend. While board exam scores were decent, students were struggling significantly in competitive exams. The rote learning methods that worked for school tests weren't translating to problem-solving skills.",
-  solution: "They partnered with Alyra Tech to implement our Diagnostic Assessment System for Grades 8-10. We didn't just test the students; we analyzed how they answered.",
-  resultsText: "Within one academic year, the school saw a 35% improvement in overall math proficiency. More importantly, student confidence skyrocketed.",
-  quote: "Alyra Tech gave us the visibility we were missing.",
-  quoteAuthor: "Principal, St. Xavier's High School",
-  metrics: [
-    { metric: '35%', label: 'Math Score Uplift', sub: 'In one academic year' },
-    { metric: '92%', label: 'Teacher Adoption', sub: 'Use reports weekly' },
-    { metric: '2x', label: 'Parent Engagement', sub: 'PTM attendance doubled' },
-    { metric: '60%', label: 'Fewer Failures', sub: 'In Class 9 & 10' },
-  ],
-};
-
 const DEFAULT_HEADER_STATS: HeaderStat[] = [
   { value: '500+', label: 'Schools Served', icon: '🏫' },
   { value: '85%', label: 'Avg. Improvement', icon: '📈' },

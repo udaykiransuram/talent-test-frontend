@@ -89,7 +89,7 @@ export default async function HomePage() {
               { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
               { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.' },
               { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.' },
-            ].map((c, i) => (
+            ].map((c) => (
               <div
                 key={c.title}
                 className="group relative h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
@@ -198,7 +198,7 @@ export default async function HomePage() {
                   <div className="flex gap-1 mb-4 text-primary">
                     {[...Array(t.rating)].map((_, j) => <span key={j}>⭐</span>)}
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">"{t.quote}"</p>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">&quot;{t.quote}&quot;</p>
                   <div className="mt-6 pt-4 border-t border-gray-300 dark:border-gray-600 flex items-center gap-3">
                     {t.image ? (
                       <Image src={t.image} alt={t.author} width={40} height={40} className="w-10 h-10 rounded-full object-cover" unoptimized />

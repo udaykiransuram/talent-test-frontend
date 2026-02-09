@@ -12,12 +12,10 @@ import {
   ShieldCheckIcon,
   DocumentMagnifyingGlassIcon,
   ArrowPathIcon,
-  AcademicCapIcon,
   PresentationChartLineIcon,
   DocumentTextIcon,
   LightBulbIcon,
   MapIcon,
-  BuildingOffice2Icon,
   UserGroupIcon,
   PuzzlePieceIcon,
   SparklesIcon,
@@ -230,9 +228,9 @@ export default function BenefitsContent({ roiStats, testimonials }: BenefitsCont
               </div>
             </Reveal>
             <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {roiStats.map((stat, i) => (
+              {roiStats.map((stat) => (
                 <div
-                  key={i}
+                  key={stat.label || stat.value}
                   className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] text-center transition-colors duration-300 hover:shadow-md"
                 >
                   <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 ring-1 ring-emerald-100 text-emerald-700 text-lg">
@@ -460,8 +458,8 @@ export default function BenefitsContent({ roiStats, testimonials }: BenefitsCont
               </div>
             </Reveal>
             <Stagger className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+              {testimonials.map((t) => (
+                <div key={`${t.author}-${t.quote.slice(0,20)}`} className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
                   <div className="mb-4 flex gap-1">
                     {[...Array(t.rating)].map((_, j) => (
                       <span key={j} className="text-lg text-amber-500">⭐</span>

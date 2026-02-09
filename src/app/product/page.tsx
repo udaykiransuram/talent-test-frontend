@@ -12,12 +12,18 @@ import FAQ from '@/models/FAQ';
 
 export const revalidate = 60; // re-fetch from DB every 60s
 
-/* ── Fallbacks when DB is empty / unreachable ── */
-const DEFAULT_TIERS = [
-  { name: 'Starter', id: 'tier-starter', href: '/contact', priceDisplay: '₹5,000', periodLabel: '/month', description: 'Essential analytics for small schools starting their data journey.', features: ['Basic Performance Reports', 'Student Analytics Dashboard', 'Email Support', 'Up to 200 Students'], mostPopular: false, studentLimit: 200 },
-  { name: 'Growth', id: 'tier-growth', href: '/contact', priceDisplay: '₹15,000', periodLabel: '/month', description: 'Advanced insights for growing institutions focused on outcomes.', features: ['Deep Diagnostic Reports', 'Teacher & Class Dashboards', 'Priority Support', 'Trend Analysis', 'Up to 1000 Students'], mostPopular: true, studentLimit: 1000 },
-  { name: 'Enterprise', id: 'tier-enterprise', href: '/contact', priceDisplay: 'Custom', periodLabel: '', description: 'Full-scale solution for large networks and groups of schools.', features: ['Custom AI Models', 'API Access', 'Dedicated Success Manager', 'White Labelling', 'Unlimited Students'], mostPopular: false, studentLimit: 0 },
-];
+/* ── Types and fallbacks when DB is empty / unreachable ── */
+interface Tier {
+  name: string;
+  id: string;
+  href: string;
+  priceDisplay: string;
+  periodLabel: string;
+  description: string;
+  features: string[];
+  mostPopular: boolean;
+  studentLimit: number;
+}
 const DEFAULT_TRUST: { key: string; label: string; value: string; icon?: string }[] = [
   { key: 'schools', label: 'Schools Onboarded', value: '500+', icon: '🏫' },
   { key: 'students', label: 'Students Diagnosed', value: '50K+', icon: '👨‍🎓' },
@@ -77,7 +83,7 @@ async function getProductPageData() {
         faqs: faqDocs.map((f: any) => ({ question: f.question, answer: f.answer })) as FAQItem[], // eslint-disable-line @typescript-eslint/no-explicit-any
       };
     })();
-    const timeout = new Promise<{ tiers: typeof DEFAULT_TIERS; trustStats: typeof DEFAULT_TRUST; testimonials: ProductTestimonial[]; faqs: FAQItem[] }>((r) =>
+    const timeout = new Promise<{ tiers: Tier[]; trustStats: typeof DEFAULT_TRUST; testimonials: ProductTestimonial[]; faqs: FAQItem[] }>((r) =>
       setTimeout(() => r({ tiers: [], trustStats: DEFAULT_TRUST, testimonials: DEFAULT_PRODUCT_TESTIMONIALS, faqs: [] }), 3000),
     );
     return await Promise.race([work, timeout]);
