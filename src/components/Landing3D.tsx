@@ -59,7 +59,7 @@ export const Hero3D = () => {
 
       <motion.div 
         style={{ y: textY, opacity }}
-        className="relative z-10 flex flex-col items-center md:items-start px-5 sm:px-8 md:px-16 text-center md:text-left max-w-7xl mx-auto mt-2 sm:mt-6 w-full"
+        className="relative z-10 flex flex-col items-center md:items-start px-5 sm:px-8 md:px-16 text-center md:text-left max-w-7xl mx-auto py-8 sm:py-12 md:py-14 w-full"
       >
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -74,7 +74,7 @@ export const Hero3D = () => {
           Next-Gen Education Intelligence
         </motion.div>
         
-        <h1 className="text-[2.75rem] sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white mb-6 sm:mb-8 drop-shadow-2xl">
+        <h1 className="text-[2.25rem] sm:text-5xl md:text-7xl lg:text-8xl leading-tight font-bold tracking-tight text-white mb-6 sm:mb-8 drop-shadow-2xl">
           <motion.span 
              initial={{ opacity: 0, x: -20 }}
              animate={{ opacity: 1, x: 0 }}
@@ -101,7 +101,7 @@ export const Hero3D = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-slate-200 text-base sm:text-xl md:text-2xl max-w-2xl leading-relaxed mb-8 sm:mb-12 font-light drop-shadow-md"
+          className="text-slate-200 text-sm sm:text-lg md:text-xl max-w-xl leading-relaxed mb-10 sm:mb-14 font-light drop-shadow-md"
         >
           See what grades miss. We diagnose the <span className="text-white font-semibold">hidden patterns</span> in student thinking to bridge the gap between effort and outcome.
         </motion.p>

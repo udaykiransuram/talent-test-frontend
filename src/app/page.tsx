@@ -92,9 +92,8 @@ export default async function HomePage() {
             ].map((c, i) => (
               <div
                 key={c.title}
-                className="group relative h-full rounded-2xl border border-slate-700 bg-slate-800/60 p-6 shadow-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-emerald-300"
+                className="group relative h-full rounded-2xl border border-white/10 bg-slate-950 p-6 shadow-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-emerald-300"
               >
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-400/0 via-teal-400/0 to-cyan-400/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="flex items-start gap-4">
                   <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-white/5 text-2xl shadow-sm ring-1 ring-white/10">
                     {c.icon}
@@ -106,10 +105,7 @@ export default async function HomePage() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-                <div className="mt-3 text-xs uppercase tracking-wider text-slate-400/90">
-                  Insight {String(i + 1).padStart(2, '0')}
-                </div>
+                <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
               </div>
             ))}
           </Stagger>
