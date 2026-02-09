@@ -29,7 +29,8 @@ async function getHomePageData() {
         ContactInfo.findOne().lean(),
       ]);
       /* eslint-enable @typescript-eslint/no-explicit-any */
-      const rawWa = (contactInfo?.whatsappNumber || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '').toString();
+      // Mirror Contact page behavior: fallback to phone if whatsappNumber is not set
+      const rawWa = (contactInfo?.whatsappNumber || contactInfo?.phone || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '').toString();
       const digits = rawWa.replace(/\D+/g, '');
       const whatsappHref = digits
         ? `https://wa.me/${digits}?text=${encodeURIComponent('Hello! I’d like to know more about Alyra Tech’s diagnostics.')}`
