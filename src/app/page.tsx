@@ -70,20 +70,20 @@ export default async function HomePage() {
       <Hero3D />
       
       {/* Premium Value Section (immediately after video) */}
-      <section className="relative border-t border-slate-200 dark:border-white/5 bg-white dark:bg-white text-slate-900">
-        <div className="container mx-auto max-w-7xl px-4 py-8 sm:py-10 md:py-12">
+      <section className="relative border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        <div className="container mx-auto max-w-7xl px-4 py-12 sm:py-16 md:py-20">
           <Reveal>
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
                 See what’s working. See what’s missing.
               </h2>
-              <p className="mt-4 text-lg md:text-xl text-slate-600">
+              <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-400">
                 One diagnostic turns performance into clear decisions — from school rollups to individual misconceptions.
               </p>
             </div>
           </Reveal>
 
-          <Stagger className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-7 items-stretch">
+          <Stagger className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 items-stretch">
             {[ 
               { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
               { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
@@ -92,27 +92,26 @@ export default async function HomePage() {
             ].map((c, i) => (
               <div
                 key={c.title}
-                className="group relative h-full rounded-2xl border border-white/10 bg-slate-950 p-6 shadow-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-emerald-300"
+                className="group relative h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-white/5 text-2xl shadow-sm ring-1 ring-white/10">
+                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary">
                     {c.icon}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-lg md:text-xl font-semibold tracking-tight text-white">{c.title}</h3>
-                    <p className="mt-1.5 text-sm md:text-base leading-relaxed text-slate-300">
+                    <h3 className="text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{c.title}</h3>
+                    <p className="mt-1.5 text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-400">
                       {c.desc}
                     </p>
                   </div>
                 </div>
-                <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
               </div>
             ))}
           </Stagger>
 
           <Reveal>
-            <div className="mt-4 text-center">
-              <p className="mx-auto max-w-3xl text-sm md:text-base text-slate-600">
+            <div className="mt-6 text-center">
+              <p className="mx-auto max-w-3xl text-sm md:text-base text-gray-600 dark:text-gray-400 italic">
                 Outcome: Unified view of school→class→student trends, top strengths, risk areas, and targeted actions.
               </p>
             </div>
@@ -121,14 +120,14 @@ export default async function HomePage() {
       </section>
 
       {/* Main Feature Grid (Bento Style) */}
-      <section className="relative z-10 pt-8 md:pt-12 pb-16 md:pb-24 bg-white dark:bg-slate-950">
+      <section className="relative z-10 pt-12 md:pt-16 pb-20 md:pb-28 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="mb-12 md:mb-20 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-wide">
               Intelligence, Not Just Information.
             </h2>
-            <p className="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-400">
-              Traditional report cards are dead data. We bring your school&apos;s performance metrics to life.
+            <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+              Traditional report cards are dead data. We bring your school's performance metrics to life.
             </p>
           </div>
 
@@ -168,14 +167,14 @@ export default async function HomePage() {
       </section>
       
       {/* Interactive Stat Band */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-slate-900 to-slate-950 border-t border-white/5">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-800 to-gray-900 border-t border-gray-700">
         <div className="container mx-auto px-4">
            <div className={`grid grid-cols-2 ${homeStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-8 md:gap-12 text-center`}>
               {homeStats.map((stat) => (
                 <div key={stat.key} className="py-4">
-                   {stat.icon && <div className="text-2xl md:text-3xl mb-2">{stat.icon}</div>}
-                   <div className="text-4xl md:text-6xl font-black text-white mb-2">{stat.value}</div>
-                   <div className="text-emerald-400 font-mono text-xs md:text-sm tracking-wider">{stat.label.toUpperCase()}</div>
+                   {stat.icon && <div className="text-2xl md:text-3xl mb-2 text-primary">{stat.icon}</div>}
+                   <div className="text-4xl md:text-6xl font-bold text-white mb-2">{stat.value}</div>
+                   <div className="text-gray-400 text-xs md:text-sm tracking-wide uppercase">{stat.label}</div>
                 </div>
               ))}
            </div>
@@ -184,28 +183,28 @@ export default async function HomePage() {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="py-16 md:py-24 bg-white dark:bg-slate-950">
+        <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-4">
             <Reveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-white mb-4">What Educators & Parents Say</h2>
-              <p className="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-12">Real feedback from schools and families using Alyra Tech.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">What Educators & Parents Say</h2>
+              <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Real feedback from schools and families using Alyra Tech.</p>
             </Reveal>
             <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {testimonials.map((t: { quote: string; author: string; role: string; rating: number; image: string | null }, i: number) => (
-                <div key={i} className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-shadow">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(t.rating)].map((_, j) => <span key={j} className="text-amber-500">⭐</span>)}
+                <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex gap-1 mb-4 text-primary">
+                    {[...Array(t.rating)].map((_, j) => <span key={j}>⭐</span>)}
                   </div>
-                  <p className="text-slate-700 dark:text-slate-300 italic leading-relaxed">&quot;{t.quote}&quot;</p>
-                  <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-3">
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">"{t.quote}"</p>
+                  <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center gap-3">
                     {t.image ? (
                       <Image src={t.image} alt={t.author} width={40} height={40} className="w-10 h-10 rounded-full object-cover" unoptimized />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold">{t.author.charAt(0)}</div>
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">{t.author.charAt(0)}</div>
                     )}
                     <div>
-                      <p className="font-bold text-slate-900 dark:text-white text-sm">{t.author}</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
+                      <p className="font-semibold text-gray-900 dark:text-white text-sm">{t.author}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{t.role}</p>
                     </div>
                   </div>
                 </div>
@@ -217,16 +216,16 @@ export default async function HomePage() {
 
       {/* FAQ Section */}
       {faqs.length > 0 && (
-        <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-white/5">
+        <section className="py-16 md:py-24 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
           <div className="container mx-auto px-4 max-w-4xl">
             <Reveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-white mb-12">Frequently Asked Questions</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Frequently Asked Questions</h2>
             </Reveal>
             <Stagger className="space-y-6">
               {faqs.map((faq: { question: string; answer: string }, i: number) => (
-                <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 p-6 shadow-sm">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{faq.question}</h3>
-                  <p className="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
+                <div key={i} className="bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{faq.question}</h3>
+                  <p className="mt-3 text-gray-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                 </div>
               ))}
             </Stagger>
@@ -235,29 +234,26 @@ export default async function HomePage() {
       )}
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-emerald-900/10"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 to-slate-950"></div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 sm:mb-8">
-            Ready to upgrade your OS?
+      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-primary to-primary-dark text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">
+            Ready to Upgrade Your OS?
           </h2>
-          <p className="text-lg md:text-xl text-slate-300 mb-8 md:mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">
              Join the elite schools using data to drive decisions. <br />
-             Pricing starts at just <span className="text-emerald-400 font-bold">{testPrice} INR</span> per assessment.
+             Pricing starts at just <span className="font-bold">{testPrice} INR</span> per assessment.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
              <Link 
               href="/register" 
-              className="rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 dark:text-slate-950 px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-bold transition-all hover:scale-105 hover:shadow-[0_0_50px_-10px_rgba(16,185,129,0.5)]"
+              className="rounded-md bg-white text-primary px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-semibold transition-all hover:shadow-lg hover:-translate-y-1"
             >
               Start Now
              </Link>
              <Link
                href="/contact"
-               className="rounded-full border-2 border-white/60 hover:bg-white hover:text-slate-900 text-white px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-medium transition-all hover:scale-105"
+               className="rounded-md border-2 border-white text-white px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-semibold transition-all hover:bg-white hover:text-primary hover:shadow-lg hover:-translate-y-1"
              >
                Contact Sales
              </Link>
