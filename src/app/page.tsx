@@ -7,6 +7,7 @@ import SiteStats from '@/models/SiteStats';
 import TalentTestConfig from '@/models/TalentTestConfig';
 import Testimonial from '@/models/Testimonial';
 import FAQ from '@/models/FAQ';
+import ContactInfo from '@/models/ContactInfo';
 
 export const revalidate = 60;
 
@@ -20,13 +21,19 @@ async function getHomePageData() {
     const dataPromise = (async () => {
       await connectDB();
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      const [statsDoc, testConfig, testimonials, faqDocs]: [any, any, any[], any[]] = await Promise.all([
+      const [statsDoc, testConfig, testimonials, faqDocs, contactInfo]: [any, any, any[], any[], any] = await Promise.all([
         SiteStats.findOne({ section: 'homepage' }).lean(),
         TalentTestConfig.findOne().lean(),
         Testimonial.find({ section: 'homepage', isActive: true }).sort({ displayOrder: 1 }).lean(),
         FAQ.find({ page: 'homepage', isActive: true }).sort({ displayOrder: 1 }).lean(),
+        ContactInfo.findOne().lean(),
       ]);
       /* eslint-enable @typescript-eslint/no-explicit-any */
+      const rawWa = (contactInfo?.whatsappNumber || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '').toString();
+      const digits = rawWa.replace(/\D+/g, '');
+      const whatsappHref = digits
+        ? `https://wa.me/${digits}?text=${encodeURIComponent('Hello! I’d like to know more about Alyra Tech’s diagnostics.')}`
+        : '';
       return {
         stats: statsDoc?.stats ?? [],
         testConfig: testConfig ?? null,
@@ -36,21 +43,22 @@ async function getHomePageData() {
           rating: t.rating ?? 5, image: t.image || null,
         })),
         faqs: faqDocs.map((f: any) => ({ question: f.question, answer: f.answer })), // eslint-disable-line @typescript-eslint/no-explicit-any
+        whatsappHref,
       };
     })();
 
-    const timeoutPromise = new Promise<{ stats: never[]; testConfig: null; testimonials: never[]; faqs: never[] }>((resolve) =>
-      setTimeout(() => resolve({ stats: [], testConfig: null, testimonials: [], faqs: [] }), 2000)
+    const timeoutPromise = new Promise<{ stats: never[]; testConfig: null; testimonials: never[]; faqs: never[]; whatsappHref: '' }>((resolve) =>
+      setTimeout(() => resolve({ stats: [], testConfig: null, testimonials: [], faqs: [], whatsappHref: '' }), 2000)
     );
 
     return await Promise.race([dataPromise, timeoutPromise]);
   } catch {
-    return { stats: [], testConfig: null, testimonials: [], faqs: [] };
+    return { stats: [], testConfig: null, testimonials: [], faqs: [], whatsappHref: '' };
   }
 }
 
 export default async function HomePage() {
-  const { stats, testConfig, testimonials, faqs } = await getHomePageData();
+  const { stats, testConfig, testimonials, faqs, whatsappHref } = await getHomePageData();
   
   // All stats from admin (dynamic)
   const homeStats: { key: string; label: string; value: string; icon?: string }[] = stats.length
@@ -67,7 +75,7 @@ export default async function HomePage() {
     <div className="bg-white min-h-screen text-slate-900 selection:bg-emerald-500/30 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-500">
       
       {/* 3D Hero Section */}
-      <Hero3D />
+      <Hero3D whatsappHref={whatsappHref} />
       
       {/* Premium Value Section (immediately after video) */}
       <section className="relative border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">

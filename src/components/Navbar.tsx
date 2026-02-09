@@ -42,17 +42,16 @@ export default function Navbar() {
     setMobileDropdownOpen(null);
   }, [pathname]);
 
-  // Text color logic: On homepage + not scrolled = Force White. Otherwise = Standard Theme Colors.
-  const getTextColor = (baseColor: string, active: boolean) => {
-    if (isHomePage && !scrolled) return active ? "text-emerald-400" : "text-slate-100 hover:text-white";
-    // Standard behavior
-    return active 
-       ? "text-teal-700 bg-teal-50/50 dark:text-teal-300 dark:bg-teal-900/20" 
-       : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/50";
+  // Text color logic: use consistent, high-contrast colors to avoid white-on-white issues.
+  const getTextColor = (_baseColor: string, active: boolean) => {
+    return active
+      ? "text-teal-700 bg-teal-50/50 dark:text-teal-300 dark:bg-teal-900/20"
+      : "text-slate-700 hover:text-slate-900 hover:bg-slate-100/50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/50";
   };
-  
-  const logoColor = (isHomePage && !scrolled) ? "text-white" : "text-slate-900 dark:text-slate-100";
-  const logoSubColor = (isHomePage && !scrolled) ? "text-slate-300" : "text-slate-500 dark:text-slate-400";
+
+  // Keep logo readable regardless of page/scroll state
+  const logoColor = "text-slate-900 dark:text-slate-100";
+  const logoSubColor = "text-slate-500 dark:text-slate-400";
 
   return (
     <header
@@ -169,9 +168,7 @@ export default function Navbar() {
             href="/contact"
             className={cn(
               "hidden text-sm font-medium transition-colors md:block",
-              isHomePage && !scrolled
-                ? "text-white/90 hover:text-white"
-                : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+              "text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
             )}
           >
             Contact
@@ -195,7 +192,7 @@ export default function Navbar() {
           <button 
             className={cn(
               "flex items-center justify-center h-11 w-11 rounded-xl md:hidden transition-colors",
-              isHomePage && !scrolled ? "text-white hover:bg-white/10" : "text-slate-600 hover:bg-slate-100"
+              "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800/60"
             )}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
