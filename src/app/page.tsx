@@ -92,17 +92,20 @@ export default async function HomePage() {
             ].map((c, i) => (
               <div
                 key={c.title}
-                className="group relative h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="group relative h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary">
-                    {c.icon}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{c.title}</h3>
-                    <p className="mt-1.5 text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-400">
-                      {c.desc}
-                    </p>
+                <div className="h-1 bg-gradient-to-r from-primary to-primary-dark"></div>
+                <div className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary">
+                      {c.icon}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{c.title}</h3>
+                      <p className="mt-1.5 text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                        {c.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -124,42 +127,42 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-12 md:mb-20 text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-wide">
-              Intelligence, Not Just Information.
+              Empowering Education Through Intelligent Solutions
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-              Traditional report cards are dead data. We bring your school's performance metrics to life.
+              At Alyra Tech, we transform traditional education metrics into actionable insights, helping schools, teachers, and students achieve their full potential.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             <FeatureCard3D 
               title="Deep Diagnostics" 
-              description="Identify the exact concept gaps holding students back. It's like an MRI for education."
+              description="Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student."
               icon="🧬"
             />
             <FeatureCard3D 
               title="Predictive ERP" 
-              description="Manage your entire campus with a system that learns and adapts to your workflows."
+              description="Streamline campus management with adaptive systems that forecast needs and optimize operations."
               icon="⚡"
             />
              <FeatureCard3D 
               title="Alumni Network" 
-              description="Turn your graduating class into your strongest asset with automated engagement."
+              description="Build lasting connections with graduates through automated engagement tools and community platforms."
               icon="🌐"
             />
             <FeatureCard3D 
               title="OMR Digitization" 
-              description="Scan thousands of papers in minutes with 99.9% accuracy using just a smartphone."
+              description="Digitize assessments effortlessly with high-accuracy scanning via mobile devices."
               icon="📱"
             />
             <FeatureCard3D 
               title="Growth Analytics" 
-              description="Visualize the trajectory of every student with beautiful, actionable charts."
+              description="Track student progress with intuitive visualizations and predictive trend analysis."
               icon="📈"
             />
              <FeatureCard3D 
               title="Parent Connect" 
-              description="Keep stakeholders in the loop without the chaos of WhatsApp groups."
+              description="Facilitate seamless communication between schools and families with secure, organized channels."
               icon="💬"
             />
           </div>
@@ -183,24 +186,24 @@ export default async function HomePage() {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+        <section className="py-16 md:py-24 bg-gray-100 dark:bg-gray-800">
           <div className="container mx-auto px-4">
             <Reveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">What Educators & Parents Say</h2>
-              <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Real feedback from schools and families using Alyra Tech.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">Voices from Our Community</h2>
+              <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Insights from educators and parents transforming education with Alyra Tech.</p>
             </Reveal>
             <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {testimonials.map((t: { quote: string; author: string; role: string; rating: number; image: string | null }, i: number) => (
-                <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+                <div key={i} className="bg-white dark:bg-gray-700 rounded-lg p-8 border border-gray-300 dark:border-gray-600 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex gap-1 mb-4 text-primary">
                     {[...Array(t.rating)].map((_, j) => <span key={j}>⭐</span>)}
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">"{t.quote}"</p>
-                  <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center gap-3">
+                  <div className="mt-6 pt-4 border-t border-gray-300 dark:border-gray-600 flex items-center gap-3">
                     {t.image ? (
                       <Image src={t.image} alt={t.author} width={40} height={40} className="w-10 h-10 rounded-full object-cover" unoptimized />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">{t.author.charAt(0)}</div>
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">{t.author.charAt(0)}</div>
                     )}
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white text-sm">{t.author}</p>
@@ -216,14 +219,14 @@ export default async function HomePage() {
 
       {/* FAQ Section */}
       {faqs.length > 0 && (
-        <section className="py-16 md:py-24 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+        <section className="py-16 md:py-24 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-600">
           <div className="container mx-auto px-4 max-w-4xl">
             <Reveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Frequently Asked Questions</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Common Questions Answered</h2>
             </Reveal>
             <Stagger className="space-y-6">
               {faqs.map((faq: { question: string; answer: string }, i: number) => (
-                <div key={i} className="bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+                <div key={i} className="bg-white dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 p-6 shadow-md">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{faq.question}</h3>
                   <p className="mt-3 text-gray-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                 </div>
@@ -237,11 +240,11 @@ export default async function HomePage() {
       <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-primary to-primary-dark text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">
-            Ready to Upgrade Your OS?
+            Elevate Your Institution Today
           </h2>
           <p className="text-lg md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">
-             Join the elite schools using data to drive decisions. <br />
-             Pricing starts at just <span className="font-bold">{testPrice} INR</span> per assessment.
+             Join leading educational institutions leveraging data-driven insights to foster student success. <br />
+             Pricing begins at just <span className="font-bold">{testPrice} INR</span> per assessment.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -249,13 +252,13 @@ export default async function HomePage() {
               href="/register" 
               className="rounded-md bg-white text-primary px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-semibold transition-all hover:shadow-lg hover:-translate-y-1"
             >
-              Start Now
+              Get Started
              </Link>
              <Link
                href="/contact"
                className="rounded-md border-2 border-white text-white px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-semibold transition-all hover:bg-white hover:text-primary hover:shadow-lg hover:-translate-y-1"
              >
-               Contact Sales
+               Schedule a Demo
              </Link>
           </div>
         </div>

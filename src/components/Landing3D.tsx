@@ -194,8 +194,9 @@ export const FeatureCard3D = ({
         rotateX: isCoarse ? 0 : rotateXMV,
         transformStyle: "preserve-3d",
       }}
-      className="group relative h-full w-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50"
+      className="group relative h-full w-full rounded-2xl border border-slate-200 bg-white p-8 transition-shadow hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900/50 overflow-hidden"
     >
+      <div className="h-1 bg-gradient-to-r from-primary to-primary-dark"></div>
       <div style={{ transform: "translateZ(50px)" }} className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-slate-50 text-3xl shadow-sm ring-1 ring-slate-100 dark:bg-white/5 dark:ring-white/10">
         {icon}
       </div>
