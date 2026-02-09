@@ -167,7 +167,12 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Link 
             href="/contact"
-            className="hidden text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 md:block dark:text-slate-400 dark:hover:text-white"
+            className={cn(
+              "hidden text-sm font-medium transition-colors md:block",
+              isHomePage && !scrolled
+                ? "text-white/90 hover:text-white"
+                : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            )}
           >
             Contact
           </Link>

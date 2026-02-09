@@ -100,7 +100,7 @@ export default async function ContactPage() {
   return (
     <main className="bg-slate-50/50 min-h-screen">
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <InnerHero title="Get In Touch" subtitle={info.tagline} pillText="Contact" lottieRight="/animations/appointment-booking.lottie" />
+      <InnerHero title="Get In Touch" subtitle={info.tagline} pillText="Contact" lottieRight="/animations/appointment-booking.lottie" whatsappHref={waHref} />
 
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
