@@ -59,7 +59,7 @@ export const Hero3D = () => {
 
       <motion.div 
         style={{ y: textY, opacity }}
-        className="relative z-10 flex flex-col items-start px-5 sm:px-8 md:px-16 text-left max-w-7xl mx-auto mt-4 sm:mt-8 w-full"
+        className="relative z-10 flex flex-col items-center md:items-start px-5 sm:px-8 md:px-16 text-center md:text-left max-w-7xl mx-auto mt-2 sm:mt-6 w-full"
       >
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

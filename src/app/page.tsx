@@ -70,20 +70,20 @@ export default async function HomePage() {
       <Hero3D />
       
       {/* Premium Value Section (immediately after video) */}
-      <section className="relative border-t border-slate-200 dark:border-white/5 bg-slate-900 text-white">
-        <div className="container mx-auto max-w-7xl px-4 py-10 sm:py-12 md:py-14">
+      <section className="relative border-t border-slate-200 dark:border-white/5 bg-white dark:bg-white text-slate-900">
+        <div className="container mx-auto max-w-7xl px-4 py-8 sm:py-10 md:py-12">
           <Reveal>
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
                 See what’s working. See what’s missing.
               </h2>
-              <p className="mt-4 text-lg md:text-xl text-slate-300">
+              <p className="mt-4 text-lg md:text-xl text-slate-600">
                 One diagnostic turns performance into clear decisions — from school rollups to individual misconceptions.
               </p>
             </div>
           </Reveal>
 
-          <Stagger className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-7 items-stretch">
+          <Stagger className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-7 items-stretch">
             {[ 
               { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
               { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
@@ -115,8 +115,8 @@ export default async function HomePage() {
           </Stagger>
 
           <Reveal>
-            <div className="mt-6 text-center">
-              <p className="mx-auto max-w-3xl text-sm md:text-base text-slate-300">
+            <div className="mt-4 text-center">
+              <p className="mx-auto max-w-3xl text-sm md:text-base text-slate-600">
                 Outcome: Unified view of school→class→student trends, top strengths, risk areas, and targeted actions.
               </p>
             </div>
@@ -125,7 +125,7 @@ export default async function HomePage() {
       </section>
 
       {/* Main Feature Grid (Bento Style) */}
-      <section className="relative z-10 pt-10 md:pt-16 pb-16 md:pb-24 bg-white dark:bg-slate-950">
+      <section className="relative z-10 pt-8 md:pt-12 pb-16 md:pb-24 bg-white dark:bg-slate-950">
         <div className="container mx-auto px-4">
           <div className="mb-12 md:mb-20 text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
