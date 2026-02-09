@@ -261,7 +261,7 @@ export default function BenefitsContent({ roiStats, testimonials }: BenefitsCont
         </Reveal>
 
         <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {pillars.map((p, i) => (
+          {pillars.map((p) => (
             <div
               key={p.title}
               className="relative flex flex-col items-start bg-white p-7 rounded-2xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-md overflow-hidden"
