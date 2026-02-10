@@ -46,16 +46,16 @@ export function ProCard({ icon, title, description, accent = "teal", className }
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute left-0 top-0 h-full w-20 opacity-100 transition-opacity duration-300 group-hover:opacity-100",
+          "pointer-events-none absolute left-0 top-0 h-full w-16 opacity-100 transition-opacity duration-300 group-hover:opacity-100",
           patternColor
         )}
         style={{
           backgroundImage: [
-            'url("/images/wave-teal.svg")',
+            'url("/images/curves-waves.svg")',
             'linear-gradient(to bottom, var(--tw-gradient-stops))',
           ].join(', '),
           backgroundRepeat: 'repeat-y, no-repeat',
-          backgroundSize: '80px 80px, auto',
+          backgroundSize: '64px 64px, auto',
           backgroundPosition: 'left top, 0 0',
         }}
       >

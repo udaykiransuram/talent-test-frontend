@@ -19,3 +19,9 @@ Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
  GET /manifest.webmanifest 200 in 377ms
  GET /favicon.ico?favicon.0b3bf435.ico 200 in 386ms
  ✓ Compiled in 46ms
+ GET / 200 in 200ms
+ ✓ Compiled /admin in 160ms
+ GET /admin 200 in 248ms
+ GET /manifest.webmanifest 200 in 238ms
+ GET / 200 in 103ms
+ GET /manifest.webmanifest 200 in 232ms
