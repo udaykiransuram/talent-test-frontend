@@ -1,0 +1,21 @@
+   ▲ Next.js 15.5.12 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.29.220:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Compiled middleware in 52ms
+ ✓ Ready in 665ms
+ ○ Compiling / ...
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+(node:80567) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ Compiled / in 1559ms
+ GET / 200 in 3779ms
+ GET / 200 in 346ms
+ ✓ Compiled /manifest.webmanifest in 115ms
+ GET /manifest.webmanifest 200 in 377ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 386ms
+ ✓ Compiled in 46ms
