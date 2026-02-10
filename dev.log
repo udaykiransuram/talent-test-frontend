@@ -1,27 +1,33 @@
-   ▲ Next.js 15.5.12 (Turbopack)
+
+> talent-test-frontend@0.1.0 dev:nonturbo
+> next dev
+
+   ▲ Next.js 15.5.12
    - Local:        http://localhost:3000
    - Network:      http://192.168.29.220:3000
    - Environments: .env.local
 
  ✓ Starting...
- ✓ Compiled middleware in 52ms
- ✓ Ready in 665ms
+ ✓ Ready in 1145ms
  ○ Compiling / ...
 Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
-(node:80567) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(node:81419) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
- ✓ Compiled / in 1559ms
- GET / 200 in 3779ms
- GET / 200 in 346ms
- ✓ Compiled /manifest.webmanifest in 115ms
- GET /manifest.webmanifest 200 in 377ms
- GET /favicon.ico?favicon.0b3bf435.ico 200 in 386ms
- ✓ Compiled in 46ms
- GET / 200 in 200ms
- ✓ Compiled /admin in 160ms
- GET /admin 200 in 248ms
- GET /manifest.webmanifest 200 in 238ms
- GET / 200 in 103ms
- GET /manifest.webmanifest 200 in 232ms
+ ✓ Compiled / in 2.3s (1572 modules)
+ ✓ Compiled in 70ms (695 modules)
+ GET / 200 in 4720ms
+ ✓ Compiled in 135ms (695 modules)
+ ✓ Compiled / in 105ms (859 modules)
+ GET / 200 in 632ms
+ ✓ Compiled /manifest.webmanifest in 181ms (1559 modules)
+ GET /manifest.webmanifest 200 in 272ms
+ ✓ Compiled in 253ms (1554 modules)
+ GET / 200 in 194ms
+ ✓ Compiled /manifest.webmanifest in 46ms (878 modules)
+ GET /manifest.webmanifest 200 in 118ms
+ GET / 200 in 263ms
+ ✓ Compiled in 179ms (1573 modules)
+ GET / 200 in 167ms
+ GET /manifest.webmanifest 200 in 13ms

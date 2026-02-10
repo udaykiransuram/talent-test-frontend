@@ -42,24 +42,24 @@ export function ProCard({ icon, title, description, accent = "teal", className }
       {/* Accent strip at top */}
       <div className={cn("absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-current", patternColor)} />
 
-      {/* Side wave pattern (left, smaller, darker) */}
+      {/* Side wave pattern (left) with higher visibility */}
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute left-0 top-0 h-full w-16 opacity-100 transition-opacity duration-300 group-hover:opacity-100",
+          "pointer-events-none absolute left-0 top-0 h-full w-24 opacity-100 transition-opacity duration-300 group-hover:opacity-100",
           patternColor
         )}
         style={{
           backgroundImage: [
             'url("/images/curves-waves.svg")',
-            'linear-gradient(to bottom, var(--tw-gradient-stops))',
+            'linear-gradient(to bottom, rgba(14,165,164,0.35), rgba(14,165,164,0))',
           ].join(', '),
           backgroundRepeat: 'repeat-y, no-repeat',
-          backgroundSize: '64px 64px, auto',
+          backgroundSize: '96px 96px, auto',
           backgroundPosition: 'left top, 0 0',
+          backgroundBlendMode: 'normal, multiply',
         }}
       >
-        <div className={cn("absolute inset-0 bg-gradient-to-b", accentGradient)} />
       </div>
 
       <div className="relative z-10 flex items-start gap-4">
@@ -78,3 +78,5 @@ export function ProCard({ icon, title, description, accent = "teal", className }
 }
 
 export default ProCard;
+
+// dev-hmr-check: safe no-op comment to confirm HMR and auto-reload are working
