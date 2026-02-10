@@ -95,12 +95,12 @@ export default async function HomePage() {
 
           <Stagger className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 items-stretch">
             {[
-              { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.', accent: 'teal' },
-              { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.', accent: 'emerald' },
-              { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.', accent: 'cyan' },
-              { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.', accent: 'indigo' },
+              { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
+              { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
+              { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.' },
+              { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.' },
             ].map((c) => (
-              <ProCard key={c.title} icon={c.icon} title={c.title} description={c.desc} accent={c.accent as any} />
+              <ProCard key={c.title} icon={c.icon} title={c.title} description={c.desc} />
             ))}
           </Stagger>
 
@@ -128,14 +128,14 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {[
-              { title: 'Deep Diagnostics', description: 'Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student.', icon: '🧬', accent: 'teal' },
-              { title: 'Predictive ERP', description: 'Streamline campus management with adaptive systems that forecast needs and optimize operations.', icon: '⚡', accent: 'emerald' },
-              { title: 'Alumni Network', description: 'Build lasting connections with graduates through automated engagement tools and community platforms.', icon: '🌐', accent: 'cyan' },
-              { title: 'OMR Digitization', description: 'Digitize assessments effortlessly with high-accuracy scanning via mobile devices.', icon: '📱', accent: 'blue' },
-              { title: 'Growth Analytics', description: 'Track student progress with intuitive visualizations and predictive trend analysis.', icon: '📈', accent: 'indigo' },
-              { title: 'Parent Connect', description: 'Facilitate seamless communication between schools and families with secure, organized channels.', icon: '💬', accent: 'teal' },
+              { title: 'Deep Diagnostics', description: 'Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student.', icon: '🧬' },
+              { title: 'Predictive ERP', description: 'Streamline campus management with adaptive systems that forecast needs and optimize operations.', icon: '⚡' },
+              { title: 'Alumni Network', description: 'Build lasting connections with graduates through automated engagement tools and community platforms.', icon: '🌐' },
+              { title: 'OMR Digitization', description: 'Digitize assessments effortlessly with high-accuracy scanning via mobile devices.', icon: '📱' },
+              { title: 'Growth Analytics', description: 'Track student progress with intuitive visualizations and predictive trend analysis.', icon: '📈' },
+              { title: 'Parent Connect', description: 'Facilitate seamless communication between schools and families with secure, organized channels.', icon: '💬' },
             ].map((f) => (
-              <ProCard key={f.title} icon={f.icon} title={f.title} description={f.description} accent={f.accent as any} />
+              <ProCard key={f.title} icon={f.icon} title={f.title} description={f.description} />
             ))}
           </div>
         </div>

@@ -46,12 +46,12 @@ export function ProCard({ icon, title, description, accent = "teal", className }
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute right-0 top-0 h-full w-24 opacity-20 transition-opacity group-hover:opacity-30",
+          "pointer-events-none absolute right-0 top-0 h-full w-32 opacity-40 transition-opacity duration-300 group-hover:opacity-70",
           patternColor
         )}
         style={{
           backgroundImage:
-            "radial-gradient(currentColor 1px, transparent 1px), linear-gradient(to bottom, var(--tw-gradient-stops))",
+            "radial-gradient(currentColor 1.5px, transparent 1.5px), linear-gradient(to bottom, var(--tw-gradient-stops))",
           backgroundSize: "6px 6px, auto",
           backgroundPosition: "0 0, 0 0",
         }}
