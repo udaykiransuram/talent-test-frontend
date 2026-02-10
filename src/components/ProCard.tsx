@@ -42,16 +42,16 @@ export function ProCard({ icon, title, description, accent = "teal", className }
       {/* Accent strip at top */}
       <div className={cn("absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-current", patternColor)} />
 
-      {/* Right-side subtle pattern */}
+      {/* Side subtle pattern (moved to left and darkened) */}
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute right-0 top-0 h-full w-32 opacity-40 transition-opacity duration-300 group-hover:opacity-70",
+          "pointer-events-none absolute left-0 top-0 h-full w-36 opacity-60 transition-opacity duration-300 group-hover:opacity-90",
           patternColor
         )}
         style={{
           backgroundImage:
-            "radial-gradient(currentColor 1.5px, transparent 1.5px), linear-gradient(to bottom, var(--tw-gradient-stops))",
+            "radial-gradient(currentColor 2px, transparent 2px), linear-gradient(to bottom, var(--tw-gradient-stops))",
           backgroundSize: "6px 6px, auto",
           backgroundPosition: "0 0, 0 0",
         }}
