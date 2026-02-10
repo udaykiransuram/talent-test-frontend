@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Hero3D, FeatureCard3D } from '@/components/Landing3D';
+import { Hero3D } from '@/components/Landing3D';
+import { ProCard } from '@/components/ProCard';
 import { Reveal, Stagger } from '@/components/Reveal';
 import { connectDB } from '@/lib/db';
 import SiteStats from '@/models/SiteStats';
@@ -93,31 +94,13 @@ export default async function HomePage() {
           </Reveal>
 
           <Stagger className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 items-stretch">
-            {[ 
-              { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
-              { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
-              { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.' },
-              { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.' },
+            {[
+              { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.', accent: 'teal' },
+              { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.', accent: 'emerald' },
+              { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.', accent: 'cyan' },
+              { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.', accent: 'indigo' },
             ].map((c) => (
-              <div
-                key={c.title}
-                className="group relative h-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-              >
-                <div className="h-1 bg-teal-500"></div>
-                <div className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-teal-500/10 text-2xl text-teal-500">
-                      {c.icon}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-lg md:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{c.title}</h3>
-                      <p className="mt-1.5 text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-400">
-                        {c.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProCard key={c.title} icon={c.icon} title={c.title} description={c.desc} accent={c.accent as any} />
             ))}
           </Stagger>
 
@@ -144,36 +127,16 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <FeatureCard3D 
-              title="Deep Diagnostics" 
-              description="Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student."
-              icon="🧬"
-            />
-            <FeatureCard3D 
-              title="Predictive ERP" 
-              description="Streamline campus management with adaptive systems that forecast needs and optimize operations."
-              icon="⚡"
-            />
-             <FeatureCard3D 
-              title="Alumni Network" 
-              description="Build lasting connections with graduates through automated engagement tools and community platforms."
-              icon="🌐"
-            />
-            <FeatureCard3D 
-              title="OMR Digitization" 
-              description="Digitize assessments effortlessly with high-accuracy scanning via mobile devices."
-              icon="📱"
-            />
-            <FeatureCard3D 
-              title="Growth Analytics" 
-              description="Track student progress with intuitive visualizations and predictive trend analysis."
-              icon="📈"
-            />
-             <FeatureCard3D 
-              title="Parent Connect" 
-              description="Facilitate seamless communication between schools and families with secure, organized channels."
-              icon="💬"
-            />
+            {[
+              { title: 'Deep Diagnostics', description: 'Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student.', icon: '🧬', accent: 'teal' },
+              { title: 'Predictive ERP', description: 'Streamline campus management with adaptive systems that forecast needs and optimize operations.', icon: '⚡', accent: 'emerald' },
+              { title: 'Alumni Network', description: 'Build lasting connections with graduates through automated engagement tools and community platforms.', icon: '🌐', accent: 'cyan' },
+              { title: 'OMR Digitization', description: 'Digitize assessments effortlessly with high-accuracy scanning via mobile devices.', icon: '📱', accent: 'blue' },
+              { title: 'Growth Analytics', description: 'Track student progress with intuitive visualizations and predictive trend analysis.', icon: '📈', accent: 'indigo' },
+              { title: 'Parent Connect', description: 'Facilitate seamless communication between schools and families with secure, organized channels.', icon: '💬', accent: 'teal' },
+            ].map((f) => (
+              <ProCard key={f.title} icon={f.icon} title={f.title} description={f.description} accent={f.accent as any} />
+            ))}
           </div>
         </div>
       </section>
