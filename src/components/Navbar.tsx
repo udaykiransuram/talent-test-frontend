@@ -57,11 +57,8 @@ export default function Navbar() {
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300 border-b",
-        scrolled
-          ? "border-slate-200/50 bg-white/85 backdrop-blur-md shadow-sm dark:border-slate-800/30 dark:bg-slate-950/85"
-          : isHomePage
-            ? "border-transparent bg-transparent"
-            : "border-slate-200/50 bg-white/85 backdrop-blur-md shadow-sm dark:border-slate-800/30 dark:bg-slate-950/85"
+        // Always glassy navbar for a consistent style
+        "border-teal-500/20 bg-white/10 dark:bg-white/5 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -123,15 +120,15 @@ export default function Navbar() {
                         : "opacity-0 translate-y-2 invisible pointer-events-none"
                     )}
                   >
-                    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-200/50 ring-1 ring-slate-900/5 dark:border-slate-800 dark:bg-slate-950 dark:shadow-black/50">
+                    <div className="overflow-hidden rounded-2xl border border-teal-500/20 bg-white/10 dark:bg-white/5 backdrop-blur-xl p-2 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
                       <div className="grid gap-1">
                         {item.dropdown?.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-slate-50 group/item dark:hover:bg-slate-900"
+                            className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-white/10 group/item dark:hover:bg-white/10"
                           >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-100 bg-white text-lg shadow-sm transition-colors group-hover/item:border-teal-200 group-hover/item:bg-teal-50 dark:border-slate-800 dark:bg-slate-900 dark:group-hover/item:border-teal-900 dark:group-hover/item:bg-teal-950">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-teal-500/20 bg-white/10 text-lg shadow-sm backdrop-blur-sm transition-colors">
                               {subItem.icon}
                             </span>
                             <div>
@@ -210,7 +207,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-20 left-0 w-full border-b border-slate-200 bg-white/95 backdrop-blur-xl md:hidden dark:border-slate-800 dark:bg-slate-950/95 max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div className="absolute top-20 left-0 w-full border-b border-teal-500/20 bg-white/10 backdrop-blur-2xl md:hidden dark:bg-white/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
           <nav className="flex flex-col px-4 py-3">
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
@@ -228,12 +225,12 @@ export default function Navbar() {
                       </svg>
                     </button>
                     {mobileDropdownOpen === item.href && (
-                      <div className="ml-2 mb-2 space-y-1 border-l-2 border-teal-100 pl-4">
+                      <div className="ml-2 mb-2 space-y-1 border-l-2 border-teal-500/20 pl-4">
                         {item.dropdown!.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex items-center gap-3 rounded-xl py-3 px-3 text-sm text-slate-600 hover:bg-teal-50 hover:text-teal-700 transition-colors dark:text-slate-400 dark:hover:bg-teal-900/20 dark:hover:text-white"
+                            className="flex items-center gap-3 rounded-xl py-3 px-3 text-sm text-slate-700 hover:bg-white/10 hover:text-slate-900 transition-colors dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <span className="text-lg">{subItem.icon}</span>
@@ -253,17 +250,17 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="py-4 text-base font-medium text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-white"
+                  className="py-4 text-base font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <div className="mt-2 border-t border-slate-100 pt-3 dark:border-slate-800">
+            <div className="mt-2 border-t border-teal-500/20 pt-3">
               <Link
                 href="/contact"
-                className="block py-4 text-base font-medium text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-white"
+                className="block py-4 text-base font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact

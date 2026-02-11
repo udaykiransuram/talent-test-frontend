@@ -71,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground min-h-screen flex flex-col`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground min-h-screen flex flex-col relative overflow-x-clip`}>
         <Navbar />
         <main className="flex-1 pt-20">{children}</main>
         <Footer />

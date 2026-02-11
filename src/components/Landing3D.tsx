@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate, useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import GlassPanel from "@/components/GlassPanel";
 
 // --- Hero 3D Component ---
 export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
@@ -56,9 +57,9 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
           <source src="https://videos.pexels.com/video-files/8499774/8499774-hd_1920_1080_30fps.mp4" type="video/mp4" />
         </video>
         
-        {/* Gradients - Left focused to make text pop while keeping student visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
+        {/* Gradients - tuned lighter so background video stays visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10"></div>
         
         {/* Cinematic Noise Texture */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
@@ -80,65 +81,74 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
           </span>
           Next-Gen Education Intelligence
         </motion.div>
-        
-        <h1 className="text-[2.25rem] sm:text-5xl md:text-7xl lg:text-8xl leading-tight font-bold tracking-tight text-white mb-6 sm:mb-8 drop-shadow-2xl">
-          <motion.span 
-             initial={{ opacity: 0, x: -20 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.8, delay: 0.4 }}
-             className="block"
+        {/* Glass hero content */}
+        <div className="w-full max-w-4xl">
+          <GlassPanel
+            className="p-5 sm:p-6 md:p-8"
+            bgClassName="bg-white/[0.03] dark:bg-white/0"
+            blurClassName="backdrop-blur-sm"
+            noHighlight
           >
-            Unlock
-          </motion.span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-200 to-cyan-400 relative">
-            Potential
-            <motion.svg 
-              className="absolute -bottom-2 left-0 w-full h-3 text-emerald-500" 
-              viewBox="0 0 100 10" 
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.5, delay: 1 }}
+            <h1 className="text-[2.25rem] sm:text-5xl md:text-7xl lg:text-8xl leading-tight font-bold tracking-tight text-white mb-6 sm:mb-8 drop-shadow-2xl">
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="block"
+              >
+                Unlock
+              </motion.span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-200 to-cyan-400 relative">
+                Potential
+                <motion.svg 
+                  className="absolute -bottom-2 left-0 w-full h-3 text-emerald-500" 
+                  viewBox="0 0 100 10" 
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 1 }}
+                >
+                  <motion.path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" strokeWidth="2" />
+                </motion.svg>
+              </span>
+            </h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-slate-200 text-sm sm:text-lg md:text-xl max-w-xl leading-relaxed mb-8 sm:mb-10 font-light drop-shadow-md"
             >
-              <motion.path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" strokeWidth="2" />
-            </motion.svg>
-          </span>
-        </h1>
-        
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-slate-200 text-sm sm:text-lg md:text-xl max-w-xl leading-relaxed mb-10 sm:mb-14 font-light drop-shadow-md"
-        >
-          See what grades miss. We diagnose the <span className="text-white font-semibold">hidden patterns</span> in student thinking to bridge the gap between effort and outcome.
-        </motion.p>
-        
-        <motion.div 
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8, delay: 0.8 }}
-           className="flex flex-col sm:flex-row items-center gap-5"
-        >
-           <ButtonShiny text="Start Baseline Test" href="/talent-test" primary />
-           <ButtonShiny text="View Demo" href="/contact" />
-           {(whatsappHref || envWaHref) && (
-             <a
-               href={whatsappHref || envWaHref}
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Chat on WhatsApp"
-               title="Chat on WhatsApp"
-               className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3 sm:px-8 sm:py-4 font-semibold shadow-lg hover:bg-[#1ebd5a] transition-colors"
-             >
-               <span className="flex h-5 w-5 items-center justify-center">
-                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                   <path d="M20.52 3.48A11.94 11.94 0 0012.06 0C5.44 0 .05 5.39.05 12.02c0 2.12.55 4.2 1.6 6.02L0 24l6.1-1.59a11.95 11.95 0 005.96 1.6h.01c6.62 0 12.01-5.39 12.01-12.02 0-3.21-1.25-6.22-3.56-8.53zM12.07 22c-1.86 0-3.67-.5-5.26-1.45l-.38-.23-3.62.94.97-3.53-.25-.36a9.91 9.91 0 01-1.55-5.35C2.98 6.5 7.51 2 12.07 2 16.64 2 21.2 6.5 21.2 12.02 21.2 17.55 16.64 22 12.07 22zm5.52-6.6c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.45-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.14-.14.3-.33.45-.5.15-.17.2-.29.3-.48.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.07 2.86 1.22 3.06.15.2 2.11 3.23 5.11 4.53.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.34z" />
-                 </svg>
-               </span>
-               <span>Contact us</span>
-             </a>
-           )}
-        </motion.div>
+              See what grades miss. We diagnose the <span className="text-white font-semibold">hidden patterns</span> in student thinking to bridge the gap between effort and outcome.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-col sm:flex-row items-center gap-5"
+            >
+              <ButtonShiny text="Start Baseline Test" href="/talent-test" primary />
+              <ButtonShiny text="View Demo" href="/contact" />
+              {(whatsappHref || envWaHref) && (
+                <a
+                  href={whatsappHref || envWaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chat on WhatsApp"
+                  title="Chat on WhatsApp"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3 sm:px-8 sm:py-4 font-semibold shadow-lg hover:bg-[#1ebd5a] transition-colors"
+                >
+                  <span className="flex h-5 w-5 items-center justify-center">
+                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M20.52 3.48A11.94 11.94 0 0012.06 0C5.44 0 .05 5.39.05 12.02c0 2.12.55 4.2 1.6 6.02L0 24l6.1-1.59a11.95 11.95 0 005.96 1.6h.01c6.62 0 12.01-5.39 12.01-12.02 0-3.21-1.25-6.22-3.56-8.53zM12.07 22c-1.86 0-3.67-.5-5.26-1.45l-.38-.23-3.62.94.97-3.53-.25-.36a9.91 9.91 0 01-1.55-5.35C2.98 6.5 7.51 2 12.07 2 16.64 2 21.2 6.5 21.2 12.02 21.2 17.55 16.64 22 12.07 22zm5.52-6.6c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.45-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.14-.14.3-.33.45-.5.15-.17.2-.29.3-.48.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.07 2.86 1.22 3.06.15.2 2.11 3.23 5.11 4.53.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.34z" />
+                    </svg>
+                  </span>
+                  <span>Contact us</span>
+                </a>
+              )}
+            </motion.div>
+          </GlassPanel>
+        </div>
       </motion.div>
     </div>
   );
