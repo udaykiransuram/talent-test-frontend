@@ -193,7 +193,7 @@ export default async function HomePage() {
         <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.04}>
           <GlassPanel
             className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.15)] transition-shadow duration-500 hover:ring-1 hover:ring-white/10"
-            bgClassName="bg-primary"
+            bgClassName="bg-black"
             blurClassName="backdrop-blur-none"
             borderClassName="border-white/20"
             noHighlight
@@ -203,10 +203,10 @@ export default async function HomePage() {
               <div className={`grid grid-cols-2 ${homeStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-6 md:gap-8 text-center`}>
                 {homeStats.map((stat) => (
                   <div key={stat.key} className="py-1">
-                    <div className="rounded-2xl border border-white/30 bg-white/20 backdrop-blur-md px-4 py-5 flex flex-col items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.25)] hover:border-white/50 hover:bg-white/25 sheen-card">
-                      {stat.icon && <div className="text-2xl md:text-3xl text-black">{stat.icon}</div>}
-                      <div className="text-4xl md:text-6xl font-bold text-black tracking-tight">{stat.value}</div>
-                      <div className="text-black/80 text-[10px] md:text-xs tracking-wide uppercase">{stat.label}</div>
+                    <div className="rounded-2xl border border-white/30 bg-black/30 backdrop-blur-md px-4 py-5 flex flex-col items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.25)] hover:border-white/50 hover:bg-white/10 sheen-card">
+                      {stat.icon && <div className="text-2xl md:text-3xl text-white">{stat.icon}</div>}
+                      <div className="text-4xl md:text-6xl font-bold text-white tracking-tight">{stat.value}</div>
+                      <div className="text-white/80 text-[10px] md:text-xs tracking-wide uppercase">{stat.label}</div>
                     </div>
                   </div>
                 ))}
