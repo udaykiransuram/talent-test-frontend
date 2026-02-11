@@ -42,26 +42,28 @@ export default function Navbar() {
     setMobileDropdownOpen(null);
   }, [pathname]);
 
-  // Text color logic: use consistent, high-contrast colors to avoid white-on-white issues.
+  // High-contrast link styles for glass navbar
   const getTextColor = (_baseColor: string, active: boolean) => {
     return active
-      ? "text-teal-700 bg-teal-50/50 dark:text-teal-300 dark:bg-teal-900/20"
-      : "text-slate-700 hover:text-slate-900 hover:bg-slate-100/50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/50";
+      ? "text-white bg-teal-500/20 ring-1 ring-teal-500/30"
+      : "text-slate-100 hover:text-white hover:bg-white/10";
   };
 
   // Keep logo readable regardless of page/scroll state
-  const logoColor = "text-slate-900 dark:text-slate-100";
-  const logoSubColor = "text-slate-500 dark:text-slate-400";
+  const logoColor = "text-white";
+  const logoSubColor = "text-slate-300";
 
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300 border-b",
-        // Always glassy navbar for a consistent style
-        "border-teal-500/20 bg-white/10 dark:bg-white/5 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+        "fixed top-0 z-[100] w-full transition-all duration-300 border-b",
+        // Stronger, more legible glass on light backgrounds; slightly denser when scrolled
+        scrolled
+          ? "border-white/10 bg-slate-900/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.2)]"
+          : "border-white/10 bg-slate-900/50 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.12)]"
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white shadow-lg shadow-teal-500/20">
@@ -85,7 +87,7 @@ export default function Navbar() {
 
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex text-slate-100">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             const hasDropdown = 'dropdown' in item;
@@ -101,12 +103,14 @@ export default function Navbar() {
                 >
                   <button
                     className={cn(
-                      "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                      "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
                       textColorClass
                     )}
+                    aria-haspopup="menu"
+                    aria-expanded={openDropdown === item.href}
                   >
                     {item.label}
-                    <svg className={cn("h-4 w-4 transition-transform duration-200", openDropdown === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className={cn("h-4 w-4 transition-transform duration-200 text-slate-200", openDropdown === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
@@ -114,26 +118,26 @@ export default function Navbar() {
                   {/* Mega Menu Dropdown */}
                   <div 
                     className={cn(
-                      "absolute left-1/2 top-full w-80 -translate-x-1/2 pt-4 transition-all duration-200 z-50",
+                      "absolute left-1/2 top-full w-80 -translate-x-1/2 pt-4 transition-all duration-200 z-[200]",
                       openDropdown === item.href 
                         ? "opacity-100 translate-y-0 visible" 
                         : "opacity-0 translate-y-2 invisible pointer-events-none"
                     )}
                   >
-                    <div className="overflow-hidden rounded-2xl border border-teal-500/20 bg-white/10 dark:bg-white/5 backdrop-blur-xl p-2 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/90 backdrop-blur-xl p-2 shadow-[0_12px_40px_rgba(0,0,0,0.35)] text-slate-100">
                       <div className="grid gap-1">
                         {item.dropdown?.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-white/10 group/item dark:hover:bg-white/10"
+                            className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-white/10 group/item"
                           >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-teal-500/20 bg-white/10 text-lg shadow-sm backdrop-blur-sm transition-colors">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/10 text-lg shadow-sm backdrop-blur-sm transition-colors">
                               {subItem.icon}
                             </span>
                             <div>
-                              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{subItem.label}</div>
-                              <div className="text-xs text-slate-500 dark:text-slate-400">{subItem.desc}</div>
+                              <div className="text-sm font-semibold text-slate-100">{subItem.label}</div>
+                              <div className="text-xs text-slate-300">{subItem.desc}</div>
                             </div>
                           </Link>
                         ))}
@@ -149,7 +153,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-all",
+                  "rounded-full px-4 py-2 text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
                   textColorClass
                 )}
               >
@@ -189,10 +193,11 @@ export default function Navbar() {
           <button 
             className={cn(
               "flex items-center justify-center h-11 w-11 rounded-xl md:hidden transition-colors",
-              "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800/60"
+              "text-slate-100 hover:bg-white/10"
             )}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
           >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               {mobileMenuOpen ? (
@@ -207,8 +212,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-20 left-0 w-full border-b border-teal-500/20 bg-white/10 backdrop-blur-2xl md:hidden dark:bg-white/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
-          <nav className="flex flex-col px-4 py-3">
+        <div className="fixed top-20 left-0 right-0 bottom-0 z-[95] border-t border-white/10 bg-slate-900/80 backdrop-blur-xl md:hidden overflow-y-auto">
+          <nav className="flex flex-col px-4 py-3 text-slate-100">
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
               
@@ -216,8 +221,9 @@ export default function Navbar() {
                 return (
                   <div key={item.href}>
                     <button
-                      className="flex w-full items-center justify-between py-4 text-base font-medium text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-white"
+                      className="flex w-full items-center justify-between py-4 text-base font-medium text-slate-100 hover:text-white"
                       onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
+                      aria-expanded={mobileDropdownOpen === item.href}
                     >
                       {item.label}
                       <svg className={cn("h-5 w-5 transition-transform duration-200", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -225,18 +231,18 @@ export default function Navbar() {
                       </svg>
                     </button>
                     {mobileDropdownOpen === item.href && (
-                      <div className="ml-2 mb-2 space-y-1 border-l-2 border-teal-500/20 pl-4">
+                      <div className="ml-2 mb-2 space-y-1 border-l-2 border-white/10 pl-4">
                         {item.dropdown!.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex items-center gap-3 rounded-xl py-3 px-3 text-sm text-slate-700 hover:bg-white/10 hover:text-slate-900 transition-colors dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+                            className="flex items-center gap-3 rounded-xl py-3 px-3 text-sm text-slate-100 hover:bg-white/10 hover:text-white transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             <span className="text-lg">{subItem.icon}</span>
                             <div>
-                              <div className="font-semibold">{subItem.label}</div>
-                              <div className="text-xs text-slate-400">{subItem.desc}</div>
+                              <div className="font-semibold text-slate-100">{subItem.label}</div>
+                              <div className="text-xs text-slate-300">{subItem.desc}</div>
                             </div>
                           </Link>
                         ))}
@@ -250,7 +256,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="py-4 text-base font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                  className="py-4 text-base font-medium text-slate-100 hover:text-white"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -260,7 +266,7 @@ export default function Navbar() {
             <div className="mt-2 border-t border-teal-500/20 pt-3">
               <Link
                 href="/contact"
-                className="block py-4 text-base font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                className="block py-4 text-base font-medium text-slate-100 hover:text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
