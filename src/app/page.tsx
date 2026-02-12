@@ -112,13 +112,13 @@ export default async function HomePage() {
           {/* Cards wrapper (full-bleed, sharp edges touching page) */}
           <Parallax className="relative mt-10 sm:mt-12 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.05}>
             <GlassPanel
-              className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.15)] transition-shadow duration-500 hover:ring-1 hover:ring-white/10"
-              bgClassName="bg-[#00ff09]"
-              blurClassName="backdrop-blur-xl backdrop-saturate-150"
-              borderClassName="border-white/30 dark:border-white/10"
-              veilClassName="bg-white/20"
-              textureUrl="https://www.transparenttextures.com/patterns/black-linen-2.png"
-              textureOpacityClass="opacity-100"
+              className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+              bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+              blurClassName="backdrop-blur-2xl backdrop-saturate-150"
+              borderClassName="border-sky-300/30 dark:border-white/15"
+              veilClassName="bg-white/30"
+              textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
+              textureOpacityClass="opacity-20"
               radiusClassName="rounded-none"
             >
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
@@ -160,13 +160,13 @@ export default async function HomePage() {
 
           <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
             <GlassPanel
-              className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.15)] transition-shadow duration-500 hover:ring-1 hover:ring-white/10"
-              bgClassName="bg-[#00ff09]"
-              blurClassName="backdrop-blur-xl backdrop-saturate-150"
-              borderClassName="border-white/30 dark:border-white/10"
-              veilClassName="bg-white/20"
-              textureUrl="https://www.transparenttextures.com/patterns/black-linen-2.png"
-              textureOpacityClass="opacity-100"
+              className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+              bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+              blurClassName="backdrop-blur-2xl backdrop-saturate-150"
+              borderClassName="border-sky-300/30 dark:border-white/15"
+              veilClassName="bg-white/30"
+              textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
+              textureOpacityClass="opacity-20"
               radiusClassName="rounded-none"
             >
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
@@ -226,13 +226,13 @@ export default async function HomePage() {
             </Reveal>
             <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.03}>
               <GlassPanel
-                className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.15)] transition-shadow duration-500 hover:ring-1 hover:ring-white/10"
-                bgClassName="bg-[#00ff09]"
-                blurClassName="backdrop-blur-xl backdrop-saturate-150"
-                borderClassName="border-white/30 dark:border-white/10"
-                veilClassName="bg-white/15"
-                textureUrl="https://www.transparenttextures.com/patterns/black-linen-2.png"
-                textureOpacityClass="opacity-100"
+                className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+                bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+                blurClassName="backdrop-blur-2xl backdrop-saturate-150"
+                borderClassName="border-sky-300/30 dark:border-white/15"
+                veilClassName="bg-white/30"
+                textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
+                textureOpacityClass="opacity-20"
                 radiusClassName="rounded-none"
               >
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
@@ -273,13 +273,13 @@ export default async function HomePage() {
             </Reveal>
             <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.025}>
               <GlassPanel
-                className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.15)] transition-shadow duration-500 hover:ring-1 hover:ring-white/10"
-                bgClassName="bg-[#00ff09]"
-                blurClassName="backdrop-blur-xl backdrop-saturate-150"
-                borderClassName="border-white/30 dark:border-white/10"
-                veilClassName="bg-white/15"
-                textureUrl="https://www.transparenttextures.com/patterns/black-linen-2.png"
-                textureOpacityClass="opacity-100"
+                className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+                bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+                blurClassName="backdrop-blur-2xl backdrop-saturate-150"
+                borderClassName="border-sky-300/30 dark:border-white/15"
+                veilClassName="bg-white/30"
+                textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
+                textureOpacityClass="opacity-20"
                 radiusClassName="rounded-none"
               >
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
