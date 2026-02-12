@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { LottieAnimation } from "./LottieAnimation";
 
 interface InnerHeroProps {
@@ -19,6 +19,7 @@ interface InnerHeroProps {
 
 export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, lottieRight, lottieLeft }: InnerHeroProps) => {
   const { scrollY } = useScroll();
+  const prefersReduced = useReducedMotion();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
@@ -40,11 +41,11 @@ export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, l
       {/* Abstract Shapes Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          style={{ y: y1 }}
+          style={{ y: prefersReduced ? 0 : y1 }}
           className="absolute -top-[30%] -right-[10%] w-[700px] h-[700px] rounded-full bg-emerald-500/40 blur-[80px] mix-blend-multiply"
         />
         <motion.div 
-          style={{ y: y2 }}
+          style={{ y: prefersReduced ? 0 : y2 }}
           className="absolute top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-teal-400/50 blur-[80px] mix-blend-multiply" 
         />
         
@@ -61,8 +62,8 @@ export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, l
           className="absolute right-[3%] xl:right-[5%] 2xl:right-[8%] top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center pointer-events-none z-[2]"
         >
           <motion.div
-            animate={{ y: [-8, 12, -8] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            animate={prefersReduced ? undefined : { y: [-8, 12, -8] }}
+            transition={prefersReduced ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
             <LottieAnimation src={lottieRight} className="w-64 h-64 xl:w-80 xl:h-80 2xl:w-96 2xl:h-96 opacity-75" />
           </motion.div>
@@ -78,8 +79,8 @@ export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, l
           className="absolute left-[3%] xl:left-[5%] 2xl:left-[8%] top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center pointer-events-none z-[2]"
         >
           <motion.div
-            animate={{ y: [8, -10, 8] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            animate={prefersReduced ? undefined : { y: [8, -10, 8] }}
+            transition={prefersReduced ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
           >
             <LottieAnimation src={lottieLeft} className="w-60 h-60 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80 opacity-65" />
           </motion.div>
@@ -90,9 +91,9 @@ export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, l
         <div className="mx-auto max-w-3xl text-center">
           {pillText && (
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              initial={prefersReduced ? undefined : { opacity: 0, scale: 0.9 }}
+              animate={prefersReduced ? undefined : { opacity: 1, scale: 1 }}
+              transition={prefersReduced ? undefined : { duration: 0.5 }}
               className="mb-8 inline-flex items-center rounded-full border border-teal-200/60 bg-white/60 px-3 py-1 text-sm font-medium text-teal-700 backdrop-blur-sm shadow-sm"
             >
               <span className="flex h-2 w-2 mr-2">
@@ -103,18 +104,18 @@ export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, l
           )}
           
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+            animate={prefersReduced ? undefined : { opacity: 1, y: 0 }}
+            transition={prefersReduced ? undefined : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-balance text-5xl font-semibold tracking-tight text-slate-900 sm:text-7xl"
           >
             {title}
           </motion.h1>
           
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+            animate={prefersReduced ? undefined : { opacity: 1, y: 0 }}
+            transition={prefersReduced ? undefined : { duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-lg leading-8 text-slate-700 text-balance"
           >
             {subtitle}
@@ -122,9 +123,9 @@ export const InnerHero = ({ title, subtitle, pillText, children, whatsappHref, l
 
           {children && (
             <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.2 }}
+               initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+               animate={prefersReduced ? undefined : { opacity: 1, y: 0 }}
+               transition={prefersReduced ? undefined : { duration: 0.8, delay: 0.2 }}
                className="mt-10 flex items-center justify-center gap-x-6"
             >
               {children}

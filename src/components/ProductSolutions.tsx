@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { LottieAnimation } from "@/components/LottieAnimation";
 import Link from "next/link";
@@ -110,6 +110,7 @@ function SolutionCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const c = colorMap[sol.color] || colorMap.emerald;
   const isEven = index % 2 === 0;
+  const prefersReduced = useReducedMotion();
 
   // Parallax on the animation container
   const { scrollYProgress } = useScroll({
@@ -143,7 +144,7 @@ function SolutionCard({
 
         {/* ── Animation Column ── */}
         <motion.div
-          style={{ y: animY, scale: animScale }}
+          style={{ y: prefersReduced ? 0 : animY, scale: prefersReduced ? 1 : animScale }}
           className={`relative flex items-center justify-center p-6 sm:p-8 lg:p-12 lg:w-[42%] flex-none overflow-hidden bg-gradient-to-br ${c.gradientFrom} ${c.gradientTo}`}
         >
           {/* Decorative radial */}
@@ -153,8 +154,8 @@ function SolutionCard({
 
           {/* Floating animation wrapper */}
           <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            animate={prefersReduced ? undefined : { y: [0, -8, 0] }}
+            transition={prefersReduced ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative z-10 w-full"
           >
             <LottieAnimation
@@ -378,7 +379,7 @@ export function ProductSolutions() {
           </p>
         </div>
         <motion.div
-          className="w-full max-w-xs sm:max-w-sm lg:max-w-md flex-none"
+          className="hidden md:block w-full max-w-xs sm:max-w-sm lg:max-w-md flex-none"
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
