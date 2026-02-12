@@ -116,9 +116,13 @@ export default async function HomePage() {
               bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
               blurClassName="backdrop-blur-2xl backdrop-saturate-150"
               borderClassName="border-sky-300/30 dark:border-white/15"
-              veilClassName="bg-white/30"
+              veilClassName="bg-white/35"
               textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-              textureOpacityClass="opacity-20"
+              textureOpacityClass="opacity-25"
+              noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
+              noiseOpacityClass="opacity-10"
+              specular
+              edgeHighlight
               radiusClassName="rounded-none"
             >
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
@@ -164,9 +168,13 @@ export default async function HomePage() {
               bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
               blurClassName="backdrop-blur-2xl backdrop-saturate-150"
               borderClassName="border-sky-300/30 dark:border-white/15"
-              veilClassName="bg-white/30"
+              veilClassName="bg-white/35"
               textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-              textureOpacityClass="opacity-20"
+              textureOpacityClass="opacity-25"
+              noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
+              noiseOpacityClass="opacity-10"
+              specular
+              edgeHighlight
               radiusClassName="rounded-none"
             >
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
@@ -230,9 +238,13 @@ export default async function HomePage() {
                 bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
                 blurClassName="backdrop-blur-2xl backdrop-saturate-150"
                 borderClassName="border-sky-300/30 dark:border-white/15"
-                veilClassName="bg-white/30"
+                veilClassName="bg-white/35"
                 textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-                textureOpacityClass="opacity-20"
+                textureOpacityClass="opacity-25"
+                noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
+                noiseOpacityClass="opacity-10"
+                specular
+                edgeHighlight
                 radiusClassName="rounded-none"
               >
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
@@ -277,9 +289,13 @@ export default async function HomePage() {
                 bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
                 blurClassName="backdrop-blur-2xl backdrop-saturate-150"
                 borderClassName="border-sky-300/30 dark:border-white/15"
-                veilClassName="bg-white/30"
+                veilClassName="bg-white/35"
                 textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-                textureOpacityClass="opacity-20"
+                textureOpacityClass="opacity-25"
+                noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
+                noiseOpacityClass="opacity-10"
+                specular
+                edgeHighlight
                 radiusClassName="rounded-none"
               >
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
