@@ -23,7 +23,6 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

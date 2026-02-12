@@ -18,15 +18,23 @@ export default function Parallax({ children, className, speed = 0.06 }: Parallax
     const el = ref.current;
     if (!el) return;
 
-    let lastY = window.scrollY;
+    // Respect reduced motion and disable parallax on small screens for performance
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isSmallScreen = window.matchMedia("(max-width: 768px)").matches; // ~md breakpoint
+
+    if (prefersReduced || isSmallScreen) {
+      // Disable transform and skip scroll listeners on mobile/reduced-motion
+      el.style.transform = "none";
+      return;
+    }
+
     const onScroll = () => {
       const y = window.scrollY;
       if (raf.current) cancelAnimationFrame(raf.current);
       raf.current = requestAnimationFrame(() => {
-        const offset = (y * speed) * -1; // slight upward drift on scroll
+        const offset = y * speed * -1; // slight upward drift on scroll
         el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
       });
-      lastY = y;
     };
 
     onScroll();
