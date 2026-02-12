@@ -30,52 +30,56 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl">
+      <div className="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2">
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">Name</label>
-          <input 
-            name="name" 
-            required 
+          <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700">Name</label>
+          <input
+            id="name"
+            name="name"
+            required
             placeholder="John Doe"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3 text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition" 
+            className="w-full h-12 rounded-lg border border-slate-200 bg-slate-50 px-4 text-base text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition"
           />
         </div>
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">Email</label>
-          <input 
-            type="email" 
-            name="email" 
-            required 
+          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
             placeholder="john@school.edu"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3 text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition" 
+            className="w-full h-12 rounded-lg border border-slate-200 bg-slate-50 px-4 text-base text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition"
           />
         </div>
       </div>
-      
+
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700">Institution / School</label>
-        <input 
-          name="institution" 
+        <label htmlFor="institution" className="mb-2 block text-sm font-medium text-slate-700">Institution / School</label>
+        <input
+          id="institution"
+          name="institution"
           placeholder="St. Xavier's High School"
-          className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3 text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition" 
+          className="w-full h-12 rounded-lg border border-slate-200 bg-slate-50 px-4 text-base text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition"
         />
       </div>
-      
+
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700">Message</label>
-        <textarea 
-          name="message" 
-          required 
-          rows={5} 
+        <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-700">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={5}
           placeholder="How can we help you transform your school?"
-          className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3 text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition resize-none" 
+          className="w-full min-h-[140px] rounded-lg border border-slate-200 bg-slate-50 p-4 text-base text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition resize-none"
         />
       </div>
-      
-      <button 
-        disabled={status === "sending" || status === "sent"} 
-        className="w-full rounded-lg bg-emerald-600 px-5 py-4 font-semibold text-white shadow-lg transition hover:bg-emerald-500 hover:shadow-emerald-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
+
+      <button
+        disabled={status === "sending" || status === "sent"}
+        className="w-full h-12 rounded-lg bg-emerald-600 px-5 font-semibold text-white shadow-lg transition hover:bg-emerald-500 hover:shadow-emerald-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {status === "sending" ? "Sending..." : status === "sent" ? "Message Sent!" : "Send Message"}
       </button>
