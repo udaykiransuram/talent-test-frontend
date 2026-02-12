@@ -73,7 +73,7 @@ export default async function HomePage() {
         { key: 'accuracy', label: 'Diagnostic Accuracy', value: '100%', icon: '🎯' },
         { key: 'time', label: 'Teacher Time Saved', value: '40%', icon: '⏱️' },
       ];
-  const testPrice = testConfig?.price || 100;
+  const testPrice = typeof testConfig?.price === 'number' ? testConfig.price : undefined;
   
   return (
     <div className="relative min-h-screen text-slate-900 selection:bg-teal-500/30 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-500">
@@ -110,17 +110,16 @@ export default async function HomePage() {
           </Reveal>
 
           {/* Cards wrapper (full-bleed, sharp edges touching page) */}
-          <Parallax className="relative mt-10 sm:mt-12 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.05}>
+          <Parallax className="cards-section relative mt-10 sm:mt-12 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/cards-bg.png')] bg-cover bg-center" speed={0.05}>
             <GlassPanel
-              className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
-              bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+              className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+              bgClassName="bg-white/0"
               blurClassName="backdrop-blur-2xl backdrop-saturate-150"
               borderClassName="border-sky-300/30 dark:border-white/15"
-              veilClassName="bg-white/35"
               textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-              textureOpacityClass="opacity-25"
+              textureOpacityClass="opacity-5"
               noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-              noiseOpacityClass="opacity-10"
+              noiseOpacityClass="opacity-5"
               specular
               edgeHighlight
               radiusClassName="rounded-none"
@@ -162,17 +161,16 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
+          <div className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/cards-bg.png')] bg-cover bg-center">
             <GlassPanel
-              className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
-              bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+              className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+              bgClassName="bg-white/0"
               blurClassName="backdrop-blur-2xl backdrop-saturate-150"
               borderClassName="border-sky-300/30 dark:border-white/15"
-              veilClassName="bg-white/35"
               textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-              textureOpacityClass="opacity-25"
+              textureOpacityClass="opacity-5"
               noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-              noiseOpacityClass="opacity-10"
+              noiseOpacityClass="opacity-5"
               specular
               edgeHighlight
               radiusClassName="rounded-none"
@@ -198,17 +196,16 @@ export default async function HomePage() {
       
       {/* Interactive Stat Band (glassy) */}
       <section className="py-20 md:py-28 bg-transparent border-t border-gray-200/50 dark:border-gray-800/60 relative">
-        <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.04}>
+        <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/cards-bg.png')] bg-cover bg-center" speed={0.04}>
           <GlassPanel
-            className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
-            bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+            className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+            bgClassName="bg-white/0"
             blurClassName="backdrop-blur-2xl backdrop-saturate-150"
             borderClassName="border-sky-300/30 dark:border-white/15"
-            veilClassName="bg-white/35"
             textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-            textureOpacityClass="opacity-25"
+            textureOpacityClass="opacity-5"
             noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-            noiseOpacityClass="opacity-10"
+            noiseOpacityClass="opacity-5"
             specular
             edgeHighlight
             radiusClassName="rounded-none"
@@ -238,17 +235,16 @@ export default async function HomePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-4">Voices from Our Community</h2>
               <p className="text-center text-slate-900/85 max-w-2xl mx-auto mb-12">Insights from educators and parents transforming education with Alyra Tech.</p>
             </Reveal>
-            <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.03}>
+            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/cards-bg.png')] bg-cover bg-center" speed={0.03}>
               <GlassPanel
-                className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
-                bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+                className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+                bgClassName="bg-white/0"
                 blurClassName="backdrop-blur-2xl backdrop-saturate-150"
                 borderClassName="border-sky-300/30 dark:border-white/15"
-                veilClassName="bg-white/35"
                 textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-                textureOpacityClass="opacity-25"
+                textureOpacityClass="opacity-5"
                 noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-                noiseOpacityClass="opacity-10"
+                noiseOpacityClass="opacity-5"
                 specular
                 edgeHighlight
                 radiusClassName="rounded-none"
@@ -289,17 +285,16 @@ export default async function HomePage() {
             <Reveal>
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-14">Common Questions Answered</h2>
             </Reveal>
-            <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.025}>
+            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/cards-bg.png')] bg-cover bg-center" speed={0.025}>
               <GlassPanel
-                className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
-                bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+                className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+                bgClassName="bg-white/0"
                 blurClassName="backdrop-blur-2xl backdrop-saturate-150"
                 borderClassName="border-sky-300/30 dark:border-white/15"
-                veilClassName="bg-white/35"
                 textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-                textureOpacityClass="opacity-25"
+                textureOpacityClass="opacity-5"
                 noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-                noiseOpacityClass="opacity-10"
+                noiseOpacityClass="opacity-5"
                 specular
                 edgeHighlight
                 radiusClassName="rounded-none"
@@ -327,8 +322,10 @@ export default async function HomePage() {
             Elevate Your Institution Today
           </h2>
           <p className="text-lg md:text-xl mb-10 md:mb-12 max-w-2xl mx-auto">
-             Join leading educational institutions leveraging data-driven insights to foster student success. <br />
-             Pricing begins at just <span className="font-bold">{testPrice} INR</span> per assessment.
+             Join leading educational institutions leveraging data-driven insights to foster student success.
+             {typeof testPrice === 'number' ? (
+               <><br />Pricing begins at just <span className="font-bold">{testPrice} INR</span> per assessment.</>
+             ) : null}
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

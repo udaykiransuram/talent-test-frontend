@@ -168,3 +168,28 @@
     animation: none !important;
   }
 }
+
+/* Reusable background image for card containers */
+.cards-section {
+  position: relative;
+  overflow: hidden;
+}
+.cards-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/cards-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* increased for stronger visibility behind glass */
+  z-index: 0;
+  pointer-events: none;
+}
+.dark .cards-section::before {
+  opacity: 0.6;
+}
+.cards-section > * {
+  position: relative;
+  z-index: 1;
+}
