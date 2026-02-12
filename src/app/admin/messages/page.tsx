@@ -31,7 +31,7 @@ export default function AdminMessagesPage() {
     setLoading(false);
   }
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [page, filter]);
+  useEffect(() => { load();   }, [page, filter]);
 
   async function toggleRead(id: string, read: boolean) {
     const res = await fetch('/api/admin/messages', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, read }) });
