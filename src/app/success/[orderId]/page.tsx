@@ -31,6 +31,14 @@ export default async function SuccessPage({ params }: SuccessPageProps) {
         <p className="text-teal-800 mb-4 dark:text-teal-300">
           Your payment was received. We&apos;ll contact you at <span className="font-medium text-teal-700 dark:text-teal-400">{registration.phone}</span>.
         </p>
+        {typeof registration.amount === 'number' && registration.currency && (
+          <p className="text-sm text-teal-700 mb-4 dark:text-teal-300">
+            Amount paid: <span className="font-semibold">
+              {registration.currency === 'INR' ? '₹' : registration.currency === 'USD' ? '$' : registration.currency + ' '}
+              {registration.amount}
+            </span>
+          </p>
+        )}
         {registration.hallTicket && (
           <div className="mt-4 rounded-lg bg-teal-50 p-4 dark:bg-teal-900/20">
             <p className="text-sm font-semibold text-teal-800 dark:text-teal-300">Hall Ticket Number:</p>

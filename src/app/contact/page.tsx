@@ -113,26 +113,26 @@ export default async function ContactPage() {
               <div className="rounded-3xl bg-white border border-slate-200 p-8 shadow-md transition-shadow hover:shadow-lg">
                 <h3 className="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">Contact Information</h3>
                 <div className="space-y-6 divide-y divide-slate-100">
-                  <div className="flex gap-5 items-start pb-6">
+                  <div className="flex gap-5 items-start pb-6 min-w-0">
                     <div className="flex-none rounded-xl bg-emerald-50 p-4 text-emerald-600 ring-1 ring-emerald-100"><EnvelopeIcon className="h-6 w-6" /></div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <p className="font-semibold text-slate-900 text-base">Email</p>
-                      <a href={`mailto:${info.email}`} className="text-slate-600 hover:text-emerald-600 transition-colors underline underline-offset-2">{info.email}</a>
+                      <a href={`mailto:${info.email}`} className="text-slate-600 hover:text-emerald-600 transition-colors underline underline-offset-2 break-words whitespace-normal">{info.email}</a>
                     </div>
                   </div>
-                  <div className="flex gap-5 items-start py-6">
+                  <div className="flex gap-5 items-start py-6 min-w-0">
                     <div className="flex-none rounded-xl bg-emerald-50 p-4 text-emerald-600 ring-1 ring-emerald-100"><PhoneIcon className="h-6 w-6" /></div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <p className="font-semibold text-slate-900 text-base">Phone</p>
-                      <a href={`tel:${info.phone.replace(/\s+/g, "")}`} className="text-slate-600 hover:text-emerald-600 transition-colors underline underline-offset-2">{info.phone}</a>
+                      <a href={`tel:${info.phone.replace(/\s+/g, "")}`} className="text-slate-600 hover:text-emerald-600 transition-colors underline underline-offset-2 break-words whitespace-normal">{info.phone}</a>
                     </div>
                   </div>
-                  <div className="flex gap-5 items-start pt-6">
+                  <div className="flex gap-5 items-start pt-6 min-w-0">
                     <div className="flex-none rounded-xl bg-emerald-50 p-4 text-emerald-600 ring-1 ring-emerald-100"><MapPinIcon className="h-6 w-6" /></div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <p className="font-semibold text-slate-900 text-base">HQ</p>
-                      <p className="text-slate-600 font-medium">{info.city}</p>
-                      <p className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">{info.address}</p>
+                      <p className="text-slate-600 font-medium break-words whitespace-normal">{info.city}</p>
+                      <p className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold break-words whitespace-normal">{info.address}</p>
                     </div>
                   </div>
                 </div>

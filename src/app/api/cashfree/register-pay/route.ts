@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Registration from '@/models/Registration';
 import { connectDB } from '@/lib/db';
 import { Redis } from '@upstash/redis';
+import TalentTestConfig from '@/models/TalentTestConfig';
 
 let redis: Redis | null = null;
 try {
@@ -81,6 +82,11 @@ export async function POST(req: NextRequest) {
     const shortRandom = Math.random().toString(36).substring(2, 10);
     const orderId = `talent_${Date.now()}_${shortRandom}`;
 
+    // Fetch current test configuration for dynamic pricing
+    const config = await TalentTestConfig.findOne().lean();
+    const amount = Number(config?.price ?? 100);
+    const currency = (config?.currency ?? 'INR').toUpperCase();
+
     // Store registration as pending
     await Registration.create({
       studentName: body.studentName,
@@ -90,6 +96,8 @@ export async function POST(req: NextRequest) {
       aadhar: body.aadhar,
       careerAspiration: body.careerAspiration,
       rollNumber: body.rollNumber, // <-- add this
+      amount,
+      currency,
       orderId,
       status: 'pending',
     });
@@ -109,8 +117,8 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         order_id: orderId,
-        order_amount: 100,
-        order_currency: 'INR',
+        order_amount: amount,
+        order_currency: currency,
         customer_details: {
           customer_id: body.phone,
           customer_phone: body.phone,

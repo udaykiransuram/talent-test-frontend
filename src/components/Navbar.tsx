@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -27,6 +28,12 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+  const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
+
+  // Ensure portal only renders on client
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -41,16 +48,52 @@ export default function Navbar() {
     setMobileDropdownOpen(null);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open (better iOS Safari behavior)
   useEffect(() => {
-    const root = document.documentElement;
+    const body = document.body;
+    const scrollY = window.scrollY;
     if (mobileMenuOpen) {
-      root.classList.add("overflow-hidden");
+      body.style.overflow = "hidden";
+      body.style.position = "fixed";
+      body.style.width = "100%";
+      body.style.top = `-${scrollY}px`;
     } else {
-      root.classList.remove("overflow-hidden");
+      const top = body.style.top;
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.width = "";
+      body.style.top = "";
+      if (top) {
+        const y = parseInt(top || "0", 10) * -1;
+        window.scrollTo(0, y);
+      }
     }
-    return () => root.classList.remove("overflow-hidden");
+    return () => {
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.width = "";
+      body.style.top = "";
+    };
   }, [mobileMenuOpen]);
+
+  // Track header height for accurate mobile overlay positioning
+  useLayoutEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const setH = () => setHeaderH(el.getBoundingClientRect().height);
+    setH();
+    const ro = new ResizeObserver(setH);
+    ro.observe(el);
+    window.addEventListener("scroll", setH, { passive: true });
+    window.addEventListener("orientationchange", setH);
+    window.addEventListener("resize", setH);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("scroll", setH);
+      window.removeEventListener("orientationchange", setH);
+      window.removeEventListener("resize", setH);
+    };
+  }, []);
 
   // Link styles for light glass navbar (dark text)
   const getTextColor = (_baseColor: string, active: boolean) => {
@@ -65,6 +108,7 @@ export default function Navbar() {
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "fixed top-0 z-[100] w-full transition-all duration-300 border-b text-slate-900",
         // Light glass for professional look; slightly denser when scrolled
@@ -219,9 +263,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed top-20 left-0 right-0 bottom-0 z-[1000] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200">
+      {/* Mobile Menu (portaled to body for reliable stacking on mobile) */}
+      {mounted && mobileMenuOpen && createPortal(
+        <div
+          className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
+          style={{ top: headerH }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Menu"
+        >
           <nav className="flex flex-col px-4 py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
@@ -287,7 +337,8 @@ export default function Navbar() {
               </Link>
             </div>
           </nav>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

@@ -133,8 +133,8 @@ async function getTalentTestData() {
       return {
         name: config?.name ?? 'Precision Baseline Assessment',
         description: config?.description ?? 'Comprehensive diagnostic test to identify student strengths and areas for improvement',
-        price: config?.price ?? 100,
-        currency: config?.currency ?? 'INR',
+        price: typeof config?.price === 'number' ? config.price : undefined,
+        currency: config?.currency ?? undefined,
         duration: config?.duration ?? '45 minutes',
         subjects: config?.subjects ?? ['Mathematics', 'Science', 'English'],
         features: config?.features ?? ['Detailed diagnostic report', 'Personalized learning recommendations', 'Subject-wise performance analysis', 'Instant results delivery via email'],
@@ -171,8 +171,8 @@ function getDefaults() {
   return {
     name: 'Precision Baseline Assessment',
     description: 'Comprehensive diagnostic test to identify student strengths and areas for improvement',
-    price: 100,
-    currency: 'INR',
+    price: undefined as number | undefined,
+    currency: undefined as string | undefined,
     duration: '45 minutes',
     subjects: ['Mathematics', 'Science', 'English'],
     features: ['Detailed diagnostic report', 'Personalized learning recommendations', 'Subject-wise performance analysis', 'Instant results delivery via email'],
@@ -217,7 +217,9 @@ const DEFAULT_FAQS = [
 
 export default async function TalentTestLandingPage() {
   const { price, currency, testimonials, name, description, duration, subjects, features, isActive, heroStats, faqs, registrationsOpen, registrationDeadline, testWindowStart, testWindowEnd, resultsDate } = await getTalentTestData();
-  const priceLabel = currency === 'INR' ? `\u20b9${price}` : `${currency} ${price}`;
+  const priceLabel = typeof price === 'number' && currency
+    ? (currency === 'INR' ? `\u20b9${price}` : `${currency} ${price}`)
+    : '';
   const keyDates = [
     registrationsOpen && { label: 'Registrations Open', date: fmtMonthDay(registrationsOpen), year: yearOf(registrationsOpen) },
     registrationDeadline && { label: 'Last Day to Register', date: fmtMonthDay(registrationDeadline), year: yearOf(registrationDeadline) },
@@ -251,7 +253,7 @@ export default async function TalentTestLandingPage() {
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link href="/register" prefetch>
                   <button className="rounded-full bg-teal-600 px-10 py-4 text-xl font-semibold text-white shadow-lg transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-300">
-                    Enroll Now for {priceLabel} ✨
+                    {priceLabel ? `Enroll Now for ${priceLabel} ✨` : 'Enroll Now ✨'}
                   </button>
                 </Link>
                 <Link href="#features">
@@ -310,7 +312,7 @@ export default async function TalentTestLandingPage() {
             </div>
             <div className="rounded-2xl border border-teal-200 bg-teal-50/50 p-6 text-center dark:border-teal-800 dark:bg-teal-900/30">
               <div className="text-3xl mb-2">💰</div>
-              <div className="text-2xl font-bold text-teal-900 dark:text-teal-50">{priceLabel}</div>
+              <div className="text-2xl font-bold text-teal-900 dark:text-teal-50">{priceLabel || '—'}</div>
               <div className="text-sm text-teal-600 dark:text-teal-400 mt-1">One-time Fee</div>
             </div>
           </Stagger>
@@ -538,7 +540,7 @@ export default async function TalentTestLandingPage() {
             {faqs.map((faq, index) => (
               <div key={index} className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
                 <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{faq.question}</h3>
-                <p className="mt-3 text-neutral-700 dark:text-neutral-300">{faq.answer.replace('{{PRICE}}', priceLabel)}</p>
+                <p className="mt-3 text-neutral-700 dark:text-neutral-300">{faq.answer.replace('{{PRICE}}', priceLabel || 'the set fee')}</p>
               </div>
             ))}
           </Stagger>
@@ -606,7 +608,11 @@ export default async function TalentTestLandingPage() {
             <Reveal delay={0.08}>
               <p className="mt-6 text-xl opacity-95">
                 Join 50,000+ students who&apos;ve already experienced the power of precision diagnostics. 
-                For just {priceLabel}, get comprehensive insights that traditional exams can&apos;t provide.
+                {priceLabel ? (
+                  <>For just {priceLabel}, get comprehensive insights that traditional exams can&apos;t provide.</>
+                ) : (
+                  <>Get comprehensive insights that traditional exams can&apos;t provide.</>
+                )}
               </p>
             </Reveal>
             <Reveal delay={0.16}>
@@ -616,7 +622,7 @@ export default async function TalentTestLandingPage() {
                   className={`rounded-full px-10 py-4 text-xl font-semibold shadow-xl transition ${isActive ? 'bg-white text-teal-700 hover:shadow-2xl hover:opacity-95' : 'bg-white/60 text-teal-700/50 cursor-not-allowed'}`}
                   aria-disabled={!isActive}
                 >
-                  {isActive ? `Enroll Now — ${priceLabel} Only` : 'Registrations Closed'}
+                  {isActive ? (priceLabel ? `Enroll Now — ${priceLabel} Only` : 'Enroll Now') : 'Registrations Closed'}
                 </Link>
                 <Link 
                   href="/product" 

@@ -31,7 +31,7 @@ export default function TalentTestRegisterPage() {
 		phone: '',
 		classLevel: '',
 		aadhar: '',
-		amount: '100',
+		amount: '',
 		careerAspiration: '',
 		rollNumber: '',
 	});
@@ -45,7 +45,7 @@ export default function TalentTestRegisterPage() {
 			.then(data => {
 				if (data.success && data.data) {
 					setTestConfig(data.data);
-					setFormData(prev => ({ ...prev, amount: String(data.data.price) }));
+					setFormData(prev => ({ ...prev, amount: String(data.data.price ?? '') }));
 				}
 			})
 			.catch(err => console.error('Failed to fetch test config:', err));
@@ -138,7 +138,7 @@ export default function TalentTestRegisterPage() {
 				phone: '',
 				classLevel: '',
 				aadhar: '',
-				amount: '100',
+				amount: String(testConfig?.price ?? ''),
 				careerAspiration: '',
 				rollNumber: '',
 			});
@@ -176,10 +176,10 @@ export default function TalentTestRegisterPage() {
 					{testConfig?.duration && <span className="block mt-1 text-sm font-medium text-teal-600 dark:text-teal-400">⏱ Duration: {testConfig.duration} &bull; Subjects: {(testConfig.subjects || ['Mathematics', 'Science', 'English']).join(', ')}</span>}
 					</p>
 					<div className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-3 text-lg font-bold text-white shadow-lg">
-						<span className="text-2xl">
-							{testConfig?.currency === 'INR' ? '₹' : testConfig?.currency === 'USD' ? '$' : '€'}
-							{testConfig?.price || 100}
-						</span>
+					<span className="text-2xl">
+						{testConfig?.currency === 'INR' ? '₹' : testConfig?.currency === 'USD' ? '$' : testConfig?.currency ? '€' : ''}
+						{typeof testConfig?.price === 'number' ? testConfig.price : ''}
+					</span>
 						<span className="text-sm font-normal opacity-90">Registration Fee</span>
 					</div>
 				</div>
@@ -388,7 +388,7 @@ export default function TalentTestRegisterPage() {
 									? '⏳ Processing...'
 									: !cashfreeSDK
 									? '⏳ Loading Payment Gateway...'
-									: `💳 Pay ${testConfig?.currency === 'INR' ? '₹' : testConfig?.currency === 'USD' ? '$' : '€'}${testConfig?.price || 100} & Complete Registration`}
+								: `💳 Pay ${testConfig?.currency === 'INR' ? '₹' : testConfig?.currency === 'USD' ? '$' : testConfig?.currency ? '€' : ''}${typeof testConfig?.price === 'number' ? testConfig.price : ''} & Complete Registration`}
 							</button>
 
 							<p className="text-center text-xs text-neutral-600 dark:text-neutral-400">

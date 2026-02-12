@@ -8,6 +8,8 @@ const RegistrationSchema = new mongoose.Schema({
   aadhar: String,
   careerAspiration: String,
   rollNumber: String,
+  amount: Number,
+  currency: String,
   orderId: String,
   status: { type: String, default: 'pending' }, // pending | paid
   hallTicket: String,
