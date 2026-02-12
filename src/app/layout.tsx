@@ -72,6 +72,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground min-h-screen flex flex-col relative overflow-x-clip`}>
+        {/* Site-wide glassy background (light blue + water droplets + subtle noise) */}
+        <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
+          {/* Soft light blue gradient base */}
+          <div className="absolute inset-0 bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100" />
+          {/* Water droplet texture (tile) */}
+          <div className="absolute inset-0 opacity-[0.18] bg-[url('/images/water-drops.png')] bg-repeat bg-[length:320px_320px]" />
+          {/* Very subtle grain for diffusion */}
+          <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+          {/* Faint specular sweep to enhance glass feel */}
+          <div className="absolute inset-0 opacity-[0.1] bg-[conic-gradient(from_210deg_at_10%_0%,rgba(255,255,255,0.25)_0deg,transparent_120deg)]" />
+        </div>
         <Navbar />
         <main className="flex-1 pt-20">{children}</main>
         <Footer />

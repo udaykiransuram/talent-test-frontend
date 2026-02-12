@@ -200,21 +200,27 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 bg-transparent border-t border-gray-200/50 dark:border-gray-800/60 relative">
         <Parallax className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.04}>
           <GlassPanel
-            className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.15)] transition-shadow duration-500 hover:ring-1 hover:ring-white/10"
-            bgClassName="bg-[#0b2e61]"
-            blurClassName="backdrop-blur-none"
-            borderClassName="border-white/20"
-            noHighlight
+            className="rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
+            bgClassName="bg-gradient-to-br from-sky-200/60 via-cyan-100/50 to-blue-100/40"
+            blurClassName="backdrop-blur-2xl backdrop-saturate-150"
+            borderClassName="border-sky-300/30 dark:border-white/15"
+            veilClassName="bg-white/35"
+            textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
+            textureOpacityClass="opacity-25"
+            noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
+            noiseOpacityClass="opacity-10"
+            specular
+            edgeHighlight
             radiusClassName="rounded-none"
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 md:py-14">
               <div className={`grid grid-cols-2 ${homeStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-8 md:gap-10 text-center`}>
                 {homeStats.map((stat) => (
                   <div key={stat.key} className="py-2">
-                    <div className="rounded-2xl border border-white/30 bg-[#0b2e61]/40 backdrop-blur-md px-4 py-5 flex flex-col items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.25)] hover:border-white/50 hover:bg-white/10 sheen-card">
-                      {stat.icon && <div className="text-2xl md:text-3xl text-white">{stat.icon}</div>}
-                      <div className="text-4xl md:text-6xl font-bold text-white tracking-tight">{stat.value}</div>
-                      <div className="text-white/80 text-[10px] md:text-xs tracking-wide uppercase">{stat.label}</div>
+                    <div className="rounded-2xl border border-sky-300/40 bg-white/60 backdrop-blur-md px-4 py-5 flex flex-col items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:border-sky-300/60 hover:bg-white/70 sheen-card">
+                      {stat.icon && <div className="text-2xl md:text-3xl text-sky-700">{stat.icon}</div>}
+                      <div className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">{stat.value}</div>
+                      <div className="text-slate-700/90 text-[10px] md:text-xs tracking-wide uppercase">{stat.label}</div>
                     </div>
                   </div>
                 ))}
