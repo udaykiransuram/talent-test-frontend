@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
 interface Metric {
@@ -54,18 +54,14 @@ export default function CaseStudiesAdmin() {
     displayOrder: 1,
   });
 
-  useEffect(() => {
-    fetchCaseStudies();
-  }, []);
-
-  const fetchCaseStudies = async () => {
+  const fetchCaseStudies = useCallback(async () => {
     try {
       const res = await fetch('/api/admin/case-studies');
       const data = await res.json();
       if (data.success) {
         setCaseStudies(data.data || []);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch case studies',
@@ -74,7 +70,11 @@ export default function CaseStudiesAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchCaseStudies();
+  }, [fetchCaseStudies]);
 
   const resetForm = () => {
     setFormData({
@@ -169,7 +169,7 @@ export default function CaseStudiesAdmin() {
         });
         fetchCaseStudies();
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to delete case study',

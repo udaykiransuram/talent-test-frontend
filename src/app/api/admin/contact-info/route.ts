@@ -18,7 +18,6 @@ export async function PUT(request: Request) {
   try {
     await connectDB();
     const body = await request.json();
-    const allowedFields = ['email', 'phone', 'whatsappNumber', 'address', 'city', 'tagline', 'responseTime', 'responseDescription'] as const;
 
     // Trim and basic validation
     const email = String(body.email || '').trim();

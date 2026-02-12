@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
 type Page = 'homepage' | 'product' | 'about' | 'benefits' | 'talent-test' | 'case-study' | 'contact';
@@ -41,12 +41,7 @@ export default function FAQManagementPage() {
   const [saving, setSaving] = useState<string | null>(null);
   const { toast } = useToast();
 
-  useEffect(() => {
-    fetchFaqs();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPage]);
-
-  const fetchFaqs = async () => {
+  const fetchFaqs = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/faq?page=${selectedPage}`);
@@ -59,7 +54,11 @@ export default function FAQManagementPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedPage, toast]);
+
+  useEffect(() => {
+    fetchFaqs();
+  }, [fetchFaqs]);
 
   const addNew = () => {
     setFaqs(prev => [

@@ -1,24 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
-
-interface TalentTestConfig {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  currency: string;
-  duration: string;
-  subjects: string[];
-  features: string[];
-  isActive: boolean;
-  registrationsOpen?: string;
-  registrationDeadline?: string;
-  testWindowStart?: string;
-  testWindowEnd?: string;
-  resultsDate?: string;
-}
 
 export default function TalentTestAdmin() {
   const { toast } = useToast();
@@ -46,11 +29,7 @@ export default function TalentTestAdmin() {
     resultsDate: '',
   });
 
-  useEffect(() => {
-    fetchConfig();
-  }, []);
-
-  const fetchConfig = async () => {
+  const fetchConfig = useCallback(async () => {
     try {
       const res = await fetch('/api/admin/talent-test');
       const data = await res.json();
@@ -74,7 +53,7 @@ export default function TalentTestAdmin() {
           resultsDate: toDateInput(config.resultsDate),
         });
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch test configuration',
@@ -83,7 +62,11 @@ export default function TalentTestAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchConfig();
+  }, [fetchConfig]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

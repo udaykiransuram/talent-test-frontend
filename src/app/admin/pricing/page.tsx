@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
 interface PricingPlan {
@@ -37,18 +37,14 @@ export default function PricingAdmin() {
     displayOrder: 1,
   });
 
-  useEffect(() => {
-    fetchPlans();
-  }, []);
-
-  const fetchPlans = async () => {
+  const fetchPlans = useCallback(async () => {
     try {
       const res = await fetch('/api/admin/pricing');
       const data = await res.json();
       if (data.success) {
         setPlans(data.data || []);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch pricing plans',
@@ -57,7 +53,11 @@ export default function PricingAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchPlans();
+  }, [fetchPlans]);
 
   const resetForm = () => {
     setFormData({
@@ -146,7 +146,7 @@ export default function PricingAdmin() {
         });
         fetchPlans();
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to delete pricing plan',

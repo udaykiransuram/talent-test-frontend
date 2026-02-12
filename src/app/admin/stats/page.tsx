@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
 type Stat = {
@@ -33,11 +33,7 @@ export default function StatsManagementPage() {
   const [saving, setSaving] = useState(false);
   const { toast} = useToast();
 
-  useEffect(() => {
-    fetchStats();
-  }, [selectedSection]);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/stats?section=${selectedSection}`);
@@ -49,7 +45,7 @@ export default function StatsManagementPage() {
         // Initialize with default stats if none exist
         setStats(getDefaultStats(selectedSection));
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch stats',
@@ -58,7 +54,11 @@ export default function StatsManagementPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedSection, toast]);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
 
   const getDefaultStats = (section: Section): Stat[] => {
     const defaults: Record<Section, Stat[]> = {

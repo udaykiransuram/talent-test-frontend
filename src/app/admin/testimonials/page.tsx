@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 
 type Testimonial = {
@@ -40,11 +40,7 @@ export default function TestimonialsPage() {
   });
   const { toast } = useToast();
 
-  useEffect(() => {
-    fetchTestimonials();
-  }, []);
-
-  const fetchTestimonials = async () => {
+  const fetchTestimonials = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch('/api/admin/testimonials');
@@ -52,7 +48,7 @@ export default function TestimonialsPage() {
       if (data.success) {
         setTestimonials(data.data);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch testimonials',
@@ -61,7 +57,11 @@ export default function TestimonialsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, [fetchTestimonials]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

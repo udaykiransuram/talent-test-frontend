@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 type Message = {
   _id: string;
@@ -20,7 +20,7 @@ export default function AdminMessagesPage() {
   const [pageSize] = useState(20);
   const [filter, setFilter] = useState<'all'|'true'|'false'>('all');
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     const res = await fetch(`/api/admin/messages?page=${page}&pageSize=${pageSize}&read=${filter}`);
     const data = await res.json();
@@ -29,9 +29,9 @@ export default function AdminMessagesPage() {
       setTotal(data.total);
     }
     setLoading(false);
-  }
+  }, [page, pageSize, filter]);
 
-  useEffect(() => { load();   }, [page, filter]);
+  useEffect(() => { load(); }, [load]);
 
   async function toggleRead(id: string, read: boolean) {
     const res = await fetch('/api/admin/messages', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, read }) });
