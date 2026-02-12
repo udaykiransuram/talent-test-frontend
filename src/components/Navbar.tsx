@@ -41,6 +41,17 @@ export default function Navbar() {
     setMobileDropdownOpen(null);
   }, [pathname]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    const root = document.documentElement;
+    if (mobileMenuOpen) {
+      root.classList.add("overflow-hidden");
+    } else {
+      root.classList.remove("overflow-hidden");
+    }
+    return () => root.classList.remove("overflow-hidden");
+  }, [mobileMenuOpen]);
+
   // Link styles for light glass navbar (dark text)
   const getTextColor = (_baseColor: string, active: boolean) => {
     return active
@@ -210,8 +221,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed top-20 left-0 right-0 bottom-0 z-[95] border-t border-slate-200 bg-white/95 backdrop-blur-xl md:hidden overflow-y-auto">
-          <nav className="flex flex-col px-4 py-3 text-slate-900">
+        <div className="fixed top-20 left-0 right-0 bottom-0 z-[1000] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200">
+          <nav className="flex flex-col px-4 py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
               
@@ -222,6 +233,8 @@ export default function Navbar() {
                       className="flex w-full items-center justify-between py-4 text-base font-medium text-slate-800 hover:text-slate-900"
                       onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
                       aria-expanded={mobileDropdownOpen === item.href}
+                      aria-controls={`mobile-dd-${item.href}`}
+                      role="menuitem"
                     >
                       {item.label}
                       <svg className={cn("h-5 w-5 transition-transform duration-200", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -229,13 +242,14 @@ export default function Navbar() {
                       </svg>
                     </button>
                     {mobileDropdownOpen === item.href && (
-                      <div className="ml-2 mb-2 space-y-1 border-l-2 border-slate-200 pl-4">
+                      <div id={`mobile-dd-${item.href}`} className="ml-2 mb-2 space-y-1 border-l-2 border-slate-200 pl-4">
                         {item.dropdown!.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
                             className="flex items-center gap-3 rounded-xl py-3 px-3 text-sm text-slate-800 hover:bg-slate-100 hover:text-slate-900 transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
+                            role="menuitem"
                           >
                             <span className="text-lg">{subItem.icon}</span>
                             <div>
@@ -256,6 +270,7 @@ export default function Navbar() {
                   href={item.href}
                   className="py-4 text-base font-medium text-slate-800 hover:text-slate-900"
                   onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
                 >
                   {item.label}
                 </Link>
@@ -266,6 +281,7 @@ export default function Navbar() {
                 href="/contact"
                 className="block py-4 text-base font-medium text-slate-800 hover:text-slate-900"
                 onClick={() => setMobileMenuOpen(false)}
+                role="menuitem"
               >
                 Contact
               </Link>
