@@ -178,16 +178,16 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('/images/cards-bg.png');
+  background-image: url('/images/raindrops-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.5; /* increased for stronger visibility behind glass */
+  opacity: 0.45; /* subtle so text stays readable */
   z-index: 0;
   pointer-events: none;
 }
 .dark .cards-section::before {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 .cards-section > * {
   position: relative;

@@ -108,9 +108,10 @@ export default function Navbar() {
 
   return (
     <header
+      suppressHydrationWarning
       ref={headerRef}
       className={cn(
-        "fixed top-0 z-[100] w-full transition-all duration-300 border-b text-slate-900",
+        "fixed top-0 z-[1000] w-full transition-all duration-300 border-b text-slate-900",
         // Light glass for professional look; slightly denser when scrolled
         scrolled
           ? "border-slate-200/70 bg-white/85 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
@@ -162,6 +163,7 @@ export default function Navbar() {
                     )}
                     aria-haspopup="menu"
                     aria-expanded={openDropdown === item.href}
+                    onClick={() => setOpenDropdown(openDropdown === item.href ? null : item.href)}
                   >
                     {item.label}
                     <svg className={cn("h-4 w-4 transition-transform duration-200 text-slate-600", openDropdown === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,7 +174,7 @@ export default function Navbar() {
                   {/* Mega Menu Dropdown */}
                   <div 
                     className={cn(
-                      "absolute left-1/2 top-full w-80 -translate-x-1/2 pt-4 transition-all duration-200 z-[200]",
+                      "absolute left-1/2 top-full w-80 -translate-x-1/2 pt-4 transition-all duration-200 z-[1100]",
                       openDropdown === item.href 
                         ? "opacity-100 translate-y-0 visible" 
                         : "opacity-0 translate-y-2 invisible pointer-events-none"
