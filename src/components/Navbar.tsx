@@ -292,12 +292,12 @@ export default function Navbar() {
       {mounted && mobileMenuOpen && createPortal(
         <div
           className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
-          style={{ top: headerH }}
+          style={{ top: `calc(${headerH}px + env(safe-area-inset-top, 0px))` }}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Menu"
         >
-          <nav className="flex flex-col px-4 py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
+          <nav className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-10 flex flex-col py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
               
