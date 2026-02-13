@@ -36,7 +36,7 @@ export function ProCard({ icon, title, description, accent = "teal", className }
         // Professional glass surface with good readability on busy backgrounds
         "bg-[rgba(59,130,246,0.04)] dark:bg-[rgba(37,99,235,0.06)] backdrop-blur-lg p-6 md:p-7 flex flex-col gap-4 transition-all duration-300",
         // Subtle border and elevation; refined hover
-        "border-[rgba(59,130,246,0.25)] dark:border-[rgba(37,99,235,0.25)] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-[rgba(59,130,246,0.08)] dark:hover:bg-[rgba(37,99,235,0.10)]",
+        "border-[rgba(59,130,246,0.25)] dark:border-[rgba(37,99,235,0.25)] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-[rgba(59,130,246,0.08)] dark:hover:bg-[rgba(37,99,235,0.10)] hover:ring-1 hover:ring-white/15",
         className
       )}
     >
@@ -44,6 +44,19 @@ export function ProCard({ icon, title, description, accent = "teal", className }
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+      />
+
+      {/* Subtle inner edge highlight and base inset for realistic glass edge */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-2xl [box-shadow:inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.08)]"
+      />
+
+      {/* Very light noise/diffusion for premium glass feel */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-2xl bg-[length:600px_600px] bg-repeat opacity-[0.04] mix-blend-overlay"
+        style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
       />
 
       {/* Top accent bar removed per feedback for a cleaner glass look */}
