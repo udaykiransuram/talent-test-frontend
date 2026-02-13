@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate, useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 import GlassPanel from "@/components/GlassPanel";
 
 // --- Hero 3D Component ---
@@ -34,9 +35,15 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
     const onRM = () => setReducedMotion(mq.matches);
     onRM();
     mq.addEventListener?.('change', onRM);
-    // Data saver (not supported everywhere)
-    const conn: any = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
-    if (conn && typeof conn.saveData === 'boolean') setSaveData(!!conn.saveData);
+    // Data saver (not supported everywhere) without using `any`
+    type MaybeConnection = { saveData?: boolean } | undefined;
+    const navConn = navigator as unknown as {
+      connection?: MaybeConnection;
+      mozConnection?: MaybeConnection;
+      webkitConnection?: MaybeConnection;
+    };
+    const conn: MaybeConnection = navConn.connection ?? navConn.mozConnection ?? navConn.webkitConnection;
+    if (typeof conn?.saveData === 'boolean') setSaveData(!!conn.saveData);
 
     let io: IntersectionObserver | null = null;
     if (ref.current && 'IntersectionObserver' in window) {
@@ -94,13 +101,14 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
             <source src="https://videos.pexels.com/video-files/8499774/8499774-hd_1920_1080_30fps.mp4" type="video/mp4" />
           </video>
         ) : (
-          <img
+          <Image
             src="/images/hero-classroom.jpg"
             alt="Students in classroom"
-            className="h-full w-full object-cover scale-105"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover scale-105"
             style={{ filter: "brightness(0.9)", objectFit: "cover", objectPosition: "center 20%" }}
-            loading="eager"
-            decoding="async"
           />
         )}
         

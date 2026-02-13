@@ -5,7 +5,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 // Layout
 import Navbar from "@/components/Navbar";
-import OverflowDebugger from "@/components/OverflowDebugger";
 import Footer from "@/components/Footer";
 import ViewportHover from "@/components/ViewportHover";
 
@@ -86,7 +85,6 @@ export default function RootLayout({
           <div className="absolute inset-0 opacity-[0.1] bg-[conic-gradient(from_210deg_at_10%_0%,rgba(255,255,255,0.25)_0deg,transparent_120deg)]" />
         </div>
         <Navbar />
-        {process.env.NODE_ENV !== 'production' ? <OverflowDebugger /> : null}
         <ViewportHover />
         <main className="flex-1 pt-20">{children}</main>
         <Footer />
