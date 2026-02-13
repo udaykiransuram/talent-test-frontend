@@ -182,25 +182,21 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.38; /* subtle so text stays readable */
+  opacity: 1; /* show background without dimming */
   z-index: 0;
   pointer-events: none;
 }
-.dark .cards-section::before {
-  opacity: 0.5;
-}
+.dark .cards-section::before { opacity: 1; }
 .cards-section::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Soft professional veil to harmonize busy backgrounds */
-  background: linear-gradient(135deg, rgba(59,130,246,0.14), rgba(56,189,248,0.10)); /* blue→cyan tint */
+  /* Overlay disabled per request */
+  background: none;
   z-index: 0;
   pointer-events: none;
 }
-.dark .cards-section::after {
-  background: linear-gradient(135deg, rgba(37,99,235,0.14), rgba(8,145,178,0.10)); /* deeper blue→cyan tint */
-}
+.dark .cards-section::after { background: none; }
 .cards-section > * {
   position: relative;
   z-index: 1;
