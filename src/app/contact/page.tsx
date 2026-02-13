@@ -100,7 +100,28 @@ export default async function ContactPage() {
   return (
     <main className="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <InnerHero title="Get In Touch" subtitle={info.tagline} pillText="Contact" lottieRight="/animations/appointment-booking.lottie" whatsappHref={waHref} />
+      <InnerHero
+        title="Get in touch for a demo"
+        subtitle={info.tagline}
+        pillText="Contact"
+        lottieRight="/animations/appointment-booking.lottie"
+        whatsappHref={waHref}
+      >
+        {waDigits && (
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp"
+            title="Chat on WhatsApp"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md hover:bg-[#1ebd5a] transition-colors"
+          >
+            <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.52 3.48A11.94 11.94 0 0012.06 0C5.44 0 .05 5.39.05 12.02c0 2.12.55 4.2 1.6 6.02L0 24l6.1-1.59a11.95 11.95 0 005.96 1.6h.01c6.62 0 12.01-5.39 12.01-12.02 0-3.21-1.25-6.22-3.56-8.53zM12.07 22c-1.86 0-3.67-.5-5.26-1.45l-.38-.23-3.62.94.97-3.53-.25-.36a9.91 9.91 0 01-1.55-5.35C2.98 6.5 7.51 2 12.07 2 16.64 2 21.2 6.5 21.2 12.02 21.2 17.55 16.64 22 12.07 22zm5.52-6.6c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.45-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.14-.14.3-.33.45-.5.15-.17.2-.29.3-.48.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.07 2.86 1.22 3.06.15.2 2.11 3.23 5.11 4.53.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.34z" />
+            </svg>
+          </a>
+        )}
+      </InnerHero>
 
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
