@@ -61,7 +61,8 @@ export default async function AboutPage() {
   const { stats: aboutStats, faqs, contact } = await getAboutStats();
   const contactSafe = contact ?? { email: 'hello@beyondmarks.edu', phone: '+91 98765 43210', whatsappNumber: '', city: 'Hitech City, Hyderabad, India', address: 'Innovation Hub' };
   const waDigits = (contactSafe.whatsappNumber || contactSafe.phone).replace(/\D+/g, '');
-  const waHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent('Hello Alyra Tech! I would like to know more about your diagnostics.')}` : '';
+  // Tailored demo request message for WhatsApp; falls back to /contact when not available
+  const waHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent('Hello! I would like to request a demo of Alyra Tech’s diagnostics for our school.')}` : '';
   return (
     <main className="bg-slate-50/50 min-h-screen">
       <InnerHero 
@@ -69,6 +70,7 @@ export default async function AboutPage() {
         subtitle="Driven by Evidence"
         pillText="Our Mission"
         lottieLeft="/animations/seo-isometric-team.lottie"
+        whatsappHref={waHref}
       />
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 relative">
@@ -268,9 +270,21 @@ export default async function AboutPage() {
               Schedule a demo and see how our diagnostics can elevate your school&apos;s outcomes.
             </p>
             <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="rounded-full bg-white px-8 py-4 text-lg font-semibold text-teal-700 shadow-xl transition hover:shadow-2xl hover:opacity-95">
-                Request a Demo
-              </Link>
+              {waHref ? (
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-white px-8 py-4 text-lg font-semibold text-teal-700 shadow-xl transition hover:shadow-2xl hover:opacity-95"
+                  aria-label="Request a demo on WhatsApp"
+                >
+                  Request a Demo
+                </a>
+              ) : (
+                <Link href="/contact" className="rounded-full bg-white px-8 py-4 text-lg font-semibold text-teal-700 shadow-xl transition hover:shadow-2xl hover:opacity-95">
+                  Request a Demo
+                </Link>
+              )}
               <Link href="/talent-test" className="rounded-full border-2 border-white px-8 py-4 text-lg font-semibold text-white transition hover:bg-white/10">
                 Try the Talent Test
               </Link>

@@ -10,6 +10,9 @@ import GlassPanel from "@/components/GlassPanel";
 export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
   const ref = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [saveData, setSaveData] = useState(false);
   const envWaDigits = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D+/g, "") ?? "";
   const envWaHref = envWaDigits
     ? `https://wa.me/${envWaDigits}?text=${encodeURIComponent(
@@ -25,14 +28,47 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Force video playback on mount to bypass some browser autoplay restrictions
+  // Respect user/device preferences and only load video when in view
   useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onRM = () => setReducedMotion(mq.matches);
+    onRM();
+    mq.addEventListener?.('change', onRM);
+    // Data saver (not supported everywhere)
+    const conn: any = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+    if (conn && typeof conn.saveData === 'boolean') setSaveData(!!conn.saveData);
+
+    let io: IntersectionObserver | null = null;
+    if (ref.current && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setIsInView(true);
+            io?.disconnect();
+          }
+        });
+      }, { rootMargin: '200px' });
+      io.observe(ref.current as Element);
+    } else {
+      // Fallback: assume visible
+      setIsInView(true);
+    }
+
+    return () => {
+      mq.removeEventListener?.('change', onRM);
+      io?.disconnect();
+    };
+  }, []);
+
+  // Try autoplay once visible
+  useEffect(() => {
+    if (!isInView || reducedMotion || saveData) return;
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error("Video autoplay failed:", error);
+      videoRef.current.play().catch(() => {
+        /* ignore */
       });
     }
-  }, []);
+  }, [isInView, reducedMotion, saveData]);
 
   return (
     <div 
@@ -41,21 +77,32 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
     >
       {/* WhatsApp contact CTA will be in the same line as the primary/demo buttons below */}
       <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster="/images/hero-classroom.jpg"
-          className="h-full w-full object-cover scale-105"
-          style={{ filter: "brightness(0.9)", objectFit: "cover", objectPosition: "center 20%" }}
-          onError={(e) => console.error("Video load error:", e)}
-        >
-          {/* HD video of a student thinking deep thought - clean background for text */}
-          <source src="https://videos.pexels.com/video-files/8499774/8499774-hd_1920_1080_30fps.mp4" type="video/mp4" />
-        </video>
+        {isInView && !saveData ? (
+          <video
+            ref={videoRef}
+            autoPlay={!reducedMotion}
+            loop={!reducedMotion}
+            muted
+            playsInline
+            preload="none"
+            poster="/images/hero-classroom.jpg"
+            className="h-full w-full object-cover scale-105"
+            style={{ filter: "brightness(0.9)", objectFit: "cover", objectPosition: "center 20%" }}
+            onError={(e) => console.error("Video load error:", e)}
+          >
+            {/* HD video of a student thinking deep thought - clean background for text */}
+            <source src="https://videos.pexels.com/video-files/8499774/8499774-hd_1920_1080_30fps.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src="/images/hero-classroom.jpg"
+            alt="Students in classroom"
+            className="h-full w-full object-cover scale-105"
+            style={{ filter: "brightness(0.9)", objectFit: "cover", objectPosition: "center 20%" }}
+            loading="eager"
+            decoding="async"
+          />
+        )}
         
         {/* Gradients - tuned lighter so background video stays visible */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent"></div>

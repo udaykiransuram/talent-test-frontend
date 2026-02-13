@@ -287,13 +287,16 @@ export default function Navbar() {
           </Link>
           <Link
             href="/talent-test"
-            className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full bg-teal-600 px-6 font-medium text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 hover:scale-[1.02] hover:shadow-teal-600/30 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:bg-teal-500 dark:hover:bg-teal-400"
+            className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full px-6 font-semibold text-white transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            aria-label="Start Baseline Test"
           >
-            <span className="mr-2">Baseline Test</span>
-            <svg 
-              className="h-4 w-4 transition-transform group-hover:translate-x-1" 
-              fill="none" 
-              viewBox="0 0 24 24" 
+            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600" />
+            <span className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-emerald-400/30 via-teal-400/20 to-cyan-400/30 blur opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="relative mr-2 drop-shadow-sm">Baseline Test</span>
+            <svg
+              className="relative h-4 w-4 transition-transform group-hover:translate-x-1 drop-shadow-sm"
+              fill="none"
+              viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />

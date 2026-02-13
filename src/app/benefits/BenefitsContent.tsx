@@ -329,13 +329,15 @@ export default function BenefitsContent({ roiStats, testimonials }: BenefitsCont
                       <div className={`bg-gradient-to-br ${s.lightBg} rounded-3xl p-6 shadow-md ring-1 ring-black/[0.03]`}>
                         <LottieAnimation src={s.lottie} className="w-full h-[280px]" />
                       </div>
+                    </motion.div>
                     <Stagger className={`lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 ${isReversed ? "lg:order-first" : ""}`}>
                       {s.features.map((f) => (
-                        <div key={f.title} className="group relative overflow-hidden bg-white p-5 rounded-xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-0.5 transition-all duration-300">
+                        <div
+                          key={f.title}
+                          className="group relative overflow-hidden bg-white p-5 rounded-xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-0.5 transition-all duration-300"
+                        >
+                          {/* Decorative top accent matching stakeholder color */}
                           <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${s.color}`} />
-                    <Stagger className={`lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 ${isReversed ? "lg:order-first" : ""}`}>
-                      {s.features.map((f) => (
-                        <div key={f.title} className="group bg-white p-5 rounded-xl border border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-0.5 transition-all duration-300">
                           <div className="flex items-start gap-3.5">
                             <div className={`flex-none h-9 w-9 rounded-lg bg-gradient-to-br ${s.color} flex items-center justify-center text-white shadow-sm`}>
                               <f.icon className="h-4.5 w-4.5" />
