@@ -361,16 +361,17 @@ export default function Navbar() {
 
               {/* Explore Section */}
               <div className="px-3 pt-3 pb-1 text-[11px] uppercase tracking-wide text-teal-800/70">Explore</div>
+              <div className="mx-3 my-2 h-px bg-slate-200/70" />
               {navItems.filter((it) => !('dropdown' in it)).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative mx-2 block rounded-full bg-teal-600 px-5 py-3 text-[15px] font-semibold text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-teal-500/70 text-center"
+                  className="relative mx-2 block rounded-full bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-teal-500/70 text-center"
                   onClick={() => setMobileMenuOpen(false)}
                   role="menuitem"
                 >
                   <span className="pointer-events-none">{item.label}</span>
-                  <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Link>
@@ -378,18 +379,19 @@ export default function Navbar() {
 
               {/* Solutions Section */}
               <div className="px-3 pt-4 pb-1 text-[11px] uppercase tracking-wide text-teal-800/70">Solutions</div>
+              <div className="mx-3 my-2 h-px bg-slate-200/70" />
               {navItems.filter((it) => ('dropdown' in it)).map((item) => (
                 <div key={item.href} className="mx-2">
                   <div className="rounded-2xl border border-transparent bg-transparent ring-0 shadow-none">
                     <button
-                      className="relative w-full px-5 py-3 text-[15px] font-semibold rounded-full bg-teal-600 text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-teal-500/70 text-center"
+                      className="relative w-full px-4 py-2.5 text-sm font-semibold rounded-full bg-teal-600 text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-teal-500/70 text-center"
                       onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
                       aria-expanded={mobileDropdownOpen === item.href}
                       aria-controls={`mobile-dd-${item.href}`}
                       role="menuitem"
                     >
                       <span className="pointer-events-none">{item.label}</span>
-                      <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
                     </button>
@@ -399,13 +401,13 @@ export default function Navbar() {
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="relative flex items-center gap-3 rounded-full py-3 px-4 text-[15px] text-white bg-teal-600 hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 focus:outline-none focus:ring-2 focus:ring-teal-500/70 text-center"
+                            className="relative flex items-center gap-3 rounded-full py-2.5 px-4 text-sm text-white bg-teal-600 hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 focus:outline-none focus:ring-2 focus:ring-teal-500/70 text-center"
                             onClick={() => setMobileMenuOpen(false)}
                             role="menuitem"
                           >
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/10">{subItem.icon}</span>
+                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/10">{subItem.icon}</span>
                             <span className="pointer-events-none mx-auto">{subItem.label}</span>
-                            <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                           </Link>
@@ -418,10 +420,10 @@ export default function Navbar() {
 
               {/* Footer quick actions */}
               <div className="mt-3 px-2 grid grid-cols-2 gap-2">
-                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl bg-teal-600 text-white py-3 font-semibold shadow-md hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl bg-teal-600 text-white py-2.5 font-semibold shadow-md hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
                   Register
                 </Link>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md py-3 font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40">
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md py-2.5 font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40">
                   Contact
                 </Link>
               </div>
