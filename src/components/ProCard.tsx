@@ -34,9 +34,9 @@ export function ProCard({ icon, title, description, accent = "teal", className }
       className={cn(
         "group relative h-full overflow-hidden rounded-2xl border",
         // Professional glass surface with good readability on busy backgrounds
-        "bg-white/40 dark:bg-slate-900/30 backdrop-blur-md p-6 md:p-7 flex flex-col gap-4 transition-all duration-300",
+        "bg-[rgba(59,130,246,0.10)] dark:bg-[rgba(37,99,235,0.12)] backdrop-blur-md p-6 md:p-7 flex flex-col gap-4 transition-all duration-300",
         // Subtle border and elevation; refined hover
-        "border-slate-200/50 dark:border-white/10 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-white/55 dark:hover:bg-slate-900/40",
+        "border-[rgba(59,130,246,0.25)] dark:border-[rgba(37,99,235,0.25)] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-[rgba(59,130,246,0.16)] dark:hover:bg-[rgba(37,99,235,0.18)]",
         className
       )}
     >
@@ -53,7 +53,7 @@ export function ProCard({ icon, title, description, accent = "teal", className }
           <div
             className={cn(
               // Icon badge (transparent with hover lift)
-              "flex h-12 w-12 md:h-14 md:w-14 flex-none items-center justify-center rounded-xl border text-2xl md:text-3xl shadow-sm bg-white/40 dark:bg-white/10 border-slate-200/50 dark:border-white/10 transition-transform duration-300 group-hover:scale-110",
+              "flex h-12 w-12 md:h-14 md:w-14 flex-none items-center justify-center rounded-xl border text-2xl md:text-3xl shadow-sm bg-[rgba(59,130,246,0.12)] dark:bg-[rgba(37,99,235,0.14)] border-[rgba(59,130,246,0.25)] dark:border-[rgba(37,99,235,0.25)] transition-transform duration-300 group-hover:scale-110",
               styles.iconText
             )}
           >
