@@ -46,6 +46,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Recompute header height precisely when mobile menu toggles or scroll state changes
+  useEffect(() => {
+    if (!headerRef.current) return;
+    const update = () => setHeaderH(headerRef.current!.getBoundingClientRect().height);
+    update();
+    const id = window.requestAnimationFrame(update);
+    return () => window.cancelAnimationFrame(id);
+  }, [mobileMenuOpen, scrolled]);
+
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
