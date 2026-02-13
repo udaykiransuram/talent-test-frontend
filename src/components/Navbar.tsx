@@ -134,7 +134,7 @@ export default function Navbar() {
           : "border-slate-200/60 bg-white/70 backdrop-blur-2xl shadow-[0_4px_18px_rgba(0,0,0,0.06)]"
       )}
     >
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-10 flex h-20 items-center justify-between">
+      <div className="container mx-auto max-w-7xl px-5 sm:px-8 md:px-16 flex h-20 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white shadow-lg shadow-teal-500/20">
@@ -297,7 +297,7 @@ export default function Navbar() {
           aria-modal="true"
           aria-label="Mobile Menu"
         >
-          <nav className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-10 flex flex-col py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
+          <nav className="container mx-auto max-w-7xl px-5 sm:px-8 md:px-16 flex flex-col py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
               
