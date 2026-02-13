@@ -32,18 +32,18 @@ export function ProCard({ icon, title, description, accent = "teal", className }
   return (
     <div
       className={cn(
-        "group relative h-full overflow-hidden rounded-2xl border sheen-card",
-        // Keep mostly transparent but add slight glass on hover for pop
-        "bg-transparent p-6 md:p-7 flex flex-col gap-4 transition-all duration-300",
-        // Border/shadow + enhanced hover affordance
-        "border-white/25 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.18)] hover:-translate-y-1 hover:ring-2 hover:ring-white/25 hover:bg-white/5 hover:backdrop-blur-sm",
+        "group relative h-full overflow-hidden rounded-2xl border",
+        // Professional glass surface with good readability on busy backgrounds
+        "bg-white/70 dark:bg-slate-900/40 backdrop-blur-md p-6 md:p-7 flex flex-col gap-4 transition-all duration-300",
+        // Subtle border and elevation; refined hover
+        "border-slate-200/60 dark:border-white/10 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-slate-900/50",
         className
       )}
     >
       {/* Hover sheen for premium glass feel */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.20),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+        className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
       />
 
       {/* Top accent bar removed per feedback for a cleaner glass look */}
@@ -53,7 +53,7 @@ export function ProCard({ icon, title, description, accent = "teal", className }
           <div
             className={cn(
               // Icon badge (transparent with hover lift)
-              "flex h-12 w-12 md:h-14 md:w-14 flex-none items-center justify-center rounded-xl border text-2xl md:text-3xl shadow-sm bg-transparent border-white/30 transition-transform duration-300 group-hover:scale-110",
+              "flex h-12 w-12 md:h-14 md:w-14 flex-none items-center justify-center rounded-xl border text-2xl md:text-3xl shadow-sm bg-white/70 dark:bg-white/10 border-slate-200/60 dark:border-white/10 transition-transform duration-300 group-hover:scale-110",
               styles.iconText
             )}
           >
@@ -62,7 +62,7 @@ export function ProCard({ icon, title, description, accent = "teal", className }
         )}
         <div className="min-w-0 flex-1">
           <h3 className="text-lg md:text-xl font-semibold tracking-tight text-slate-900 mb-1.5">{title}</h3>
-          <p className="text-sm md:text-base leading-relaxed text-slate-800/90">{description}</p>
+          <p className="text-sm md:text-base leading-relaxed text-slate-700/90">{description}</p>
         </div>
       </div>
     </div>

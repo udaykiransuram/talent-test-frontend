@@ -110,7 +110,7 @@ export default async function HomePage() {
           </Reveal>
 
           {/* Cards wrapper (full-bleed, sharp edges touching page) */}
-          <Parallax className="cards-section relative mt-10 sm:mt-12 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/raindrops-bg.png')] bg-cover bg-center" speed={0.05}>
+          <Parallax className="cards-section relative mt-10 sm:mt-12 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.05}>
             <GlassPanel
               className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
               bgClassName="bg-white/0"
@@ -161,7 +161,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/raindrops-bg.png')] bg-cover bg-center">
+          <div className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
             <GlassPanel
               className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
               bgClassName="bg-white/0"
@@ -196,7 +196,7 @@ export default async function HomePage() {
       
       {/* Interactive Stat Band (glassy) */}
       <section className="py-20 md:py-28 bg-transparent border-t border-gray-200/50 dark:border-gray-800/60 relative">
-        <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/raindrops-bg.png')] bg-cover bg-center" speed={0.04}>
+        <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.04}>
           <GlassPanel
             className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
             bgClassName="bg-white/0"
@@ -235,7 +235,7 @@ export default async function HomePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-4">Voices from Our Community</h2>
               <p className="text-center text-slate-900/85 max-w-2xl mx-auto mb-12">Insights from educators and parents transforming education with Alyra Tech.</p>
             </Reveal>
-            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/raindrops-bg.png')] bg-cover bg-center" speed={0.03}>
+            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.03}>
               <GlassPanel
                 className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
                 bgClassName="bg-white/0"
@@ -285,7 +285,7 @@ export default async function HomePage() {
             <Reveal>
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-14">Common Questions Answered</h2>
             </Reveal>
-            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-[url('/images/raindrops-bg.png')] bg-cover bg-center" speed={0.025}>
+            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.025}>
               <GlassPanel
                 className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
                 bgClassName="bg-white/0"
