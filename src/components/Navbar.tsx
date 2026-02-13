@@ -321,7 +321,7 @@ export default function Navbar() {
           />
           {/* Bottom sheet panel */}
           <div
-            className="fixed inset-x-0 bottom-0 z-[9999] md:hidden overflow-y-auto overflow-x-hidden overscroll-contain w-screen max-w-none bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl border-t border-slate-200 rounded-t-2xl shadow-2xl ring-1 ring-slate-900/10"
+            className="fixed inset-x-0 bottom-0 z-[9999] md:hidden overflow-y-auto overflow-x-hidden overscroll-contain w-screen max-w-none bg-gradient-to-b from-teal-50/90 to-white/85 backdrop-blur-xl border-t border-teal-600/10 rounded-t-2xl shadow-2xl ring-1 ring-teal-600/10"
             style={{
               top: `${headerH}px`,
               left: 0,
@@ -332,10 +332,10 @@ export default function Navbar() {
           >
             <div aria-hidden className="mx-auto mt-3 mb-3 h-1.5 w-12 rounded-full bg-slate-300/80" />
             <div className="flex items-center justify-between px-6 pb-2">
-              <span className="text-base font-semibold text-slate-800">Menu</span>
+              <span className="text-base font-semibold text-teal-700">Menu</span>
               <button
                 aria-label="Close menu"
-                className="h-9 w-9 inline-flex items-center justify-center rounded-full text-slate-600 hover:bg-slate-100"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-full text-teal-700 hover:bg-teal-50/70 ring-1 ring-teal-600/10"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -354,16 +354,16 @@ export default function Navbar() {
               if (hasDropdown) {
                 return (
                   <div key={item.href} className="mx-2">
-                    <div className="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-sm shadow-sm ring-1 ring-slate-900/5 hover:shadow-md transition-shadow">
+                    <div className="rounded-2xl border border-teal-600/20 bg-teal-50/60 backdrop-blur-md shadow-sm ring-1 ring-teal-600/10 hover:shadow-md transition-shadow">
                       <button
-                        className="flex w-full items-center justify-between px-4 py-4 text-[15px] font-semibold text-slate-900 hover:text-slate-900"
+                        className="flex w-full items-center justify-between px-4 py-4 text-[15px] font-semibold text-teal-900 hover:text-teal-900"
                         onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
                         aria-expanded={mobileDropdownOpen === item.href}
                         aria-controls={`mobile-dd-${item.href}`}
                         role="menuitem"
                       >
                         {item.label}
-                        <svg className={cn("h-5 w-5 transition-transform duration-200 text-slate-500", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg className={cn("h-5 w-5 transition-transform duration-200 text-teal-600", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
@@ -373,14 +373,14 @@ export default function Navbar() {
                             <Link
                               key={subItem.href}
                               href={subItem.href}
-                              className="flex items-center gap-3 rounded-xl py-3 px-3 text-[15px] text-slate-900 bg-white hover:bg-slate-50 transition-colors border border-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
+                              className="flex items-center gap-3 rounded-xl py-3 px-3 text-[15px] text-teal-950 bg-white/70 hover:bg-white/90 transition-colors border border-teal-600/15 backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
                               onClick={() => setMobileMenuOpen(false)}
                               role="menuitem"
                             >
                               <span className="text-lg">{subItem.icon}</span>
                               <div>
-                                <div className="font-semibold text-slate-900">{subItem.label}</div>
-                                <div className="text-xs text-slate-600">{subItem.desc}</div>
+                                <div className="font-semibold text-teal-950">{subItem.label}</div>
+                                <div className="text-xs text-teal-800/70">{subItem.desc}</div>
                               </div>
                             </Link>
                           ))}
@@ -395,7 +395,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="mx-2 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-[15px] font-semibold text-slate-900 hover:bg-slate-50 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
+                  className="mx-2 rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md px-4 py-4 text-[15px] font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
                   onClick={() => setMobileMenuOpen(false)}
                   role="menuitem"
                 >
@@ -406,7 +406,7 @@ export default function Navbar() {
               <div className="mt-1 px-2">
                 <Link
                   href="/contact"
-                  className="block rounded-2xl border border-slate-200 bg-white px-4 py-4 text-[15px] font-semibold text-slate-900 hover:bg-slate-50 shadow-sm text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
+                  className="block rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md px-4 py-4 text-[15px] font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
                   onClick={() => setMobileMenuOpen(false)}
                   role="menuitem"
                 >
