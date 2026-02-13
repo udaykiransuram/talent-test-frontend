@@ -66,9 +66,11 @@ export default function Navbar() {
   // Lock body scroll when mobile menu is open (better iOS Safari behavior)
   useEffect(() => {
     const body = document.body;
+    const html = document.documentElement;
     if (mobileMenuOpen) {
       const scrollY = window.scrollY;
       const scrollX = window.scrollX;
+      html.style.overflowX = "hidden";
       body.style.overflow = "hidden";
       body.style.position = "fixed";
       body.style.width = "100%";
@@ -77,6 +79,7 @@ export default function Navbar() {
       return () => {
         const top = body.style.top;
         const left = body.style.left;
+        html.style.overflowX = "";
         body.style.overflow = "";
         body.style.position = "";
         body.style.width = "";
@@ -88,6 +91,7 @@ export default function Navbar() {
       };
     } else {
       // Ensure clean state if toggled quickly
+      html.style.overflowX = "";
       body.style.overflow = "";
       body.style.position = "";
       body.style.width = "";
