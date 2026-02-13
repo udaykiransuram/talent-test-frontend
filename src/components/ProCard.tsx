@@ -31,9 +31,12 @@ export function ProCard({ icon, title, description, accent = "teal", className }
   // Clean, valid glassmorphism card
   return (
     <div
+      data-observe-card
       className={cn(
         // Match testimonial card style
         "group relative h-full overflow-hidden rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm text-slate-900 p-7 md:p-8 shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.25)] hover:bg-white/70 hover:border-white/50",
+        // Mobile scroll hover effect: slight lift when card enters viewport
+        "motion-safe:translate-y-2 motion-safe:opacity-95 will-change-transform",
         className
       )}
     >
