@@ -420,10 +420,10 @@ export default function Navbar() {
 
               {/* Footer quick actions */}
               <div className="mt-3 px-2 grid grid-cols-2 gap-2">
-                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl bg-teal-600 text-white py-2.5 font-semibold shadow-md hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl bg-teal-600 text-white py-2 text-sm font-semibold shadow-md hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
                   Register
                 </Link>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md py-2.5 font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40">
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md py-2 text-sm font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40">
                   Contact
                 </Link>
               </div>
