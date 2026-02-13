@@ -24,6 +24,8 @@ export async function GET() {
           'Instant results delivery via email',
         ],
         isActive: true,
+        registrationsOpen: null,
+        registrationDeadline: null,
       };
     }
 

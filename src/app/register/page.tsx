@@ -22,9 +22,19 @@ const classLevels = [
 ];
 
 export default function TalentTestRegisterPage() {
-	const [cashfreeSDK, setCashfreeSDK] = useState<CashfreeSDK | null>(null);
-	const [loading, setLoading] = useState(false);
-	const [testConfig, setTestConfig] = useState<{ name?: string; price?: number; currency?: string; duration?: string; subjects?: string[]; features?: string[] } | null>(null);
+    const [cashfreeSDK, setCashfreeSDK] = useState<CashfreeSDK | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [testConfig, setTestConfig] = useState<{
+        name?: string;
+        price?: number;
+        currency?: string;
+        duration?: string;
+        subjects?: string[];
+        features?: string[];
+        isActive?: boolean;
+        registrationsOpen?: string | Date | null;
+        registrationDeadline?: string | Date | null;
+    } | null>(null);
 	const [formData, setFormData] = useState({
 		studentName: '',
 		guardianName: '',
@@ -38,14 +48,36 @@ export default function TalentTestRegisterPage() {
 	const [acceptedTerms, setAcceptedTerms] = useState(false);
 	const { toast } = useToast();
 
+    // Determine if registration window is currently active
+    const isRegistrationActive = (() => {
+        if (!testConfig || testConfig.isActive === false) return false;
+        const start = testConfig.registrationsOpen ? new Date(testConfig.registrationsOpen) : null;
+        const end = testConfig.registrationDeadline ? new Date(testConfig.registrationDeadline) : null;
+        if (!start || !end) return false;
+        const now = new Date();
+        return now >= start && now <= end;
+    })();
+
 	useEffect(() => {
-		// Fetch test configuration
-		fetch('/api/admin/talent-test')
+    // Fetch public test configuration (avoid admin auth prompt)
+    fetch('/api/talent-test-config')
 			.then(res => res.json())
 			.then(data => {
-				if (data.success && data.data) {
-					setTestConfig(data.data);
-					setFormData(prev => ({ ...prev, amount: String(data.data.price ?? '') }));
+        if (data?.success && data?.data) {
+          type PublicConfig = {
+            name?: string;
+            price?: number;
+            currency?: string;
+            duration?: string;
+            subjects?: string[];
+            features?: string[];
+            isActive?: boolean;
+            registrationsOpen?: string | Date | null;
+            registrationDeadline?: string | Date | null;
+          };
+          const cfg = data.data as PublicConfig;
+          setTestConfig(cfg);
+          setFormData(prev => ({ ...prev, amount: String(cfg.price ?? '') }));
 				}
 			})
 			.catch(err => console.error('Failed to fetch test config:', err));
@@ -113,7 +145,16 @@ export default function TalentTestRegisterPage() {
 			return;
 		}
 
-		try {
+    try {
+      if (!isRegistrationActive) {
+        toast({
+          title: 'Registration not available',
+          description: 'Registration window is currently closed. Please check back soon.',
+          variant: 'destructive',
+        });
+        setLoading(false);
+        return;
+      }
 			const res = await fetch('/api/cashfree/register-pay', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -163,6 +204,12 @@ export default function TalentTestRegisterPage() {
 	return (
 		<div className="min-h-screen bg-teal-50 px-4 py-12 dark:bg-teal-950">
 			<div className="mx-auto max-w-4xl">
+				{/* Registration window notice */}
+				{!isRegistrationActive && (
+					<div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900 shadow-sm">
+						<strong>Registration will be available soon.</strong> Please check back when the registration window opens.
+					</div>
+				)}
 				{/* Header Section */}
 				<div className="mb-10 text-center">
 					<div className="mb-4 inline-block rounded-full bg-teal-100 px-4 py-1 text-sm font-medium text-teal-800 dark:bg-teal-900/30 dark:text-teal-300">
@@ -186,7 +233,8 @@ export default function TalentTestRegisterPage() {
 
 				{/* Main Form Card */}
 				<div className="rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-teal-200 dark:bg-teal-950 dark:ring-teal-800 md:p-10">
-					<form onSubmit={handleSubmit} className="space-y-6">
+					<fieldset disabled={!isRegistrationActive} className="space-y-6 disabled:opacity-75">
+						<form onSubmit={handleSubmit} className="space-y-6">
 						{/* Student Details Section */}
 						<div className="space-y-6">
 							<h2 className="flex items-center gap-2 text-xl font-bold text-neutral-900 dark:text-white">
@@ -395,8 +443,8 @@ export default function TalentTestRegisterPage() {
 								🔒 Secure payment powered by Cashfree • Your data is encrypted and safe
 							</p>
 						</div>
-					</form>
-
+                    </form>
+					</fieldset>
 					{/* Benefits Reminder */}
 					<div className="mt-8 space-y-3 rounded-lg bg-teal-50 p-6 dark:bg-teal-900/10">
 						<h3 className="font-semibold text-teal-900 dark:text-teal-300">What you&apos;ll get:</h3>

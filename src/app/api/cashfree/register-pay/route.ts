@@ -83,8 +83,24 @@ export async function POST(req: NextRequest) {
     const orderId = `talent_${Date.now()}_${shortRandom}`;
 
     // Fetch current test configuration for dynamic pricing (type-safe lean)
-    type LeanConfig = { price?: number; currency?: string };
+    type LeanConfig = {
+      price?: number;
+      currency?: string;
+      isActive?: boolean;
+      registrationsOpen?: Date;
+      registrationDeadline?: Date;
+    };
     const config = await TalentTestConfig.findOne().lean<LeanConfig>();
+    // Enforce registration window and active flag
+    const now = new Date();
+    const open = config?.registrationsOpen ? new Date(config.registrationsOpen) : null;
+    const deadline = config?.registrationDeadline ? new Date(config.registrationDeadline) : null;
+    if (!config?.isActive || !open || !deadline || now < open || now > deadline) {
+      return NextResponse.json(
+        { error: 'Registration window is closed. Please try again later.' },
+        { status: 403 }
+      );
+    }
     const amount = Number((config?.price ?? 100));
     const currency = String(config?.currency ?? 'INR').toUpperCase();
 
