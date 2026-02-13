@@ -156,7 +156,14 @@ export default function Navbar() {
           : "border-slate-200/60 bg-white/70 backdrop-blur-2xl shadow-[0_4px_18px_rgba(0,0,0,0.06)]"
       )}
     >
-      <div ref={headerInnerRef} className="mx-auto max-w-7xl px-6 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex h-20 items-center justify-between">
+      <div
+        ref={headerInnerRef}
+        className="mx-auto max-w-7xl px-4 sm:px-8 md:px-16 flex h-20 items-center justify-between"
+        style={{
+          paddingLeft: 'calc(env(safe-area-inset-left, 0px) + 20px)',
+          paddingRight: 'calc(env(safe-area-inset-right, 0px) + 20px)'
+        }}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <div className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white shadow-lg shadow-teal-500/20">
@@ -174,7 +181,7 @@ export default function Navbar() {
           </div>
           {/* Compact brand on mobile, full on desktop */}
           <div className="flex md:hidden">
-            <span className="text-sm font-semibold leading-none tracking-tight text-slate-900">Alyra</span>
+            <span className="text-[13px] font-semibold leading-none tracking-tight text-slate-900">Alyra Tech</span>
           </div>
           <div className="hidden flex-col md:flex">
             <span className={cn("text-lg font-bold leading-none tracking-tight transition-colors", logoColor)}>Alyra Tech</span>
