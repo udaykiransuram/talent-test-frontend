@@ -32,8 +32,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement | null>(null);
   const headerInnerRef = useRef<HTMLDivElement | null>(null);
   const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
-  // Track header inner box to align the mobile menu panel edges with header container precisely on mobile
-  const [headerBox, setHeaderBox] = useState<{ left: number; width: number } | null>(null);
+  // Horizontal alignment handled by mirroring header container paddings on inner nav
   // Removed dynamic horizontal alignment states in favor of matching header container classes directly
 
   // Ensure portal only renders on client
@@ -112,29 +111,7 @@ export default function Navbar() {
     };
   }, []);
 
-  // Measure header inner box for accurate horizontal alignment of the mobile menu panel
-  useLayoutEffect(() => {
-    const compute = () => {
-      const inner = headerInnerRef.current;
-      if (!inner) {
-        setHeaderBox(null);
-        return;
-      }
-      const rect = inner.getBoundingClientRect();
-      setHeaderBox({ left: Math.max(0, Math.round(rect.left)), width: Math.round(rect.width) });
-    };
-    compute();
-    const raf = requestAnimationFrame(compute);
-    window.addEventListener('resize', compute);
-    window.addEventListener('orientationchange', compute);
-    window.addEventListener('scroll', compute, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', compute);
-      window.removeEventListener('orientationchange', compute);
-      window.removeEventListener('scroll', compute);
-    };
-  }, [mobileMenuOpen, scrolled, pathname]);
+  // No header box measurement required
 
   // Close desktop dropdown when clicking outside header
   useEffect(() => {
@@ -332,8 +309,6 @@ export default function Navbar() {
           style={{
             // Start immediately below the fixed header; do not add extra safe-area top (header isn't using it)
             top: `${headerH}px`,
-            width: headerBox?.width,
-            left: headerBox?.left,
           }}
           role="dialog"
           aria-modal="true"
