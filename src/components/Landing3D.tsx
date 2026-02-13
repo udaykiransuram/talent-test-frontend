@@ -67,7 +67,7 @@ export const Hero3D = ({ whatsappHref }: { whatsappHref?: string }) => {
 
       <motion.div 
         style={{ y: textY, opacity }}
-        className="relative z-10 flex flex-col items-center md:items-start px-5 sm:px-8 md:px-16 text-center md:text-left max-w-7xl mx-auto py-8 sm:py-12 md:py-14 w-full"
+        className="relative z-10 flex flex-col items-center md:items-start px-5 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] text-center md:text-left max-w-7xl mx-auto py-8 sm:py-12 md:py-14 w-full"
       >
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
