@@ -95,31 +95,18 @@ export default async function HomePage() {
           </Reveal>
 
           <div className="mt-10 sm:mt-12">
-            <GlassPanel
-              className="rounded-2xl shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500"
-              bgClassName="bg-white/0"
-              blurClassName="backdrop-blur-2xl backdrop-saturate-150"
-              borderClassName="border-sky-300/30 dark:border-white/15"
-              textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-              textureOpacityClass="opacity-5"
-              noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-              noiseOpacityClass="opacity-5"
-              specular
-              edgeHighlight
-            >
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
-                <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 items-stretch">
-                  {[
-                    { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
-                    { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
-                    { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.' },
-                    { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.' },
-                  ].map((c) => (
-                    <ProCard key={c.title} icon={c.icon} title={c.title} description={c.desc} accent="teal" />
-                  ))}
-                </Stagger>
-              </div>
-            </GlassPanel>
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 md:py-10">
+              <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 items-stretch">
+                {[
+                  { icon: '📊', title: 'Performance Snapshot', desc: 'Instant school → class → student rollups with trend context.' },
+                  { icon: '🧭', title: 'Strengths & Risks', desc: 'Ranked strengths and emerging risks by class and section.' },
+                  { icon: '🧩', title: 'Misconceptions Map', desc: 'Classify conceptual vs procedural errors per sub‑skill.' },
+                  { icon: '✅', title: 'Next Actions', desc: 'Printed worksheets and teaching moves mapped to gaps.' },
+                ].map((c) => (
+                  <ProCard key={c.title} icon={c.icon} title={c.title} description={c.desc} accent="teal" />
+                ))}
+              </Stagger>
+            </div>
           </div>
         </div>
       </section>
@@ -136,33 +123,20 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <GlassPanel
-            className="rounded-2xl shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500"
-            bgClassName="bg-white/0"
-            blurClassName="backdrop-blur-2xl backdrop-saturate-150"
-            borderClassName="border-sky-300/30 dark:border-white/15"
-            textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-            textureOpacityClass="opacity-5"
-            noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-            noiseOpacityClass="opacity-5"
-            specular
-            edgeHighlight
-          >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-10">
-                {[
-                  { title: 'Deep Diagnostics', description: 'Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student.', icon: '🧬' },
-                  { title: 'Predictive ERP', description: 'Streamline campus management with adaptive systems that forecast needs and optimize operations.', icon: '⚡' },
-                  { title: 'Alumni Network', description: 'Build lasting connections with graduates through automated engagement tools and community platforms.', icon: '🌐' },
-                  { title: 'OMR Digitization', description: 'Digitize assessments effortlessly with high-accuracy scanning via mobile devices.', icon: '📱' },
-                  { title: 'Growth Analytics', description: 'Track student progress with intuitive visualizations and predictive trend analysis.', icon: '📈' },
-                  { title: 'Parent Connect', description: 'Facilitate seamless communication between schools and families with secure, organized channels.', icon: '💬' },
-                ].map((f) => (
-                  <ProCard key={f.title} icon={f.icon} title={f.title} description={f.description} accent="teal" />
-                ))}
-              </div>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 md:py-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-10">
+              {[
+                { title: 'Deep Diagnostics', description: 'Pinpoint precise learning gaps with AI-powered analysis, enabling targeted interventions for every student.', icon: '🧬' },
+                { title: 'Predictive ERP', description: 'Streamline campus management with adaptive systems that forecast needs and optimize operations.', icon: '⚡' },
+                { title: 'Alumni Network', description: 'Build lasting connections with graduates through automated engagement tools and community platforms.', icon: '🌐' },
+                { title: 'OMR Digitization', description: 'Digitize assessments effortlessly with high-accuracy scanning via mobile devices.', icon: '📱' },
+                { title: 'Growth Analytics', description: 'Track student progress with intuitive visualizations and predictive trend analysis.', icon: '📈' },
+                { title: 'Parent Connect', description: 'Facilitate seamless communication between schools and families with secure, organized channels.', icon: '💬' },
+              ].map((f) => (
+                <ProCard key={f.title} icon={f.icon} title={f.title} description={f.description} accent="teal" />
+              ))}
             </div>
-          </GlassPanel>
+          </div>
         </div>
       </section>
 
@@ -239,29 +213,16 @@ export default async function HomePage() {
             <Reveal>
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-14">Common Questions Answered</h2>
             </Reveal>
-            <GlassPanel
-              className="rounded-2xl shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500"
-              bgClassName="bg-white/0"
-              blurClassName="backdrop-blur-2xl backdrop-saturate-150"
-              borderClassName="border-sky-300/30 dark:border-white/15"
-              textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-              textureOpacityClass="opacity-5"
-              noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-              noiseOpacityClass="opacity-5"
-              specular
-              edgeHighlight
-            >
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 sm:py-14 md:py-18">
-                <Stagger className="space-y-5 md:space-y-7">
-                  {faqs.map((faq: { question: string; answer: string }, i: number) => (
-                    <div key={i} className="rounded-2xl border border-teal-500/15 bg-white/20 backdrop-blur-sm p-6 md:p-7">
-                      <h3 className="text-lg font-semibold text-slate-900">{faq.question}</h3>
-                      <p className="mt-3 text-slate-800/90 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  ))}
-                </Stagger>
-              </div>
-            </GlassPanel>
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 md:py-10">
+              <Stagger className="space-y-5 md:space-y-7">
+                {faqs.map((faq: { question: string; answer: string }, i: number) => (
+                  <div key={i} className="rounded-2xl border border-teal-500/15 bg-white/20 backdrop-blur-sm p-6 md:p-7">
+                    <h3 className="text-lg font-semibold text-slate-900">{faq.question}</h3>
+                    <p className="mt-3 text-slate-800/90 leading-relaxed">{faq.answer}</p>
+                  </div>
+                ))}
+              </Stagger>
+            </div>
           </div>
         </section>
       )}
