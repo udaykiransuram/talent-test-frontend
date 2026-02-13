@@ -324,7 +324,7 @@ export default function Navbar() {
           aria-label="Mobile Menu"
         >
           <nav
-            className="mx-auto max-w-7xl px-5 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col py-3 text-slate-900"
+            className="mx-auto max-w-7xl px-6 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col py-3 text-slate-900 gap-1"
             role="menu"
             aria-label="Mobile Navigation"
           >

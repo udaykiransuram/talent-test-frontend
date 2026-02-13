@@ -49,12 +49,8 @@ export default function OverflowDebugger() {
     banner.textContent = "OverflowDebugger active: scanning...";
     document.body.appendChild(banner);
 
-    const highlight = (els: Element[]) => {
-      els.forEach((el) => {
-        (el as HTMLElement).style.outline = "2px solid rgba(255,0,0,0.8)";
-        (el as HTMLElement).style.outlineOffset = "-1px";
-      });
-    };
+    // Avoid mutating element styles to prevent hydration mismatches
+    const highlight = (_els: Element[]) => {};
 
     const scan = () => {
       const offenders: Offender[] = [];
@@ -80,8 +76,7 @@ export default function OverflowDebugger() {
         }
       });
 
-      // Reset previous outlines
-      all.forEach((el) => ((el as HTMLElement).style.outline = ""));
+      // Do not mutate element styles here (no resets) to avoid SSR/CSR diffs
 
       const uniq = Array.from(new Set(offenders.map((o) => o.el)));
       highlight(uniq);
