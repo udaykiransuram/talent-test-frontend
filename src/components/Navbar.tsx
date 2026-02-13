@@ -348,50 +348,17 @@ export default function Navbar() {
               role="menu"
               aria-label="Mobile Navigation"
             >
-            {navItems.map((item) => {
-              const hasDropdown = 'dropdown' in item && item.dropdown;
-              
-              if (hasDropdown) {
-                return (
-                  <div key={item.href} className="mx-2">
-                    <div className="rounded-2xl border border-teal-600/20 bg-teal-50/60 backdrop-blur-md shadow-sm ring-1 ring-teal-600/10 hover:shadow-md transition-shadow">
-                      <button
-                        className="flex w-full items-center justify-between px-4 py-4 text-[15px] font-semibold text-teal-900 hover:text-teal-900"
-                        onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
-                        aria-expanded={mobileDropdownOpen === item.href}
-                        aria-controls={`mobile-dd-${item.href}`}
-                        role="menuitem"
-                      >
-                        {item.label}
-                        <svg className={cn("h-5 w-5 transition-transform duration-200 text-teal-600", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      {mobileDropdownOpen === item.href && (
-                        <div id={`mobile-dd-${item.href}`} className="px-2 pb-3 space-y-2">
-                          {item.dropdown!.map((subItem) => (
-                            <Link
-                              key={subItem.href}
-                              href={subItem.href}
-                              className="flex items-center gap-3 rounded-xl py-3 px-3 text-[15px] text-teal-950 bg-white/70 hover:bg-white/90 transition-colors border border-teal-600/15 backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
-                              onClick={() => setMobileMenuOpen(false)}
-                              role="menuitem"
-                            >
-                              <span className="text-lg">{subItem.icon}</span>
-                              <div>
-                                <div className="font-semibold text-teal-950">{subItem.label}</div>
-                                <div className="text-xs text-teal-800/70">{subItem.desc}</div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              }
+              {/* Optional Search Pill */}
+              <div className="px-1 sm:px-2">
+                <div className="mx-1 flex items-center gap-2 rounded-full border border-teal-600/20 bg-white/70 backdrop-blur-md px-4 py-2.5 shadow-sm ring-1 ring-teal-600/10">
+                  <svg className="h-4 w-4 text-teal-700/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"/></svg>
+                  <input type="search" placeholder="Search site" className="w-full bg-transparent text-[15px] text-teal-950 placeholder:text-teal-900/50 outline-none" />
+                </div>
+              </div>
 
-              return (
+              {/* Explore Section */}
+              <div className="px-3 pt-3 pb-1 text-[11px] uppercase tracking-wide text-teal-800/70">Explore</div>
+              {navItems.filter((it) => !('dropdown' in it)).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -399,17 +366,60 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   role="menuitem"
                 >
-                  {item.label}
+                  <div className="flex items-center justify-between gap-3">
+                    <span>{item.label}</span>
+                    <svg className="h-5 w-5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </div>
                 </Link>
-              );
-            })}
-              <div className="mt-1 px-2">
-                <Link
-                  href="/contact"
-                  className="block rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md px-4 py-4 text-[15px] font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
-                  onClick={() => setMobileMenuOpen(false)}
-                  role="menuitem"
-                >
+              ))}
+
+              {/* Solutions Section */}
+              <div className="px-3 pt-4 pb-1 text-[11px] uppercase tracking-wide text-teal-800/70">Solutions</div>
+              {navItems.filter((it) => ('dropdown' in it)).map((item) => (
+                <div key={item.href} className="mx-2">
+                  <div className="rounded-2xl border border-teal-600/20 bg-teal-50/60 backdrop-blur-md shadow-sm ring-1 ring-teal-600/10 hover:shadow-md transition-shadow">
+                    <button
+                      className="flex w-full items-center justify-between px-4 py-4 text-[15px] font-semibold text-teal-900 hover:text-teal-900"
+                      onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
+                      aria-expanded={mobileDropdownOpen === item.href}
+                      aria-controls={`mobile-dd-${item.href}`}
+                      role="menuitem"
+                    >
+                      {item.label}
+                      <svg className={cn("h-5 w-5 transition-transform duration-200 text-teal-600", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {mobileDropdownOpen === item.href && (
+                      <div id={`mobile-dd-${item.href}`} className="px-2 pb-3 space-y-2">
+                        {item.dropdown!.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            className="flex items-center gap-3 rounded-xl py-3 px-3 text-[15px] text-teal-950 bg-white/70 hover:bg-white/90 transition-colors border border-teal-600/15 backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
+                            onClick={() => setMobileMenuOpen(false)}
+                            role="menuitem"
+                          >
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-100 text-lg ring-1 ring-teal-600/10">{subItem.icon}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-teal-950 truncate">{subItem.label}</div>
+                              <div className="text-xs text-teal-800/70 truncate">{subItem.desc}</div>
+                            </div>
+                            <svg className="h-5 w-5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              {/* Footer quick actions */}
+              <div className="mt-3 px-2 grid grid-cols-2 gap-2">
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl bg-teal-600 text-white py-3 font-semibold shadow-md hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+                  Register
+                </Link>
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md py-3 font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40">
                   Contact
                 </Link>
               </div>
