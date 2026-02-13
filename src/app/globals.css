@@ -178,25 +178,40 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('/images/gemini-pro-bg.png');
-  background-size: cover;
+  /* Benefits hero-like gradient background */
+  background: linear-gradient(180deg,
+    rgba(45,212,191,0.65) 0%, /* teal-400 */
+    rgba(94,234,212,0.55) 45%, /* teal-300 */
+    rgba(153,246,228,0.50) 100% /* teal-200 */
+  );
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1; /* show background without dimming */
+  opacity: 1;
   z-index: 0;
   pointer-events: none;
 }
-.dark .cards-section::before { opacity: 1; }
+.dark .cards-section::before {
+  /* Slightly deepen in dark mode for contrast */
+  background: linear-gradient(180deg,
+    rgba(20,184,166,0.55) 0%, /* teal-500 */
+    rgba(45,212,191,0.50) 45%,
+    rgba(94,234,212,0.45) 100%
+  );
+}
 .cards-section::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Overlay disabled per request */
-  background: none;
+  /* Subtle grain for diffusion */
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05;
   z-index: 0;
   pointer-events: none;
 }
-.dark .cards-section::after { background: none; }
+.dark .cards-section::after { opacity: 0.06; }
 .cards-section > * {
   position: relative;
   z-index: 1;

@@ -194,36 +194,24 @@ export default async function HomePage() {
         </div>
       </section>
       
-      {/* Interactive Stat Band (glassy) */}
-      <section className="py-20 md:py-28 bg-transparent border-t border-gray-200/50 dark:border-gray-800/60 relative">
+      {/* Interactive Stat Band (dark, like benefits CTA) */}
+      <section className="py-20 md:py-28 relative border-t border-gray-200/0">
+        {/* Dark gradient background to match benefits CTA */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800" />
         <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.04}>
-          <GlassPanel
-            className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
-            bgClassName="bg-white/0"
-            blurClassName="backdrop-blur-2xl backdrop-saturate-150"
-            borderClassName="border-sky-300/30 dark:border-white/15"
-            textureUrl="https://www.transparenttextures.com/patterns/bubbles.png"
-            textureOpacityClass="opacity-5"
-            noiseUrl="https://grainy-gradients.vercel.app/noise.svg"
-            noiseOpacityClass="opacity-5"
-            specular
-            edgeHighlight
-            radiusClassName="rounded-none"
-          >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 md:py-14">
-              <div className={`grid grid-cols-2 ${homeStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-8 md:gap-10 text-center`}>
-                {homeStats.map((stat) => (
-                  <div key={stat.key} className="py-2">
-                    <div className="rounded-2xl border border-sky-300/40 bg-white/60 backdrop-blur-md px-4 py-5 flex flex-col items-center gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:border-sky-300/60 hover:bg-white/70 sheen-card">
-                      {stat.icon && <div className="text-2xl md:text-3xl text-sky-700">{stat.icon}</div>}
-                      <div className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">{stat.value}</div>
-                      <div className="text-slate-700/90 text-[10px] md:text-xs tracking-wide uppercase">{stat.label}</div>
-                    </div>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 md:py-14">
+            <div className={`grid grid-cols-2 ${homeStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-8 md:gap-10 text-center`}>
+              {homeStats.map((stat) => (
+                <div key={stat.key} className="py-2">
+                  <div className="rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm px-4 py-5 flex flex-col items-center gap-2 shadow-[0_12px_36px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-white/25">
+                    {stat.icon && <div className="text-2xl md:text-3xl text-emerald-300">{stat.icon}</div>}
+                    <div className="text-4xl md:text-6xl font-bold text-white tracking-tight tabular-nums">{stat.value}</div>
+                    <div className="text-white/70 text-[10px] md:text-xs tracking-wide uppercase">{stat.label}</div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          </GlassPanel>
+          </div>
         </Parallax>
       </section>
 
