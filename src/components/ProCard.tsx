@@ -32,32 +32,12 @@ export function ProCard({ icon, title, description, accent = "teal", className }
   return (
     <div
       className={cn(
-        "group relative h-full overflow-hidden rounded-2xl border",
-        // Professional glass surface with good readability on busy backgrounds
-        "bg-[rgba(59,130,246,0.04)] dark:bg-[rgba(37,99,235,0.06)] backdrop-blur-lg p-6 md:p-7 flex flex-col gap-4 transition-all duration-300",
-        // Subtle border and elevation; refined hover
-        "border-[rgba(59,130,246,0.25)] dark:border-[rgba(37,99,235,0.25)] shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-[rgba(59,130,246,0.08)] dark:hover:bg-[rgba(37,99,235,0.10)] hover:ring-1 hover:ring-white/15",
+        // Match testimonial card style
+        "group relative h-full overflow-hidden rounded-2xl border border-white/30 bg-white/60 backdrop-blur-sm text-slate-900 p-7 md:p-8 shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_48px_rgba(0,0,0,0.25)] hover:bg-white/70 hover:border-white/50",
         className
       )}
     >
-      {/* Hover sheen for premium glass feel */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-      />
-
-      {/* Subtle inner edge highlight and base inset for realistic glass edge */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-2xl [box-shadow:inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.08)]"
-      />
-
-      {/* Very light noise/diffusion for premium glass feel */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-[length:600px_600px] bg-repeat opacity-[0.04] mix-blend-overlay"
-        style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
-      />
+      {/* Minimal overlays to mirror testimonial simplicity */}
 
       {/* Top accent bar removed per feedback for a cleaner glass look */}
 
@@ -65,8 +45,8 @@ export function ProCard({ icon, title, description, accent = "teal", className }
         {icon && (
           <div
             className={cn(
-              // Icon badge (transparent with hover lift)
-              "flex h-12 w-12 md:h-14 md:w-14 flex-none items-center justify-center rounded-xl border text-2xl md:text-3xl shadow-sm bg-[rgba(59,130,246,0.06)] dark:bg-[rgba(37,99,235,0.08)] border-[rgba(59,130,246,0.25)] dark:border-[rgba(37,99,235,0.25)] transition-transform duration-300 group-hover:scale-110",
+              // Icon badge styled similarly to testimonial card surface
+              "flex h-10 w-10 md:h-12 md:w-12 flex-none items-center justify-center rounded-xl border border-white/30 bg-white/60 text-2xl md:text-3xl shadow-sm transition-transform duration-300 group-hover:scale-110",
               styles.iconText
             )}
           >
@@ -75,7 +55,7 @@ export function ProCard({ icon, title, description, accent = "teal", className }
         )}
         <div className="min-w-0 flex-1">
           <h3 className="text-lg md:text-xl font-semibold tracking-tight text-slate-900 mb-1.5">{title}</h3>
-          <p className="text-sm md:text-base leading-relaxed text-slate-900/95">{description}</p>
+          <p className="text-sm md:text-base leading-relaxed text-slate-900/90">{description}</p>
         </div>
       </div>
     </div>
