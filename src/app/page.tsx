@@ -110,7 +110,7 @@ export default async function HomePage() {
           </Reveal>
 
           {/* Cards wrapper (full-bleed, sharp edges touching page) */}
-          <Parallax className="cards-section relative mt-10 sm:mt-12 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.05}>
+          <Parallax className="cards-section relative overflow-x-hidden mt-10 sm:mt-12 left-1/2 -translate-x-1/2 w-screen max-w-none" speed={0.05}>
             <GlassPanel
               className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
               bgClassName="bg-white/0"
@@ -161,7 +161,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
+          <div className="cards-section relative overflow-x-hidden left-1/2 -translate-x-1/2 w-screen max-w-none">
             <GlassPanel
               className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
               bgClassName="bg-white/0"
@@ -198,7 +198,7 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 relative border-t border-gray-200/0">
         {/* Dark gradient background to match benefits CTA */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800" />
-        <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.04}>
+        <Parallax className="cards-section relative overflow-x-hidden left-1/2 -translate-x-1/2 w-screen max-w-none" speed={0.04}>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-10 md:py-14">
             <div className={`grid grid-cols-2 ${homeStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-8 md:gap-10 text-center`}>
               {homeStats.map((stat) => (
@@ -223,7 +223,7 @@ export default async function HomePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-4">Voices from Our Community</h2>
               <p className="text-center text-slate-900/85 max-w-2xl mx-auto mb-12">Insights from educators and parents transforming education with Alyra Tech.</p>
             </Reveal>
-            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.03}>
+            <Parallax className="cards-section relative overflow-x-hidden left-1/2 -translate-x-1/2 w-screen max-w-none" speed={0.03}>
               <GlassPanel
                 className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
                 bgClassName="bg-white/0"
@@ -273,7 +273,7 @@ export default async function HomePage() {
             <Reveal>
               <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-14">Common Questions Answered</h2>
             </Reveal>
-            <Parallax className="cards-section relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen" speed={0.025}>
+            <Parallax className="cards-section relative overflow-x-hidden left-1/2 -translate-x-1/2 w-screen max-w-none" speed={0.025}>
               <GlassPanel
                 className="cards-section rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.12)] transition-shadow duration-500 hover:ring-1 hover:ring-white/20"
                 bgClassName="bg-white/0"
