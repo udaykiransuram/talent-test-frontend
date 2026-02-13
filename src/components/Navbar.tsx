@@ -32,7 +32,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement | null>(null);
   const headerInnerRef = useRef<HTMLDivElement | null>(null);
   const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
-  // no horizontal measurement needed; we mirror header container classes for alignment
+  // Horizontal alignment mirrors header container paddings; no extra measurement needed
   // Removed dynamic horizontal alignment states in favor of matching header container classes directly
 
   // Ensure portal only renders on client
@@ -111,7 +111,7 @@ export default function Navbar() {
     };
   }, []);
 
-  // Horizontal alignment handled via matching container classes (see mobile nav below)
+  // No header box measurement; this avoids layout thrash and double-padding issues
 
   // Close desktop dropdown when clicking outside header
   useEffect(() => {
@@ -307,7 +307,8 @@ export default function Navbar() {
         <div
           className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
           style={{
-            top: `calc(${headerH}px + env(safe-area-inset-top, 0px))`,
+            // Start immediately below the fixed header; do not add extra safe-area top (header isn't using it)
+            top: `${headerH}px`,
           }}
           role="dialog"
           aria-modal="true"
