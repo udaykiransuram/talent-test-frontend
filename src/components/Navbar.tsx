@@ -33,6 +33,7 @@ export default function Navbar() {
   const headerInnerRef = useRef<HTMLDivElement | null>(null);
   const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
   const [sidePad, setSidePad] = useState<{ left: number; right: number }>({ left: 0, right: 0 });
+  const [headerBox, setHeaderBox] = useState<{ left: number; width: number } | null>(null);
 
   // Ensure portal only renders on client
   useEffect(() => setMounted(true), []);
@@ -126,6 +127,28 @@ export default function Navbar() {
     return () => {
       window.removeEventListener('resize', computeSidePads);
       window.removeEventListener('orientationchange', computeSidePads);
+    };
+  }, [mobileMenuOpen, scrolled, pathname]);
+
+  // Track header inner box position/width to align the mobile menu panel with header container
+  useEffect(() => {
+    const computeHeaderBox = () => {
+      const inner = headerInnerRef.current;
+      if (!inner) {
+        setHeaderBox(null);
+        return;
+      }
+      const rect = inner.getBoundingClientRect();
+      setHeaderBox({ left: Math.max(0, Math.round(rect.left)), width: Math.round(rect.width) });
+    };
+    computeHeaderBox();
+    window.addEventListener('resize', computeHeaderBox);
+    window.addEventListener('orientationchange', computeHeaderBox);
+    window.addEventListener('scroll', computeHeaderBox, { passive: true });
+    return () => {
+      window.removeEventListener('resize', computeHeaderBox);
+      window.removeEventListener('orientationchange', computeHeaderBox);
+      window.removeEventListener('scroll', computeHeaderBox);
     };
   }, [mobileMenuOpen, scrolled, pathname]);
 
@@ -324,6 +347,9 @@ export default function Navbar() {
           className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
           style={{
             top: `calc(${headerH}px + env(safe-area-inset-top, 0px))`,
+            width: headerBox?.width,
+            left: headerBox ? Math.max(0, headerBox.left - 1) : undefined,
+            right: headerBox ? 'auto' : undefined,
           }}
           role="dialog"
           aria-modal="true"
