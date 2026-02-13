@@ -324,9 +324,6 @@ export default function Navbar() {
           className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
           style={{
             top: `calc(${headerH}px + env(safe-area-inset-top, 0px))`,
-            width: headerBox.width ? headerBox.width : undefined,
-            left: headerBox.left ? Math.max(0, headerBox.left - 1) : undefined,
-            right: headerBox.width ? 'auto' as unknown as undefined : undefined,
           }}
           role="dialog"
           aria-modal="true"
