@@ -158,7 +158,7 @@ export default function Navbar() {
     >
       <div
         ref={headerInnerRef}
-        className="mx-auto max-w-7xl px-4 sm:px-8 md:px-16 flex h-20 items-center justify-between"
+        className="mx-auto max-w-7xl px-4 sm:px-8 md:px-16 flex h-20 items-center justify-around md:justify-between gap-2"
         style={{
           paddingLeft: 'max(env(safe-area-inset-left, 0px), 24px)',
           paddingRight: 'max(env(safe-area-inset-right, 0px), 24px)'
@@ -333,19 +333,15 @@ export default function Navbar() {
             className="fixed inset-0 z-[9997] md:hidden bg-slate-900/40 backdrop-blur-[2px]"
             onClick={() => setMobileMenuOpen(false)}
           />
-          {/* Bottom sheet panel */}
+          {/* Right side drawer panel */}
           <div
-            className="fixed inset-x-0 bottom-0 z-[9999] md:hidden overflow-y-auto overflow-x-hidden overscroll-contain w-screen max-w-none bg-gradient-to-b from-teal-50/90 to-white/85 backdrop-blur-xl border-t border-teal-600/10 rounded-t-2xl shadow-2xl ring-1 ring-teal-600/10"
-            style={{
-              top: `${headerH}px`,
-              left: 0,
-            }}
+            className="fixed top-0 right-0 z-[9999] md:hidden h-screen w-[85vw] max-w-sm overflow-y-auto overscroll-contain bg-white/95 backdrop-blur-xl border-l border-teal-600/10 shadow-2xl ring-1 ring-teal-600/10 transform transition-transform duration-300 translate-x-0"
+            style={{ paddingTop: `${headerH}px` }}
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Menu"
           >
-            <div aria-hidden className="mx-auto mt-3 mb-3 h-1.5 w-12 rounded-full bg-slate-300/80" />
-            <div className="flex items-center justify-between px-6 pb-2">
+            <div className="flex items-center justify-between px-6 pb-3">
               <span className="text-base font-semibold text-teal-700">Menu</span>
               <button
                 aria-label="Close menu"
@@ -358,7 +354,7 @@ export default function Navbar() {
               </button>
             </div>
             <nav
-              className="mx-auto max-w-7xl px-5 sm:px-6 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col text-slate-900 gap-2 pt-1 pb-[calc(1rem+env(safe-area-inset-bottom,0px))]"
+              className="px-5 sm:px-6 flex flex-col text-slate-900 gap-2 pb-[calc(1rem+env(safe-area-inset-bottom,0px))]"
               role="menu"
               aria-label="Mobile Navigation"
             >
