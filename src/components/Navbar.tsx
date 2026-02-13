@@ -287,12 +287,12 @@ export default function Navbar() {
           </Link>
           <Link
             href="/talent-test"
-            className="group relative inline-flex h-9 sm:h-9 md:h-10 items-center justify-center overflow-hidden rounded-full px-4 sm:px-5 md:px-6 text-sm md:text-[0.95rem] font-semibold text-white transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            className="group relative inline-flex h-9 sm:h-9 md:h-10 items-center justify-center overflow-hidden rounded-full px-4 sm:px-5 md:px-6 text-sm md:text-[0.95rem] font-semibold text-white transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 whitespace-nowrap"
             aria-label="Start Baseline Test"
           >
             <span className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600" />
             <span className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-emerald-400/30 via-teal-400/20 to-cyan-400/30 blur opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <span className="relative mr-2 drop-shadow-sm">Baseline Test</span>
+            <span className="relative mr-2 drop-shadow-sm whitespace-nowrap">Baseline Test</span>
             <svg
               className="relative h-3.5 w-3.5 md:h-4 md:w-4 transition-transform group-hover:translate-x-1 drop-shadow-sm"
               fill="none"
