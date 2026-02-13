@@ -312,22 +312,42 @@ export default function Navbar() {
 
       {/* Mobile Menu (portaled to body for reliable stacking on mobile) */}
       {mounted && mobileMenuOpen && createPortal(
-        <div
-          className="fixed inset-x-0 bottom-0 z-[9999] md:hidden overflow-y-auto overflow-x-hidden overscroll-contain w-screen max-w-none bg-white/95 backdrop-blur-xl border-t border-slate-200"
-          style={{
-            // Start immediately below the fixed header; do not add extra safe-area top (header isn't using it)
-            top: `${headerH}px`,
-            left: 0,
-          }}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile Menu"
-        >
-          <nav
-            className="mx-auto max-w-7xl px-6 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col py-3 text-slate-900 gap-1"
-            role="menu"
-            aria-label="Mobile Navigation"
+        <>
+          {/* Dimmed backdrop to focus the sheet and close on tap */}
+          <button
+            aria-label="Close menu overlay"
+            className="fixed inset-0 z-[9997] md:hidden bg-slate-900/40 backdrop-blur-[2px]"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          {/* Bottom sheet panel */}
+          <div
+            className="fixed inset-x-0 bottom-0 z-[9999] md:hidden overflow-y-auto overflow-x-hidden overscroll-contain w-screen max-w-none bg-white/95 backdrop-blur-xl border-t border-slate-200 rounded-t-2xl shadow-2xl ring-1 ring-slate-900/10"
+            style={{
+              top: `${headerH}px`,
+              left: 0,
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Menu"
           >
+            <div aria-hidden className="mx-auto mt-2 mb-2 h-1.5 w-12 rounded-full bg-slate-300/80" />
+            <div className="flex items-center justify-between px-6 pb-2">
+              <span className="text-sm font-semibold text-slate-700">Menu</span>
+              <button
+                aria-label="Close menu"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-full text-slate-600 hover:bg-slate-100"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <nav
+              className="mx-auto max-w-7xl px-6 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col text-slate-900 divide-y divide-slate-200/70 pt-1 pb-[calc(1rem+env(safe-area-inset-bottom,0px))]"
+              role="menu"
+              aria-label="Mobile Navigation"
+            >
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
               
@@ -381,7 +401,7 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <div className="mt-2 border-t border-slate-200 pt-3">
+              <div className="mt-2 border-t border-slate-200 pt-3">
               <Link
                 href="/contact"
                 className="block py-4 text-base font-medium text-slate-800 hover:text-slate-900"
@@ -390,9 +410,10 @@ export default function Navbar() {
               >
                 Contact
               </Link>
-            </div>
-          </nav>
-        </div>,
+              </div>
+            </nav>
+          </div>
+        </>,
         document.body
       )}
     </header>
