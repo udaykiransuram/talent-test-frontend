@@ -27,6 +27,28 @@ export default function OverflowDebugger() {
   useEffect(() => {
     if (process.env.NODE_ENV === "production") return;
 
+    // Create a small fixed banner to show first offender without opening DevTools
+    const banner = document.createElement("div");
+    Object.assign(banner.style, {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      right: "0",
+      zIndex: "999999",
+      background: "rgba(0,0,0,0.7)",
+      color: "#fff",
+      fontSize: "12px",
+      lineHeight: "1.4",
+      padding: "6px 8px",
+      fontFamily: "ui-monospace, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      pointerEvents: "none",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    } as CSSStyleDeclaration);
+    banner.textContent = "OverflowDebugger active: scanning...";
+    document.body.appendChild(banner);
+
     const highlight = (els: Element[]) => {
       els.forEach((el) => {
         (el as HTMLElement).style.outline = "2px solid rgba(255,0,0,0.8)";
@@ -81,13 +103,25 @@ export default function OverflowDebugger() {
         });
         // eslint-disable-next-line no-console
         console.groupEnd();
+        const first = uniq[0] as HTMLElement;
+        const r = first.getBoundingClientRect();
+        banner.textContent = `Overflow offenders: ${uniq.length} | First: ${getSelectorPath(first)} | left=${Math.round(r.left)} right=${Math.round(r.right)} width=${Math.round(r.width)} vw=${vw}`;
       } else {
         // eslint-disable-next-line no-console
         console.log(`OverflowDebugger: no offenders @ ${vw}px`);
+        banner.textContent = `Overflow OK @ vw=${vw}`;
       }
     };
 
-    scan();
+    // Defer first scan to avoid React hydration mismatch (wait for paint + idle)
+    const defer = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => scan(), 200);
+        });
+      });
+    };
+    defer();
     const onResize = () => scan();
     const onScroll = () => scan();
     window.addEventListener("resize", onResize, { passive: true });
@@ -101,6 +135,7 @@ export default function OverflowDebugger() {
       window.removeEventListener("orientationchange", onResize);
       window.removeEventListener("scroll", onScroll);
       ro.disconnect();
+      banner.remove();
     };
   }, []);
 
