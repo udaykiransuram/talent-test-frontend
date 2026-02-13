@@ -32,6 +32,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement | null>(null);
   const headerInnerRef = useRef<HTMLDivElement | null>(null);
   const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
+  // no horizontal measurement needed; we mirror header container classes for alignment
   // Removed dynamic horizontal alignment states in favor of matching header container classes directly
 
   // Ensure portal only renders on client
@@ -110,9 +111,7 @@ export default function Navbar() {
     };
   }, []);
 
-  // Note: We intentionally avoid measuring header box/side padding for the mobile menu.
-  // Instead, we replicate the exact header inner container classes on the mobile menu wrapper
-  // to guarantee pixel-perfect alignment in all pages and viewports.
+  // Horizontal alignment handled via matching container classes (see mobile nav below)
 
   // Close desktop dropdown when clicking outside header
   useEffect(() => {
