@@ -194,12 +194,12 @@
   position: absolute;
   inset: 0;
   /* Soft professional veil to harmonize busy backgrounds */
-  background: linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.12));
+  background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.08));
   z-index: 0;
   pointer-events: none;
 }
 .dark .cards-section::after {
-  background: linear-gradient(135deg, rgba(0,0,0,0.18), rgba(0,0,0,0.10));
+  background: linear-gradient(135deg, rgba(0,0,0,0.12), rgba(0,0,0,0.06));
 }
 .cards-section > * {
   position: relative;
