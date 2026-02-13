@@ -160,8 +160,8 @@ export default function Navbar() {
         ref={headerInnerRef}
         className="mx-auto max-w-7xl px-4 sm:px-8 md:px-16 flex h-20 items-center justify-between"
         style={{
-          paddingLeft: 'calc(env(safe-area-inset-left, 0px) + 20px)',
-          paddingRight: 'calc(env(safe-area-inset-right, 0px) + 20px)'
+          paddingLeft: 'max(env(safe-area-inset-left, 0px), 24px)',
+          paddingRight: 'max(env(safe-area-inset-right, 0px), 24px)'
         }}
       >
         {/* Logo */}
