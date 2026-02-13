@@ -82,10 +82,11 @@ export async function POST(req: NextRequest) {
     const shortRandom = Math.random().toString(36).substring(2, 10);
     const orderId = `talent_${Date.now()}_${shortRandom}`;
 
-    // Fetch current test configuration for dynamic pricing
-    const config = await TalentTestConfig.findOne().lean();
-    const amount = Number(config?.price ?? 100);
-    const currency = (config?.currency ?? 'INR').toUpperCase();
+    // Fetch current test configuration for dynamic pricing (type-safe lean)
+    type LeanConfig = { price?: number; currency?: string };
+    const config = await TalentTestConfig.findOne().lean<LeanConfig>();
+    const amount = Number((config?.price ?? 100));
+    const currency = String(config?.currency ?? 'INR').toUpperCase();
 
     // Store registration as pending
     await Registration.create({
