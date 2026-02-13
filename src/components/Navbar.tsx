@@ -305,10 +305,11 @@ export default function Navbar() {
       {/* Mobile Menu (portaled to body for reliable stacking on mobile) */}
       {mounted && mobileMenuOpen && createPortal(
         <div
-          className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
+          className="fixed inset-x-0 bottom-0 z-[9999] md:hidden overflow-y-auto overflow-x-hidden overscroll-contain w-screen max-w-none bg-white/95 backdrop-blur-xl border-t border-slate-200"
           style={{
             // Start immediately below the fixed header; do not add extra safe-area top (header isn't using it)
             top: `${headerH}px`,
+            left: 0,
           }}
           role="dialog"
           aria-modal="true"
