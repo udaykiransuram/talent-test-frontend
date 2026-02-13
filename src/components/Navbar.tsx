@@ -362,13 +362,13 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="mx-2 rounded-2xl border border-teal-600/20 bg-white/70 backdrop-blur-md px-4 py-4 text-[15px] font-semibold text-teal-950 hover:bg-white/90 shadow-sm ring-1 ring-teal-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
+                  className="mx-2 block rounded-full bg-teal-600 px-5 py-3 text-[15px] font-semibold text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-teal-500/70"
                   onClick={() => setMobileMenuOpen(false)}
                   role="menuitem"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span>{item.label}</span>
-                    <svg className="h-5 w-5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    <svg className="h-5 w-5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
                   </div>
                 </Link>
               ))}
@@ -377,35 +377,35 @@ export default function Navbar() {
               <div className="px-3 pt-4 pb-1 text-[11px] uppercase tracking-wide text-teal-800/70">Solutions</div>
               {navItems.filter((it) => ('dropdown' in it)).map((item) => (
                 <div key={item.href} className="mx-2">
-                  <div className="rounded-2xl border border-teal-600/20 bg-teal-50/60 backdrop-blur-md shadow-sm ring-1 ring-teal-600/10 hover:shadow-md transition-shadow">
+                  <div className="rounded-2xl border border-transparent bg-transparent ring-0 shadow-none">
                     <button
-                      className="flex w-full items-center justify-between px-4 py-4 text-[15px] font-semibold text-teal-900 hover:text-teal-900"
+                      className="flex w-full items-center justify-between px-5 py-3 text-[15px] font-semibold rounded-full bg-teal-600 text-white shadow-lg shadow-teal-600/20 transition-all hover:bg-teal-700 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-teal-500/70"
                       onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.href ? null : item.href)}
                       aria-expanded={mobileDropdownOpen === item.href}
                       aria-controls={`mobile-dd-${item.href}`}
                       role="menuitem"
                     >
                       {item.label}
-                      <svg className={cn("h-5 w-5 transition-transform duration-200 text-teal-600", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className={cn("h-5 w-5 transition-transform duration-200 text-white/90", mobileDropdownOpen === item.href && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
                     {mobileDropdownOpen === item.href && (
-                      <div id={`mobile-dd-${item.href}`} className="px-2 pb-3 space-y-2">
+                      <div id={`mobile-dd-${item.href}`} className="px-1 pt-2 pb-1 space-y-2">
                         {item.dropdown!.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex items-center gap-3 rounded-xl py-3 px-3 text-[15px] text-teal-950 bg-white/70 hover:bg-white/90 transition-colors border border-teal-600/15 backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40"
+                            className="flex items-center justify-between gap-3 rounded-full py-3 px-4 text-[15px] text-white bg-teal-600 hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 focus:outline-none focus:ring-2 focus:ring-teal-500/70"
                             onClick={() => setMobileMenuOpen(false)}
                             role="menuitem"
                           >
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-teal-100 text-lg ring-1 ring-teal-600/10">{subItem.icon}</span>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-semibold text-teal-950 truncate">{subItem.label}</div>
-                              <div className="text-xs text-teal-800/70 truncate">{subItem.desc}</div>
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/10">{subItem.icon}</span>
+                            <div className="flex-1 min-w-0 text-left">
+                              <div className="font-semibold truncate">{subItem.label}</div>
+                              <div className="text-xs text-white/90 truncate">{subItem.desc}</div>
                             </div>
-                            <svg className="h-5 w-5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            <svg className="h-5 w-5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
                           </Link>
                         ))}
                       </div>
