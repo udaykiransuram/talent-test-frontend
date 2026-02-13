@@ -32,8 +32,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement | null>(null);
   const headerInnerRef = useRef<HTMLDivElement | null>(null);
   const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
-  const [sidePad, setSidePad] = useState<{ left: number; right: number }>({ left: 0, right: 0 });
-  const [headerBox, setHeaderBox] = useState<{ left: number; width: number } | null>(null);
+  // Removed dynamic horizontal alignment states in favor of matching header container classes directly
 
   // Ensure portal only renders on client
   useEffect(() => setMounted(true), []);
@@ -111,46 +110,9 @@ export default function Navbar() {
     };
   }, []);
 
-  // Precisely match mobile menu panel left/right padding to header inner container
-  useEffect(() => {
-    const computeSidePads = () => {
-      const inner = headerInnerRef.current;
-      if (!inner) return;
-      const rect = inner.getBoundingClientRect();
-      const left = Math.max(0, Math.round(rect.left));
-      const right = Math.max(0, Math.round(window.innerWidth - rect.right));
-      setSidePad({ left, right });
-    };
-    computeSidePads();
-    window.addEventListener('resize', computeSidePads);
-    window.addEventListener('orientationchange', computeSidePads);
-    return () => {
-      window.removeEventListener('resize', computeSidePads);
-      window.removeEventListener('orientationchange', computeSidePads);
-    };
-  }, [mobileMenuOpen, scrolled, pathname]);
-
-  // Track header inner box position/width to align the mobile menu panel with header container
-  useEffect(() => {
-    const computeHeaderBox = () => {
-      const inner = headerInnerRef.current;
-      if (!inner) {
-        setHeaderBox(null);
-        return;
-      }
-      const rect = inner.getBoundingClientRect();
-      setHeaderBox({ left: Math.max(0, Math.round(rect.left)), width: Math.round(rect.width) });
-    };
-    computeHeaderBox();
-    window.addEventListener('resize', computeHeaderBox);
-    window.addEventListener('orientationchange', computeHeaderBox);
-    window.addEventListener('scroll', computeHeaderBox, { passive: true });
-    return () => {
-      window.removeEventListener('resize', computeHeaderBox);
-      window.removeEventListener('orientationchange', computeHeaderBox);
-      window.removeEventListener('scroll', computeHeaderBox);
-    };
-  }, [mobileMenuOpen, scrolled, pathname]);
+  // Note: We intentionally avoid measuring header box/side padding for the mobile menu.
+  // Instead, we replicate the exact header inner container classes on the mobile menu wrapper
+  // to guarantee pixel-perfect alignment in all pages and viewports.
 
   // Close desktop dropdown when clicking outside header
   useEffect(() => {
@@ -347,20 +309,13 @@ export default function Navbar() {
           className="fixed left-0 right-0 bottom-0 z-[9999] md:hidden overflow-y-auto overscroll-contain w-full max-w-full bg-white/95 backdrop-blur-xl border-t border-slate-200"
           style={{
             top: `calc(${headerH}px + env(safe-area-inset-top, 0px))`,
-            width: headerBox?.width,
-            left: headerBox ? Math.max(0, headerBox.left - 1) : undefined,
-            right: headerBox ? 'auto' : undefined,
           }}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Menu"
         >
           <nav
-            className="mx-auto max-w-7xl flex flex-col py-3 text-slate-900"
-            style={{
-              paddingLeft: `calc(${sidePad.left}px + env(safe-area-inset-left, 0px))`,
-              paddingRight: `calc(${sidePad.right}px + env(safe-area-inset-right, 0px))`,
-            }}
+            className="mx-auto max-w-7xl px-5 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col py-3 text-slate-900"
             role="menu"
             aria-label="Mobile Navigation"
           >
