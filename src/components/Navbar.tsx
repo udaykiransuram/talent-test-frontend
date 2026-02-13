@@ -63,33 +63,37 @@ export default function Navbar() {
     setMobileMenuOpen(false);
     setMobileDropdownOpen(null);
   }, [pathname]);
-
   // Lock body scroll when mobile menu is open (better iOS Safari behavior)
   useEffect(() => {
     const body = document.body;
-    const scrollY = window.scrollY;
     if (mobileMenuOpen) {
+      const scrollY = window.scrollY;
+      const scrollX = window.scrollX;
       body.style.overflow = "hidden";
       body.style.position = "fixed";
       body.style.width = "100%";
       body.style.top = `-${scrollY}px`;
-    } else {
-      const top = body.style.top;
-      body.style.overflow = "";
-      body.style.position = "";
-      body.style.width = "";
-      body.style.top = "";
-      if (top) {
+      body.style.left = `-${scrollX}px`;
+      return () => {
+        const top = body.style.top;
+        const left = body.style.left;
+        body.style.overflow = "";
+        body.style.position = "";
+        body.style.width = "";
+        body.style.top = "";
+        body.style.left = "";
         const y = parseInt(top || "0", 10) * -1;
-        window.scrollTo(0, y);
-      }
-    }
-    return () => {
+        const x = parseInt(left || "0", 10) * -1;
+        window.scrollTo(x, y);
+      };
+    } else {
+      // Ensure clean state if toggled quickly
       body.style.overflow = "";
       body.style.position = "";
       body.style.width = "";
       body.style.top = "";
-    };
+      body.style.left = "";
+    }
   }, [mobileMenuOpen]);
 
   // Track header height for accurate mobile overlay positioning
