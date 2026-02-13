@@ -39,6 +39,10 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenDropdown(null);
+    };
+    window.addEventListener('keydown', onKey);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -94,6 +98,18 @@ export default function Navbar() {
       window.removeEventListener("resize", setH);
     };
   }, []);
+
+  // Close desktop dropdown when clicking outside header
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      if (!headerRef.current) return;
+      if (openDropdown && !headerRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [openDropdown]);
 
   // Link styles for light glass navbar (dark text)
   const getTextColor = (_baseColor: string, active: boolean) => {
@@ -174,25 +190,32 @@ export default function Navbar() {
                   {/* Mega Menu Dropdown */}
                   <div 
                     className={cn(
-                      "absolute left-1/2 top-full w-80 -translate-x-1/2 pt-4 transition-all duration-200 z-[1100]",
+                      "absolute left-1/2 top-full w-[22rem] -translate-x-1/2 pt-3 transition-all duration-200 will-change-transform z-[1100]",
                       openDropdown === item.href 
-                        ? "opacity-100 translate-y-0 visible" 
-                        : "opacity-0 translate-y-2 invisible pointer-events-none"
+                        ? "opacity-100 translate-y-0 scale-100 visible" 
+                        : "opacity-0 translate-y-2 scale-95 invisible pointer-events-none"
                     )}
+                    data-dropdown-panel
                   >
-                    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-xl p-2 shadow-[0_12px_30px_rgba(0,0,0,0.08)] text-slate-900">
-                      <div className="grid gap-1">
+                    <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 backdrop-blur-xl p-2 shadow-2xl ring-1 ring-slate-900/10 text-slate-900">
+                      <div className="px-2 py-1.5">
+                        <div className="text-[11px] uppercase tracking-wide text-slate-500">Solutions</div>
+                      </div>
+                      <div className="grid gap-1 p-1">
                         {item.dropdown?.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-slate-50 group/item"
+                            className="flex items-start gap-3 rounded-xl p-3 transition-colors border border-transparent hover:border-slate-200 hover:bg-white/90 group/item"
                           >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-lg shadow-sm backdrop-blur-sm transition-colors">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-lg shadow-sm">
                               {subItem.icon}
                             </span>
-                            <div>
-                              <div className="text-sm font-semibold text-slate-900">{subItem.label}</div>
+                            <div className="flex-1">
+                              <div className="text-sm font-semibold text-slate-900 flex items-center justify-between">
+                                {subItem.label}
+                                <svg className="h-4 w-4 text-slate-400 opacity-0 group-hover/item:opacity-100 transition-opacity" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"/></svg>
+                              </div>
                               <div className="text-xs text-slate-600">{subItem.desc}</div>
                             </div>
                           </Link>
