@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 // Layout
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ViewportHover from "@/components/ViewportHover";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,7 +72,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground min-h-screen flex flex-col relative overflow-x-clip`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground min-h-screen flex flex-col relative overflow-x-hidden`}>
         {/* Site-wide glassy background (light blue + water droplets + subtle noise) */}
         <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
           {/* Soft light blue gradient base */}
@@ -84,6 +85,7 @@ export default function RootLayout({
           <div className="absolute inset-0 opacity-[0.1] bg-[conic-gradient(from_210deg_at_10%_0%,rgba(255,255,255,0.25)_0deg,transparent_120deg)]" />
         </div>
         <Navbar />
+        <ViewportHover />
         <main className="flex-1 pt-20">{children}</main>
         <Footer />
         <Toaster />
