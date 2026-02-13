@@ -30,7 +30,9 @@ export default function Navbar() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
+  const headerInnerRef = useRef<HTMLDivElement | null>(null);
   const [headerH, setHeaderH] = useState<number>(80); // fallback to 80px (h-20)
+  const [sidePad, setSidePad] = useState<{ left: number; right: number }>({ left: 0, right: 0 });
 
   // Ensure portal only renders on client
   useEffect(() => setMounted(true), []);
@@ -108,6 +110,25 @@ export default function Navbar() {
     };
   }, []);
 
+  // Precisely match mobile menu panel left/right padding to header inner container
+  useEffect(() => {
+    const computeSidePads = () => {
+      const inner = headerInnerRef.current;
+      if (!inner) return;
+      const rect = inner.getBoundingClientRect();
+      const left = Math.max(0, Math.round(rect.left));
+      const right = Math.max(0, Math.round(window.innerWidth - rect.right));
+      setSidePad({ left, right });
+    };
+    computeSidePads();
+    window.addEventListener('resize', computeSidePads);
+    window.addEventListener('orientationchange', computeSidePads);
+    return () => {
+      window.removeEventListener('resize', computeSidePads);
+      window.removeEventListener('orientationchange', computeSidePads);
+    };
+  }, [mobileMenuOpen, scrolled, pathname]);
+
   // Close desktop dropdown when clicking outside header
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -143,7 +164,7 @@ export default function Navbar() {
           : "border-slate-200/60 bg-white/70 backdrop-blur-2xl shadow-[0_4px_18px_rgba(0,0,0,0.06)]"
       )}
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex h-20 items-center justify-between">
+      <div ref={headerInnerRef} className="mx-auto max-w-7xl px-5 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex h-20 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white shadow-lg shadow-teal-500/20">
@@ -306,7 +327,15 @@ export default function Navbar() {
           aria-modal="true"
           aria-label="Mobile Menu"
         >
-          <nav className="mx-auto max-w-7xl px-5 sm:px-8 md:px-16 pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] flex flex-col py-3 text-slate-900" role="menu" aria-label="Mobile Navigation">
+          <nav
+            className="mx-auto max-w-7xl flex flex-col py-3 text-slate-900"
+            style={{
+              paddingLeft: `calc(${sidePad.left}px + env(safe-area-inset-left, 0px))`,
+              paddingRight: `calc(${sidePad.right}px + env(safe-area-inset-right, 0px))`,
+            }}
+            role="menu"
+            aria-label="Mobile Navigation"
+          >
             {navItems.map((item) => {
               const hasDropdown = 'dropdown' in item && item.dropdown;
               
