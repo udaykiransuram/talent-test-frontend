@@ -203,15 +203,29 @@
   content: "";
   position: absolute;
   inset: 0;
-  /* Subtle grain for diffusion */
-  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.05;
+  /* Subtle grid lines + grain, similar to inner pages */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px),
+    url('https://grainy-gradients.vercel.app/noise.svg');
+  background-size: 64px 64px, 64px 64px, cover;
+  background-position: 0 0, 0 0, center;
+  opacity: 0.06;
+  /* Soften edges slightly */
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 0%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 0%, #000 70%, transparent 100%);
   z-index: 0;
   pointer-events: none;
 }
-.dark .cards-section::after { opacity: 0.06; }
+.dark .cards-section::after {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+    url('https://grainy-gradients.vercel.app/noise.svg');
+  background-size: 64px 64px, 64px 64px, cover;
+  background-position: 0 0, 0 0, center;
+  opacity: 0.08;
+}
 .cards-section > * {
   position: relative;
   z-index: 1;
